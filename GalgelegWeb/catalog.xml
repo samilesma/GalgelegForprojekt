@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://ubuntu4.javabog.dk:55556/galgeleg?wsdl" uri="src/conf/xml-resources/web-service-references/galgeleg/wsdl/ubuntu4.javabog.dk_55556/galgeleg.wsdl"/>
+    <system systemId="http://ubuntu4.javabog.dk:55556/galgeleg?xsd=1" uri="src/conf/xml-resources/web-service-references/galgeleg/wsdl/ubuntu4.javabog.dk_55556/galgeleg.xsd_1.xsd"/>
+</catalog>
