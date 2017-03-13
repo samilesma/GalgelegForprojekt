@@ -7,3 +7,4 @@ Galgeleg/nbbuild/
 Galgeleg/dist/
 Galgeleg/nbdist/
 Galgeleg/.nb-gradle/
+*.class
