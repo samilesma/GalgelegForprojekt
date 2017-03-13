@@ -1,9 +1,9 @@
 /Webserver/nbproject/private/
 /Webserver/build/
 /Webserver/dist/
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+Galgeleg/nbproject/private/
+Galgeleg/build/
+Galgeleg/nbbuild/
+Galgeleg/dist/
+Galgeleg/nbdist/
+Galgeleg/.nb-gradle/
