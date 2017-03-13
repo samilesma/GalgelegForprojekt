@@ -9,3 +9,6 @@ Galgeleg/nbdist/
 Galgeleg/.nb-gradle/
 Galgeleg/nbproject/project.properties
 *.class
+Galgeleg/build/built-jar.properties
+Galgeleg/nbproject/private/private.properties
+Galgeleg/nbproject/project.properties
