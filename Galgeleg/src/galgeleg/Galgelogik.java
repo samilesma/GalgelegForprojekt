@@ -16,6 +16,12 @@ import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @WebService(endpointInterface = "galgeleg.GalgeI")
 
@@ -175,7 +181,25 @@ public class Galgelogik implements GalgeI{
     
     @Override
     public void hentOrdFraDr(){
-        String data = hentUrl("http://dr.dk");;
+//        String data = hentUrl("http://dr.dk");
+        String data="";
+        Client client = ClientBuilder.newClient();
+        Response res = client.target("http://www.dr.dk/mu-online/api/1.3/list/view/mostviewed?channel=dr1").request(MediaType.APPLICATION_JSON).get();
+        String svar = res.readEntity(String.class);
+        try {
+            JSONObject json = new JSONObject(svar);
+            for(int i=1;i<=3;i++)
+            {
+                client = ClientBuilder.newClient();
+                res = client.target("http://www.dr.dk/mu-online/api/1.3/programcard/"+json.getJSONArray("Items").getJSONObject(i-1).getString("Slug")).request(MediaType.APPLICATION_JSON).get();
+                svar = res.readEntity(String.class);
+                JSONObject json2 = new JSONObject(svar);
+                data=data+" "+json2.getString("Description");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         System.out.println("data = " + data);
         
         data = data.replaceAll("<.+?>", " ").toLowerCase().replaceAll("[^a-zæøå]", " ");
