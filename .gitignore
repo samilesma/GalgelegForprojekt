@@ -1,3 +1,9 @@
 /Webserver/nbproject/private/
 /Webserver/build/
 /Webserver/dist/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

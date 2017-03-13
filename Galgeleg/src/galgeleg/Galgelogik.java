@@ -72,7 +72,7 @@ public class Galgelogik implements GalgeI{
     
     public Galgelogik() throws MalformedURLException{
         hentOrdFraDr();
-        URL url = new URL("http://javabog.dk:9966/brugeradmin?wsdl");
+        URL url = new URL("http://javabog.dk:9901/brugeradmin?wsdl");
         QName qname = new QName("http://soap.transport.brugerautorisation/", "BrugeradminImplService");
         Service service = Service.create(url, qname);
         ba = service.getPort(Brugeradmin.class);
@@ -181,24 +181,23 @@ public class Galgelogik implements GalgeI{
     
     @Override
     public void hentOrdFraDr(){
-//        String data = hentUrl("http://dr.dk");
         String data="";
-        Client client = ClientBuilder.newClient();
-        Response res = client.target("http://www.dr.dk/mu-online/api/1.3/list/view/mostviewed?channel=dr1").request(MediaType.APPLICATION_JSON).get();
-        String svar = res.readEntity(String.class);
+        String svar = hentUrl("http://www.dr.dk/mu-online/api/1.3/list/view/mostviewed?channel=dr1"), svar2="",link="";
         try {
             JSONObject json = new JSONObject(svar);
             for(int i=1;i<=3;i++)
             {
-                client = ClientBuilder.newClient();
-                res = client.target("http://www.dr.dk/mu-online/api/1.3/programcard/"+json.getJSONArray("Items").getJSONObject(i-1).getString("Slug")).request(MediaType.APPLICATION_JSON).get();
-                svar = res.readEntity(String.class);
-                JSONObject json2 = new JSONObject(svar);
+                link=link+"\n"+"http://www.dr.dk/mu-online/api/1.3/programcard/"+json.getJSONArray("Items").getJSONObject(i-1).getString("Slug");
+                svar2 = hentUrl("http://www.dr.dk/mu-online/api/1.3/programcard/"+json.getJSONArray("Items").getJSONObject(i-1).getString("Slug"));
+                JSONObject json2 = new JSONObject(svar2);
                 data=data+" "+json2.getString("Description");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //*/
+        
+        System.out.println("Link:\n" + link + "\n");
         
         System.out.println("data = " + data);
         
