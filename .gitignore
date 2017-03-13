@@ -15,3 +15,4 @@ Galgeleg/nbproject/project.properties
 Galgeleg/build/classes/brugerautorisation/transport/soap/Brugeradmin.class
 *.class
 Galgeleg/nbproject/private/private.properties
+*.properties
