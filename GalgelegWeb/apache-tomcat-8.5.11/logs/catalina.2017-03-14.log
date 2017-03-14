@@ -1,0 +1,142 @@
+14-Mar-2017 07:30:25.498 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.11
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Jan 10 2017 21:02:52 UTC
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.11.0
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_60\jre
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_60-b27
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+14-Mar-2017 07:30:25.500 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\conf\logging.properties
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dhttp.nonProxyHosts=localhost|127.0.0.1|Batir
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Mar-2017 07:30:25.501 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11
+14-Mar-2017 07:30:25.502 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11
+14-Mar-2017 07:30:25.502 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\temp
+14-Mar-2017 07:30:25.502 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+14-Mar-2017 07:30:25.502 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+14-Mar-2017 07:30:25.502 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+14-Mar-2017 07:30:26.479 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+14-Mar-2017 07:30:26.896 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+14-Mar-2017 07:30:27.121 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+14-Mar-2017 07:30:27.128 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+14-Mar-2017 07:30:27.132 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+14-Mar-2017 07:30:27.132 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 3923 ms
+14-Mar-2017 07:30:27.333 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+14-Mar-2017 07:30:27.334 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.11
+14-Mar-2017 07:30:27.352 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\docs
+14-Mar-2017 07:30:28.231 INFO [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [168] milliseconds.
+14-Mar-2017 07:30:28.258 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\docs has finished in 906 ms
+14-Mar-2017 07:30:28.258 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\examples
+14-Mar-2017 07:30:30.805 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\examples has finished in 2,547 ms
+14-Mar-2017 07:30:30.806 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\host-manager
+14-Mar-2017 07:30:30.974 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\host-manager has finished in 168 ms
+14-Mar-2017 07:30:30.974 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\manager
+14-Mar-2017 07:30:31.128 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\manager has finished in 154 ms
+14-Mar-2017 07:30:31.129 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\ROOT
+14-Mar-2017 07:30:31.194 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\webapps\ROOT has finished in 65 ms
+14-Mar-2017 07:30:31.211 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler [http-nio-8080]
+14-Mar-2017 07:30:31.236 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler [ajp-nio-8009]
+14-Mar-2017 07:30:31.242 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 4109 ms
+14-Mar-2017 07:30:35.807 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying configuration descriptor C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml
+14-Mar-2017 07:30:35.922 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of configuration descriptor C:\Program Files\Apache Software Foundation\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml has finished in 115 ms
+14-Mar-2017 07:30:35.933 INFO [http-nio-8080-exec-9] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/GalgelegWeb]] after start() had already been called. The second call will be ignored.
+14-Mar-2017 08:36:20.981 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+14-Mar-2017 08:36:20.989 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+14-Mar-2017 08:36:21.663 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+14-Mar-2017 08:36:22.011 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service Catalina
+14-Mar-2017 08:36:22.187 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+14-Mar-2017 08:36:22.189 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+14-Mar-2017 08:36:22.192 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+14-Mar-2017 08:36:22.194 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+14-Mar-2017 08:39:40.786 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.11
+14-Mar-2017 08:39:40.788 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Jan 10 2017 21:02:52 UTC
+14-Mar-2017 08:39:40.788 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.11.0
+14-Mar-2017 08:39:40.788 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_121\jre
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_121-b13
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\logging.properties
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dhttp.nonProxyHosts=localhost|127.0.0.1|MSI
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Mar-2017 08:39:40.789 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11
+14-Mar-2017 08:39:40.790 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11
+14-Mar-2017 08:39:40.790 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\temp
+14-Mar-2017 08:39:40.790 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+14-Mar-2017 08:39:40.790 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+14-Mar-2017 08:39:40.790 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+14-Mar-2017 08:39:41.410 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+14-Mar-2017 08:39:41.529 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+14-Mar-2017 08:39:41.708 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+14-Mar-2017 08:39:41.710 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+14-Mar-2017 08:39:41.712 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+14-Mar-2017 08:39:41.712 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1255 ms
+14-Mar-2017 08:39:41.741 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+14-Mar-2017 08:39:41.741 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.11
+14-Mar-2017 08:39:41.749 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying configuration descriptor C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml
+14-Mar-2017 08:39:41.791 SEVERE [localhost-startStop-1] org.apache.catalina.core.ContainerBase.addChildInternal ContainerBase.addChild: start: 
+ org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/GalgelegWeb]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:596)
+	at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1805)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.catalina.LifecycleException: Failed to start component [org.apache.catalina.webresources.StandardRoot@65a9d34b]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167)
+	at org.apache.catalina.core.StandardContext.resourcesStart(StandardContext.java:4842)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4974)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	... 10 more
+Caused by: java.lang.IllegalArgumentException: The main resource set specified [C:\Users\Samil\Documents\GitHub\GalgelegForprojekt\GalgelegWeb\build\web] is not valid
+	at org.apache.catalina.webresources.StandardRoot.createMainResourceSet(StandardRoot.java:732)
+	at org.apache.catalina.webresources.StandardRoot.startInternal(StandardRoot.java:690)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	... 13 more
+
+14-Mar-2017 08:39:41.792 SEVERE [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDescriptor Error deploying configuration descriptor C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml
+ java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/GalgelegWeb]]
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:756)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:596)
+	at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1805)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+14-Mar-2017 08:39:41.793 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of configuration descriptor C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml has finished in 43 ms
+14-Mar-2017 08:39:41.794 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\docs
+14-Mar-2017 08:39:42.016 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\docs has finished in 222 ms
+14-Mar-2017 08:39:42.017 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\examples
+14-Mar-2017 08:39:42.314 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\examples has finished in 297 ms
+14-Mar-2017 08:39:42.315 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\host-manager
+14-Mar-2017 08:39:42.338 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\host-manager has finished in 22 ms
+14-Mar-2017 08:39:42.338 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\manager
+14-Mar-2017 08:39:42.359 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\manager has finished in 21 ms
+14-Mar-2017 08:39:42.359 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\ROOT
+14-Mar-2017 08:39:42.374 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\webapps\ROOT has finished in 15 ms
+14-Mar-2017 08:39:42.376 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler [http-nio-8080]
+14-Mar-2017 08:39:42.381 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler [ajp-nio-8009]
+14-Mar-2017 08:39:42.382 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 670 ms
+14-Mar-2017 08:39:47.650 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/GalgelegWeb]
+14-Mar-2017 08:39:47.669 INFO [http-nio-8080-exec-3] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying configuration descriptor C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml
+14-Mar-2017 08:39:47.729 INFO [http-nio-8080-exec-3] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of configuration descriptor C:\Users\ahmad\Desktop\Opgaver\4 - Semester\Distribuerede systemer\GalgelegForprojekt\GalgelegWeb\apache-tomcat-8.5.11\conf\Catalina\localhost\GalgelegWeb.xml has finished in 60 ms
+14-Mar-2017 08:39:47.734 INFO [http-nio-8080-exec-10] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/GalgelegWeb]] after start() had already been called. The second call will be ignored.
