@@ -84,11 +84,11 @@ public class Galgelogik implements GalgeI{
         try {
             Bruger b;
             b = ba.hentBruger(brugernavn, adgangskode);
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        return true;
     }
     
     public void nulstil(){
