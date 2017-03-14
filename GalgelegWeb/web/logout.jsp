@@ -19,13 +19,6 @@
     <body>
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
         <%! src.GalgeI spil = service.getGalgelogikPort();%>
-        
-        <script>
-            window.onload = function () {
-                document.getElementById("username").focus();
-            };
-        </script>
-        
         <div class="site-wrapper">
 
             <div class="site-wrapper-inner">
@@ -35,27 +28,21 @@
                     <div class="masthead clearfix">
                         <div class="inner">
                             <h3 class="masthead-brand">Galgeleg</h3>
+                            <nav>
+                                <ul class="nav masthead-nav">
+                                    <li class="active"><a href="">Spil</a></li>
+                                    <li><a href="highscore">Highscore</a></li>
+                                    <li class="active"><a href="">Log ud</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     <div class="inner cover">
-                        <h1 class="cover-heading">Velkommen til Galgeleg!</h1>
-                        <h2 class="cover-heading">Login med dit DTU login for at fortsætte</h2>
-                        <hr/>
-                        <form action="LoginServlet" method="post" >
-                            <div class="form-group">
-                                <label for="username">Studienummer</label> <input
-                                    type="text" class="form-control" name="username" id="username"
-                                    placeholder="Indtast studienummer" required="required">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label> <input
-                                    type="password" class="form-control" name="password" id="password"
-                                    placeholder="Indtast adgangskode" required="required">
-                            </div>
-                            <button type="submit" class="btn btn-lg btn-primary" >Login</button>
-                        </form>
-                        <hr/>
+                        <h1 class="cover-heading">Du logges ud...</h1>
+                        <% request.getSession().removeAttribute("currUser"); 
+                        request.getSession().invalidate();
+                        %>
+                        <jsp:forward page="index.jsp"/>
                     </div>                  
                     
                     <div class="mastfoot">

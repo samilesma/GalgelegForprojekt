@@ -19,13 +19,6 @@
     <body>
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
         <%! src.GalgeI spil = service.getGalgelogikPort();%>
-        
-        <script>
-            window.onload = function () {
-                document.getElementById("username").focus();
-            };
-        </script>
-        
         <div class="site-wrapper">
 
             <div class="site-wrapper-inner">
@@ -38,8 +31,7 @@
                         </div>
                     </div>
                     <div class="inner cover">
-                        <h1 class="cover-heading">Velkommen til Galgeleg!</h1>
-                        <h2 class="cover-heading">Login med dit DTU login for at fortsætte</h2>
+                        <h1 class="cover-heading">Login med dit DTU login</h1>
                         <hr/>
                         <form action="LoginServlet" method="post" >
                             <div class="form-group">
@@ -56,8 +48,10 @@
                             <button type="submit" class="btn btn-lg btn-primary" >Login</button>
                         </form>
                         <hr/>
-                    </div>                  
-                    
+                        <div class="alert alert-danger" role="alert">Forkert studienummer eller adgangskode!</div>
+                    </div>
+
+
                     <div class="mastfoot">
                         <div class="inner">
                             <p>Lavet af gruppe <a href="http://tourneo.dk/">TS</a></p>
