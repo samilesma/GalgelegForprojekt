@@ -20,13 +20,14 @@
     <body>
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
         <%! src.GalgeI spil = service.getGalgelogikPort();%>
-        
+        <%! java.lang.String ordet = spil.getOrdet();%>
+
         <script>
             window.onload = function () {
                 document.getElementById("letter").focus();
             };
         </script>
-        
+
         <div class="site-wrapper">
 
             <div class="site-wrapper-inner">
@@ -39,13 +40,13 @@
                             <nav>
                                 <ul class="nav masthead-nav">
                                     <li class="active"><a href="#">Spil</a></li>
-                                    <li><a href="highscore">Highscore</a></li>
+                                    <li><a href="highscore.jsp">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-
+                    </br>
                     <div class="inner cover">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
@@ -53,10 +54,11 @@
                         %>
                         <h1 class="cover-heading">Velkommen til Galgespillet <%=currUser%> </h1>  
                         <hr/>
-                        <center>
-                            <div class="row">
-                                <div class="col-xs-6 col-md-3" id="hangmanpic">
-                                    <img src=
+
+                        <div class="row">
+
+                            <div class="col-xs-6 col-md-3">
+                                <img id="hangmanpic" src=
                                          <%
                                              int errors = spil.getAntalForkerteBogstaver();
                                              if (errors >= 0 && errors <= 7) {
@@ -65,14 +67,16 @@
                                                  out.println(picturePath);
                                              }
                                          %> alt="Ikke indlæst">
-                                </div>
                             </div>
-                        </center>
+
+                        </div>
+
+                                <p class="lead" id="finalMessage"><b><b></p>
 
                         <%
                             try {
-                                java.lang.String synligtOrd = spil.getSynligtOrd();%>
-                        <p class="lead">Ordet er: <%=synligtOrd%></p>
+                                java.lang.String synligtOrd = spil.getOrdet();%>
+                        <p id="ordetLabel" class="lead">Ordet er: <%=synligtOrd%></p>
                         <% } catch (Exception ex) {
 
                             }
@@ -90,37 +94,67 @@
 
                             }
                         %> 
-                        <form action="GameServlet" method="post" >
+                        <form action="GameServlet" method="post" id="guessForm">
                             <div class="form-group">
                                 <label for="letter">Bogstav</label> <input
                                     type="text" class="form-control" name="letter" id="letter"
                                     placeholder="Indtast bogstav" required="required">
                             </div>
-                            <button type="submit" class="btn btn-lg btn-primary" >Gæt!</button>
+                            <button type="submit" id="btnGuess" class="btn btn-lg btn-primary" >Gæt!</button>
+
+                        </form>
+                        <form action="GameServlet" method="post" id="newGameForm" hidden="true">
+                            <button type="submit" class="btn btn-lg btn-primary">Nyt spil</button>
                         </form>
                         <hr/>
                     </div>
-
                     <%
                         try {
-                            boolean result = spil.erSpilletTabt();
-                            if (result) {
-                                spil.nulstil();
-                                response.sendRedirect("game.jsp"); %>
-                    <!-- <script> document.getElementById("hangmanpic").src = 'grafik/tabt.png'</script> -->
-                    <%
-
-                            }
+                            boolean result = spil.erSidsteBogstavKorrekt();
+                            if (!result && !(spil.getBrugteBogstaver().isEmpty())) { %> 
+                    <div class="alert alert-danger" role="alert">Forkert gæt!</div>
+                    <%      } else if (result && !(spil.getBrugteBogstaver().isEmpty())) { %> 
+                    <div class="alert alert-success" role="alert">Korrekt gæt!</div>
+                    <% }
                         } catch (Exception ex) {
-                            // TODO handle custom exceptions here
                         }
 
                         try {
+                            boolean result = spil.erSpilletTabt();
+                            if (result) {
+                                // spil.nulstil();
+                                // response.sendRedirect("game.jsp");
+
+
+                    %>
+                    
+                    <script>
+                        document.getElementById("hangmanpic").src = 'grafik/tabt.png'
+                        document.getElementById("finalMessage").innerHTML = "Øv du har tabt!"
+                        document.getElementById("finalMessage").style.color = 'red'
+                        document.getElementById("ordetLabel").innerHTML = "Ordet var <%=ordet%>"
+                        document.getElementById("guessForm").hidden = true;
+                        document.getElementById("newGameForm").hidden = false;
+                    </script>
+                    
+                    <%                            }
+                        } catch (Exception ex) {
+                        }
+// spil.nulstil();
+                        // response.sendRedirect("game.jsp");
+                        try {
                             boolean result = spil.erSpilletVundet();
                             if (result) {
-                                spil.nulstil();
-                                response.sendRedirect("game.jsp"); %>
-                    <!-- <script> document.getElementById("hangmanpic").src = 'grafik/vundet.png' </script> -->
+                                
+                    %>
+                    <script>
+                        document.getElementById("hangmanpic").src = 'grafik/vundet.png'
+                        document.getElementById("finalMessage").innerHTML = "Tillykke du har vundet!"
+                        document.getElementById("finalMessage").style.color = 'green'
+                        document.getElementById("guessForm").hidden = true;
+                        document.getElementById("newGameForm").hidden = false;
+                    </script>
+                    <jsp:include page = "HighscoreServlet" />
                     <% }
                         } catch (Exception ex) {
                             // TODO handle custom exceptions here

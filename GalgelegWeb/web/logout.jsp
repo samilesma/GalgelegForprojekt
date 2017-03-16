@@ -42,6 +42,7 @@
                         <h1 class="cover-heading">Du logges ud...</h1>
                         <% request.getSession().removeAttribute("currUser"); 
                         request.getSession().invalidate();
+                        spil.nulstil();
                         %>
                         <jsp:forward page="index.jsp"/>
                     </div>                  
