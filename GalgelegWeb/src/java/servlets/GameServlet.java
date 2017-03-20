@@ -26,7 +26,7 @@ public class GameServlet extends HttpServlet {
 
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-    final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt";
+    final static String FILEPATH = "/opt/tomcat/webapps/GalgelegWeb/WEB-INF/highscore.txt";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

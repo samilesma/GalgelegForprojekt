@@ -75,7 +75,7 @@
                                 <th>Antal forkerte</th> 
                                 <th>Tid</th>
                             </tr>
-                            <%! final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt"; %>
+                            <%! final static String FILEPATH = "/opt/tomcat/webapps/GalgelegWeb/WEB-INF/highscore.txt"; %>
                             <%
                                 JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
                                 for(int i=1;i<=hs.length();i++)
