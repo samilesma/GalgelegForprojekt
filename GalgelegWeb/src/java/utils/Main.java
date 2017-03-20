@@ -12,7 +12,7 @@ import org.json.*;
 
 public class Main {
 	final static int MAX=10;
-        final static String FILEPATH = "/Users/Umais/Documents/DTU-Softwareteknologi/4. semester/2. 62596 Distribuerede systemer/GalgelegForprojekt/GalgelegWeb/src/java/utils/highscore.txt";
+        final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt";
 	
 	public static boolean canAddHighscore(JSONArray hs, int forkerte, int tid) throws JSONException {
 		if(hs.length()<=MAX) return true;

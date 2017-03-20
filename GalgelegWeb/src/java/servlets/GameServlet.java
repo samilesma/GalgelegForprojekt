@@ -6,11 +6,17 @@
 package servlets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import utils.Main;
 
 /**
  *
@@ -20,6 +26,7 @@ public class GameServlet extends HttpServlet {
 
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
+    final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,23 +37,32 @@ public class GameServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException {
         if (spil.erSpilletSlut()) {
             spil.nulstil();
+            request.getSession().setAttribute("currTime",System.currentTimeMillis());
         } else {
             String letter = request.getParameter("letter");
             spil.gætBogstav(letter);
         }
-
+        
         if (spil.erSpilletVundet()) {
-            RequestDispatcher rd = request.getRequestDispatcher("HighscoreServlet");
-            rd.forward(request, response);
-        } else {
-            RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
-            rd.forward(request, response);
+            System.out.println("MUHAHHHAHAH");
+            String navn = (String) request.getSession().getAttribute("currUser");
+            int forkerte = spil.getAntalForkerteBogstaver();
+            // int tid = request.getParameter("seconds");
+
+            JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
+            Main.printHighscore(hs);
+            if (Main.canAddHighscore(hs, forkerte, (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000))) {
+                hs = Main.addHighscore(hs, navn, forkerte, (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000));
+            } else {
+                System.out.println("FALSE");
+            }
+            Main.printHighscore(hs);
         }
+        RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
+        rd.forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,9 +75,12 @@ public class GameServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (JSONException ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,9 +92,12 @@ public class GameServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (JSONException ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

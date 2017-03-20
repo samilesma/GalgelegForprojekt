@@ -26,7 +26,7 @@ public class HighscoreServlet extends HttpServlet {
 
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-    final static String FILEPATH = "/Users/Umais/Documents/DTU-Softwareteknologi/4. semester/2. 62596 Distribuerede systemer/GalgelegForprojekt/GalgelegWeb/src/java/utils/highscore.txt";
+    final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,8 +54,8 @@ public class HighscoreServlet extends HttpServlet {
         }
         Main.printHighscore(hs);
 
-        RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
-        rd.forward(request, response);
+//        RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
+//        rd.forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

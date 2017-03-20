@@ -75,7 +75,7 @@
 
                         <%
                             try {
-                                java.lang.String synligtOrd = spil.getOrdet();%>
+                                java.lang.String synligtOrd = spil.getSynligtOrd();%>
                         <p id="ordetLabel" class="lead">Ordet er: <%=synligtOrd%></p>
                         <% } catch (Exception ex) {
 
@@ -93,7 +93,7 @@
                         <% } catch (Exception ex) {
 
                             }
-                        %> 
+                        %>
                         <form action="GameServlet" method="post" id="guessForm">
                             <div class="form-group">
                                 <label for="letter">Bogstav</label> <input
@@ -154,7 +154,6 @@
                         document.getElementById("guessForm").hidden = true;
                         document.getElementById("newGameForm").hidden = false;
                     </script>
-                    <jsp:include page = "HighscoreServlet" />
                     <% }
                         } catch (Exception ex) {
                             // TODO handle custom exceptions here
