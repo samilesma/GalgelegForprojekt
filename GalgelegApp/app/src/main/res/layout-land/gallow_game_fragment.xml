@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".GallowGameFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/lightblack"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/textview_welcome"
+        android:gravity="center_vertical"
+        android:text="@string/galgeleg_titel"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            >
+
+            <ImageSwitcher
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:id="@+id/imageSwitcher"
+                android:contentDescription="galge"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_the_word_is"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_the_word"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:background="@color/lightgreen"
+                    android:textColor="@color/lightblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview_title"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_guessed_letters_text"
+                    android:padding="5dp"
+                    android:text="@string/gaettede_bogstaver"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_wrong_letters_text"
+                    android:padding="5dp"
+                    android:text="@string/antal_fejl"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/textview_guessed_letters"
+                    android:padding="5dp"
+                    android:background="@color/lightblue"
+                    android:maxLength="96"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/lightblack"
+                    />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/textview_wrong_letters"
+                    android:padding="5dp"
+                    android:background="@color/lightblue"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/lightblack"
+                    />
+            </GridLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_new_word"
+                    android:text="@string/nyt_ord"
+                    android:textAllCaps="false"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/editText_letter"
+                    android:inputType="textPersonName"
+                    android:maxLength="1"
+                    android:hint="@string/indtast_bogstav"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/lightgrey"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_guess"
+                    android:backgroundTint="@color/lightgreen"
+                    android:text="@string/gaet"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
