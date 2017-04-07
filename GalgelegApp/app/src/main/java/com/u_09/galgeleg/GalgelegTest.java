@@ -1,5 +1,7 @@
 package com.u_09.galgeleg;
 
+import com.u_09.galgeleg.Model.Galgelogik;
+
 public class GalgelegTest {
 
     public static void main(String[] args) {

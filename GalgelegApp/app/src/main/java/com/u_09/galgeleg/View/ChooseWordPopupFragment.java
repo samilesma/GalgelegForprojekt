@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.View;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,13 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.u_09.galgeleg.R;
+
 import java.util.ArrayList;
 
 /**
  * Created by Umais on 15/01/2017.
  */
 
-public class ChooseWordPopup extends Fragment implements AdapterView.OnItemClickListener {
+public class ChooseWordPopupFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private GallowGameFragment mGallowGameFragment;
     private ArrayList mMuligeOrdArray;

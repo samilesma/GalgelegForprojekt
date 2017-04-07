@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.View;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,13 +7,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.u_09.galgeleg.Model.Galgelogik;
+import com.u_09.galgeleg.R;
+
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
     private MainMenuFragment mMainMenuFragment;
     private GallowGameFragment mGallowGameFragment;
-    private ChooseWordPopup mChooseWordPopup;
+    private ChooseWordPopupFragment mChooseWordPopupFragment;
     private HighScoreFragment mHighScoreFragment;
     private HelpFragment mHelpFragment;
     private Galgelogik mGalgelogik;
@@ -25,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
 
         mMainMenuFragment = new MainMenuFragment();
         mGallowGameFragment = new GallowGameFragment();
-        mChooseWordPopup = new ChooseWordPopup();
+        mChooseWordPopupFragment = new ChooseWordPopupFragment();
         mHighScoreFragment = new HighScoreFragment();
         mHelpFragment = new HelpFragment();
 
@@ -94,7 +97,7 @@ public class GameActivity extends AppCompatActivity {
         if (id == R.id.action_main_menu) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mMainMenuFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_game) {
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopup).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopupFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_highscore) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHighScoreFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_help) {

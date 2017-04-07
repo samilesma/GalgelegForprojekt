@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.Model;
 
 import java.io.BufferedReader;
 import java.io.IOException;

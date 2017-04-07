@@ -10,7 +10,7 @@
 		android:label="@string/app_name"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name="com.u_09.galgeleg.GameActivity">
+		<activity android:name="com.u_09.galgeleg.View.GameActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 

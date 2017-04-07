@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.View;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -21,6 +21,9 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+
+import com.u_09.galgeleg.Model.Galgelogik;
+import com.u_09.galgeleg.R;
 
 import java.util.ArrayList;
 
@@ -95,7 +98,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
             mGame.gætBogstav(mGuess);
             updateUIOnGuess();
         } else if (v == mBtnNewWord) {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopup()).addToBackStack(null).commit();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopupFragment()).addToBackStack(null).commit();
             newGame();
         }
     }

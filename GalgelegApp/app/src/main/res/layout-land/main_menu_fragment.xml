@@ -6,7 +6,7 @@
               android:background="@color/lightblack"
               android:gravity="center|top"
               android:orientation="vertical"
-              tools:context=".MainMenuFragment"
+              tools:context=".View.MainMenuFragment"
     >
 
     <TextView

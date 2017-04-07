@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.View;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.u_09.galgeleg.R;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.u_09.galgeleg;
+package com.u_09.galgeleg.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.u_09.galgeleg.R;
+
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
     private View mView;
     private Button mBtnPlayGame, mBtnHighScore, mBtnHelp, mBtnTest;
-    private ChooseWordPopup mChooseWordPopup;
+    private ChooseWordPopupFragment mChooseWordPopupFragment;
     private HighScoreFragment mHighScoreFragment;
     private HelpFragment mHelpFragment;
 
@@ -20,7 +22,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
         mView = inflater.inflate(R.layout.main_menu_fragment, container, false);
 
-        mChooseWordPopup = new ChooseWordPopup();
+        mChooseWordPopupFragment = new ChooseWordPopupFragment();
         mHighScoreFragment = new HighScoreFragment();
         mHelpFragment = new HelpFragment();
 
@@ -39,7 +41,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mBtnPlayGame) {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopup).addToBackStack(null).commit();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopupFragment).addToBackStack(null).commit();
         } else if (v == mBtnHighScore) {
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHighScoreFragment).addToBackStack(null).commit();
         } else if (v == mBtnHelp) {
