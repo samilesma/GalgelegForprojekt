@@ -1,4 +1,4 @@
-package com.u_09.galgeleg.View;
+package com.u_09.galgeleg.Model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
