@@ -38,8 +38,19 @@ public class Function {
         con.update("UPDATE chat SET deleted=1 WHERE id="+id);
     }
 
+    public void banUser(int id, long timestamp) throws SQLException{
+        timestamp = System.currentTimeMillis();
+        con.update("UPDATE users SET ban="+timestamp+" WHERE id="+id);
+    }
 
+    public ArrayList<String> getUsers() throws SQLException {
+        ArrayList<String> users = new ArrayList(){};
+        ResultSet rs = con.select("SELECT sid FROM users");
+        while(rs.next()){
+            users.add(rs.getString("sid"));
+        }
 
-
+        return users;
+    }
 
 }
