@@ -52,9 +52,13 @@
                             <h3 class="masthead-brand">Galgeleg</h3>
                             <nav>
                                 <ul class="nav masthead-nav">
+                                    <%
+                                    boolean currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
+                                    if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
                                     <li><a href="game.jsp">Spil</a></li>
                                     <li class="active"><a href="#">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
+                                    
                                 </ul>
                             </nav>
                         </div>
