@@ -20,7 +20,7 @@ public class connector {
 	private Connection connection;
 	private PreparedStatement stmt = null;
 
-	public connector(String HOST, String DB, String UN, String PW) {
+	public connector(String HOST, String UN, String PW, String DB) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB;
