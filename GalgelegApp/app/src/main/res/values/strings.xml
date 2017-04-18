@@ -9,6 +9,7 @@
 	<string name="galgeleg_menu_tekst">Spil Galgeleg</string>
 	<string name="højeste_score_menu_tekst">Højeste Score</string>
 	<string name="hjælp_menu_tekst">Hjælp</string>
+	<string name="chat_menu_tekst">Chat</string>
 
 	<string name="indtast_bogstav">Indtast bogstav</string>
 	<string name="gaet">GÆT!</string>
@@ -25,4 +26,6 @@
 	<string name="venter_på_valg">Venter på valg af ord...</string>
 	<string name="ordet_var">Ordet var:</string>
 	<string name="hmm">hmm...</string>
+
+	<string name="chat_send">Send</string>
 </resources>

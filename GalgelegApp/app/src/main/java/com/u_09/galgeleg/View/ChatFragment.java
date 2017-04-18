@@ -18,10 +18,14 @@ import java.util.ArrayList;
 
 public class ChatFragment extends Fragment implements AdapterView.OnItemClickListener {
 
+    private View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return;
+        mView = inflater.inflate(R.layout.chat_fragment, container, false);
+
+
+        return mView;
     }
 
     @Override
