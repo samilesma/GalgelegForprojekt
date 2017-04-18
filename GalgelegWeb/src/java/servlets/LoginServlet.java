@@ -39,13 +39,11 @@ public class LoginServlet extends HttpServlet {
         System.out.println(pass);
 
         if (spil.hentBruger(name, pass)) {
-            RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
             request.getSession().setAttribute("currUser",name);
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
-            rd.forward(request, response);
+            response.sendRedirect("game.jsp");
         } else {//if name&pass not match then it display error page//
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("game.jsp");
         }
     }
 

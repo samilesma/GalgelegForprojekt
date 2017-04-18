@@ -76,7 +76,7 @@
                         <%
                             try {
                                 java.lang.String synligtOrd = spil.getSynligtOrd();%>
-                        <p id="ordetLabel" class="lead">Ordet er: <%=synligtOrd%></p>
+                        <p id="ordetLabel" class="lead"><%=spil.getOrdet()%> Ordet er: <%=synligtOrd%></p>
                         <% } catch (Exception ex) {
 
                             }

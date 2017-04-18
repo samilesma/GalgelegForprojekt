@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +27,9 @@ public class GameServlet extends HttpServlet {
 
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-    final static String FILEPATH = "/opt/tomcat/webapps/GalgelegWeb/WEB-INF/highscore.txt";
-
+    ServletContext context = getServletContext();
+    final String FILEPATH = context.getRealPath("/WEB-INF/highscore.txt");
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -61,8 +63,7 @@ public class GameServlet extends HttpServlet {
             }
             Main.printHighscore(hs);
         }
-        RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("game.jsp");
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
