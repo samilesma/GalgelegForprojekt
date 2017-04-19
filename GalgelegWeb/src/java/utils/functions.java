@@ -17,15 +17,16 @@ import java.util.ArrayList;
  * @author ahmad
  */
 public class functions {
+    private connector con = new connector();
     
     
     public ArrayList<String> getAllUsers(int choice) throws SQLException{
-        connector c = new connector();
+        //connector c = new connector();
         ArrayList<String> userID = new ArrayList<String>();
         ArrayList<String> userName = new ArrayList<String>();
         ArrayList<String> userSurname = new ArrayList<String>();
         
-        ResultSet rUser =  c.select("SELECT sid,name,surname FROM users");
+        ResultSet rUser =  con.select("SELECT sid,name,surname FROM users");
         while (rUser.next()) {
             userID.add(rUser.getString(1));
             userName.add(rUser.getString(2));
@@ -35,4 +36,36 @@ public class functions {
         else if(choice==2) return userName;
         else return userSurname;
     }
+    
+    public void sendMsg(String sid, String msg) throws SQLException{
+        Long timestamp = System.currentTimeMillis();
+        con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[]{"l",Long.toString(timestamp)});
+        
+    }
+    
+    public ArrayList<ArrayList<String>> getAllMessages() throws SQLException{
+        ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
+        msg.add(new ArrayList<String>());
+        msg.add(new ArrayList<String>());
+        msg.add(new ArrayList<String>());
+        ResultSet rs = con.select("SELECT sid,msg,timestamp FROM chat WHERE deleted=0");
+        while(rs.next()){
+            msg.get(0).add(rs.getString("sid"));
+            msg.get(1).add(rs.getString("msg"));
+            msg.get(2).add(rs.getString("timestamp"));
+        }
+
+        return msg;
+    }
+    
+    public void deleteMessage(int id) throws SQLException{
+        con.update("UPDATE chat SET deleted=1 WHERE id="+id);
+    }
+
+    public void banUser(int id, long timestamp) throws SQLException{
+        timestamp = System.currentTimeMillis();
+        con.update("UPDATE users SET ban="+timestamp+" WHERE id="+id);
+    }
+    
+    
 }
