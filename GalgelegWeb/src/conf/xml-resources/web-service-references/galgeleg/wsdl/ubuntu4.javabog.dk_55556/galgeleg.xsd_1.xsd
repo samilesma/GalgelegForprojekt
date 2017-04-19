@@ -40,6 +40,10 @@
 
 <xs:element name="hentBrugerResponse" type="tns:hentBrugerResponse"></xs:element>
 
+<xs:element name="hentNavn" type="tns:hentNavn"></xs:element>
+
+<xs:element name="hentNavnResponse" type="tns:hentNavnResponse"></xs:element>
+
 <xs:element name="hentOrdFraDr" type="tns:hentOrdFraDr"></xs:element>
 
 <xs:element name="hentOrdFraDrResponse" type="tns:hentOrdFraDrResponse"></xs:element>
@@ -172,6 +176,16 @@
 </xs:complexType>
 
 <xs:complexType name="getSynligtOrdResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hentNavn">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hentNavnResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>

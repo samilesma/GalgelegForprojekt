@@ -84,13 +84,16 @@
                         <table style="width:100%" class="lead">
                             <tr class="a">
                                 <th>Studienummer</th>
+                                <th>Navn</th>
+                                <th>Efternavn</th>
                             </tr>
                             <%
                                 functions f = new functions();
-                                ArrayList<String> users = f.getAllUsers();
-                                for(int i=0; i<users.size();i++){
+                                ArrayList<String> userID = f.getAllUsers("ID");
+                                
+                                for(int i=0; i<userID.size();i++){
                                     out.println("<tr>");
-                                    out.print("<td>"+users.get(i).toString()+"</td>");
+                                    out.print("<td>"+userID.get(i).toString()+"</td>");
                                     out.println("</tr>");
                                 }
                             %>

@@ -212,6 +212,6 @@ public class Galgelogik implements GalgeI{
 
     @Override
     public String hentNavn() {
-        return b.efternavn;
+        return b.fornavn + " " + b.efternavn;
     }
 }

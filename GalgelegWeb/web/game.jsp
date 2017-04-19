@@ -56,9 +56,10 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                     <div class="inner cover">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
+                            String currName = (String) request.getSession().getAttribute("currName");
                             if (currUser != null) {
                         %>
-                        <h1 class="cover-heading">Velkommen til Galgespillet <%=currUser%> </h1>  
+                        <h1 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h1>  
                         <hr/>
 
                         <div class="row">

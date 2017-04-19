@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String name = request.getParameter("username");
         String pass = request.getParameter("password");
+  
 
         System.out.println(name);
         System.out.println(pass);
@@ -49,6 +50,7 @@ public class LoginServlet extends HttpServlet {
             rs.next();
             request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
             request.getSession().setAttribute("currUser",name);
+            request.getSession().setAttribute("currName",spil.hentNavn());
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
             response.sendRedirect("game.jsp");
         } else {//if name&pass not match then it display error page//
