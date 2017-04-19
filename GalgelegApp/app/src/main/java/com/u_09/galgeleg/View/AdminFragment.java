@@ -22,7 +22,6 @@ import java.util.List;
 public class AdminFragment extends Fragment {
 
     private Spinner dropDown;
-    private Function function=new Function();
 
 
     @Override
@@ -32,7 +31,7 @@ public class AdminFragment extends Fragment {
         Spinner dropdown = (Spinner) view.findViewById(R.id.dropDown);
         ArrayAdapter<String> adapter;
         ArrayList<String> userList = new ArrayList<>();
-//*
+/*
         try {
             userList = function.getUsers();
         } catch (SQLException e) {
