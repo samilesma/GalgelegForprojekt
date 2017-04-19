@@ -4,6 +4,7 @@
     Author     : Samil
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="utils.functions"%>
 <%-- 
     Document   : testjsp
@@ -39,6 +40,7 @@
                 boolean currAdmin = false;
                 if(currUser != null){
                 currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
+                System.out.println(currAdmin);
                 }
                 if(currAdmin) { %>
         <div class="site-wrapper">
@@ -69,8 +71,11 @@
                             </tr>
                             <%
                                 functions f = new functions();
-                                for(int i=0; i<f.getAllUsers().size();i++){
-                                    out.print("<td>"+f.getAllUsers().get(i).toString()+"</td>");
+                                ArrayList<String> users = f.getAllUsers();
+                                for(int i=0; i<users.size();i++){
+                                    out.println("<tr>");
+                                    out.print("<td>"+users.get(i).toString()+"</td>");
+                                    out.println("</tr>");
                                 }
                             %>
                         </table>
