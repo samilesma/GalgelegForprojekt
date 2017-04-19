@@ -3,123 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\318ebe7e530b82b65a393bd521cb0912b4991939\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_80246cb85a7a613dd2ce4066da407f5b57681851\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.0_09d70fcea47c4be23de84d5792463879e4ecd81c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\5d46624cefb6c35aeac73d61cca7a12c3e15287c\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0ac40f3d2a9b257e77a30141ef24a8c41c490f3a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\3234098b64d798a3c477ac221c4356f6cb67995b\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0b732ab05a7ab593812992bca3db225a912d9551\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\3234098b64d798a3c477ac221c4356f6cb67995b\output\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_663a224192f8a8ae0733999210e9cee01f8b440c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\c4008e9a3dbcd995a2c851c2b9dab355d5a14281\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2e10022846889a8ccd8ccacf109867e99fa50508\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\2ea7af5927269f62f25878d684fc4a52be163a66\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f7ff1cb4f071bc39fe62a006c9005527cd3ae396\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\48a5352a8c44e7f1075e4d903c0c069c5c76b25a\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6dc3a85790b00cf2b35830ad6cf1276237d7650b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\ad583745b48bba32b85157b71ec214f640150fb0\output\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_309a2f7f5bf046799241e82847596c04eb13748e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\e387084e43003153a15f4754ef0d8adba2a35e83\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e473c9c9530698bb03a4d618148644006496cd32\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a15c558b0884b4f52d6792534a5744899531b164">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ff998890e4f3fd40cc719630519fcb0ea90846a5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\ad583745b48bba32b85157b71ec214f640150fb0\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fb8e4d2f40257d8d6acfe084bd428fa250fafb58\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\3f6397d30ee48a65ef05428a700849ed474a8558\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_65d94910df0cf64391d23c619cb86ac4ae3639a8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -129,12 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\6ff70d429609b8f117a9cdb944aa38d35fb9c336\output\jars\classes.jar"
+        jar="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\libs\easywsdl\mysql-connector-java-5.1.26-bin.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d5e66beb4e394686f0c8ed6e81fcc8160dc282f9\classes.dex" />
+        sha1="2253b6ad120d9546e484e33b5466b4dda902a8fd">
+        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\mysql-connector-java-5.1.26-bin_6fff10709d353592aae65b3a904f32bf22061b84\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -147,48 +30,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\318ebe7e530b82b65a393bd521cb0912b4991939\output\jars\libs\internal_impl-25.0.0.jar"
+        jar="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_468f3bf92b3f40dd3941e61c0e6297baa8a3be08\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\1c11c7ca46ab38c28b8b82e9ad4e72cf09f6e687\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ea91c6cded490f8878059a27c336eb4405f781a6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\ade500b7748547552321e2a30e04e86d430e1a99\output\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_da67891bb6f924ac15d76eed9ace3447dbe5cff8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\6ff70d429609b8f117a9cdb944aa38d35fb9c336\output\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_e3eeb5ea1734932e672bca9b1e30f17be874075e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tolga\.android\build-cache\ade500b7748547552321e2a30e04e86d430e1a99\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_29dc10ab0b2fddefbedd52d7b76b97c1156f8a21\classes.dex" />
+        <dex dex="C:\Users\Tolga\Documents\GitHub\GalgelegForprojekt\GalgelegApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ff998890e4f3fd40cc719630519fcb0ea90846a5\classes.dex" />
     </item>
 
 </items>
