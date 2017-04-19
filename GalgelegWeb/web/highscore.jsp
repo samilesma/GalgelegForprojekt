@@ -3,6 +3,12 @@
     Created on : 13-03-2017, 20:03:13
     Author     : Umais
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.Format"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.connector"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
 <%@page import="utils.Main"%>
 <%@page import="org.json.*" %>
@@ -78,23 +84,28 @@
                                 <th>Navn</th>
                                 <th>Antal forkerte</th> 
                                 <th>Tid</th>
+                                <th>Dato</th>
                             </tr>
                             <%
-                                /*
-                                JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
-                                for(int i=1;i<=hs.length();i++)
-                                {
+                                connector con=new connector();
+                                ResultSet rs=con.select("SELECT singleplayer.sid, wrong, time, name, surname, timestamp FROM singleplayer LEFT JOIN users ON (singleplayer.sid = users.sid) ORDER BY wrong,time,timestamp LIMIT 10");
+                                int i=0;
+                                while(rs.next()) {
+                                    i++;
                                     out.println("<tr>");
                                     if(i==1) out.println("<td><img src=\"grafik/gold.png\" width=\"20px\" height=\"20px\"/></td>");
                                     else if(i==2) out.println("<td><img src=\"grafik/silver.png\" width=\"20px\" height=\"20px\"/></td>");
                                     else if(i==3) out.println("<td><img src=\"grafik/bronze.png\" width=\"20px\" height=\"20px\"/></td>");
                                     else out.println("<td>"+i+"</td>");
-                                    out.print("<td>"+hs.getJSONObject(i-1).getString("name")+"</td>");
-                                    out.print("<td>"+hs.getJSONObject(i-1).getInt("forkerte")+"</td>");
-                                    out.print("<td>"+hs.getJSONObject(i-1).getInt("tid")+"</td>");
+                                    out.print("<td>"+rs.getString("name")+" "+rs.getString("surname")+"</td>");
+                                    out.print("<td>"+rs.getInt("wrong")+"</td>");
+                                    out.print("<td>"+rs.getInt("time")+"</td>");
+                                    Timestamp stamp = new Timestamp(rs.getInt("timestamp")*1000L);
+                                    Date date = new Date(stamp.getTime());
+                                    Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
+                                    out.print("<td>"+format.format(date)+"</td>");
                                     out.println("</tr>");
                                 }
-                                */
                             %>
                         </table>
 
