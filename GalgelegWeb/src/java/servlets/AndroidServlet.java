@@ -54,7 +54,7 @@ public class AndroidServlet extends HttpServlet {
                 obj.put("fullname", fuldenavn);
             }
             else {
-                obj.put("error", false);
+                obj.put("error", true);
             }
             out.println(obj.toString());
         }

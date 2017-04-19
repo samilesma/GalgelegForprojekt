@@ -1,9 +1,13 @@
 package com.u_09.galgeleg.Model;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by ibsenb on 18/04/2017.
@@ -51,5 +55,9 @@ public class Function {
         return users;
     }
 
+    public boolean hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject data = new JSONObject(new Web().execute("http://galgeleg.dk/GalgelegWeb/AndroidServlet?type=login&username="+username+"&password="+password).get());
+        return data.getBoolean("error");
+    }
 
 }
