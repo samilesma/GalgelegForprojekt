@@ -20,6 +20,7 @@ public class GameActivity extends AppCompatActivity {
     private HighScoreFragment mHighScoreFragment;
     private HelpFragment mHelpFragment;
     private Galgelogik mGalgelogik;
+    private ForsideFragment mForsideFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,10 @@ public class GameActivity extends AppCompatActivity {
         mChooseWordPopupFragment = new ChooseWordPopupFragment();
         mHighScoreFragment = new HighScoreFragment();
         mHelpFragment = new HelpFragment();
+        mForsideFragment = new ForsideFragment();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_content, mMainMenuFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_content, mForsideFragment).commit();
         }
 
         mGalgelogik = new Galgelogik();
