@@ -24,7 +24,24 @@
         <link href="cover.css" rel="stylesheet">
         <title>Galgeleg</title>
         <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
+        <style>
+            table {
+                counter-reset: rowNumber;
+            }
 
+            table tr.notfirst {
+                counter-increment: rowNumber;
+            }
+
+            table tr.notfirst td:first-child::before {
+                content: counter(rowNumber);
+                min-width: 1em;
+                margin-right: 0.5em;
+            }
+            th {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         
@@ -67,7 +84,6 @@
                         <table style="width:100%" class="lead">
                             <tr class="a">
                                 <th>Studienummer</th>
-                                
                             </tr>
                             <%
                                 functions f = new functions();

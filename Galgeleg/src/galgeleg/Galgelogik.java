@@ -30,6 +30,7 @@ public class Galgelogik implements GalgeI{
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
     private Brugeradmin ba;
+    private Bruger b;
     private String synligtOrd;
     private int antalForkerteBogstaver;
     private boolean sidsteBogstavVarKorrekt;
@@ -82,7 +83,6 @@ public class Galgelogik implements GalgeI{
     @Override
     public boolean hentBruger(String brugernavn, String adgangskode){
         try {
-            Bruger b;
             b = ba.hentBruger(brugernavn, adgangskode);
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,5 +208,10 @@ public class Galgelogik implements GalgeI{
         
         System.out.println("muligeOrd = " + muligeOrd);
         nulstil();
+    }
+
+    @Override
+    public String hentNavn() {
+        return b.efternavn;
     }
 }

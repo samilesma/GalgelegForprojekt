@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println(pass);
         
         if (spil.hentBruger(name, pass)) {
+            
             connector con=new connector("galgeleg.dk","root","ts2017","galgeleg");
             ResultSet rs=con.select("SELECT admin FROM users WHERE sid='"+name+"'");
             rs.next();
