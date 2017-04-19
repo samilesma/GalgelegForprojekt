@@ -20,7 +20,7 @@ public class functions {
     
     
     public ArrayList<String> getAllUsers() throws SQLException{
-        connector c = new connector("galgeleg.dk", "root", "ts2017", "galgeleg");
+        connector c = new connector();
         ArrayList<String> users = new ArrayList<String>();
         ResultSet result =  c.select("SELECT sid FROM users");
       

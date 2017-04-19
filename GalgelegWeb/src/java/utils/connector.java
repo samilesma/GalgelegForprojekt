@@ -16,18 +16,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class connector {
-	private final int PORT = 3306;
 	private Connection connection;
 	private PreparedStatement stmt = null;
 
-	public connector(String HOST, String UN, String PW, String DB) {
+	public connector() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB;
-			connection = DriverManager.getConnection(url, UN, PW);
+                    Class.forName("com.mysql.jdbc.Driver");
+                    connection = DriverManager.getConnection("jdbc:mysql://galgeleg.dk:3306/galgeleg","root","ts2017");
 		} catch(ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			System.exit(1);
+                    e.printStackTrace();
+                    System.exit(1);
 		}
 	}
 

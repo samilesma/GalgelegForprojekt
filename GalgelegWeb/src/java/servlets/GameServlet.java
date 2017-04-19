@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import utils.Main;
+import utils.connector;
 
 /**
  *
@@ -36,7 +38,7 @@ public class GameServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException, SQLException {
         if (spil.erSpilletSlut()) {
             spil.nulstil();
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
@@ -49,6 +51,9 @@ public class GameServlet extends HttpServlet {
             System.out.println("MUHAHHHAHAH");
             String navn = (String) request.getSession().getAttribute("currUser");
             int forkerte = spil.getAntalForkerteBogstaver();
+            int tid=(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000);
+            connector con=new connector();
+            con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('"+navn+"','"+forkerte+"','"+tid+"','"+System.currentTimeMillis() / 1000L+"')");
         }
         response.sendRedirect("game.jsp");
     }
@@ -68,6 +73,8 @@ public class GameServlet extends HttpServlet {
             processRequest(request, response);
         } catch (JSONException ex) {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,6 +91,8 @@ public class GameServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (JSONException ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

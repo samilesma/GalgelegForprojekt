@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
         
         if (spil.hentBruger(name, pass)) {
             
-            connector con=new connector("galgeleg.dk","root","ts2017","galgeleg");
+            connector con=new connector();
             ResultSet rs=con.select("SELECT admin FROM users WHERE sid='"+name+"'");
             rs.next();
             request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
