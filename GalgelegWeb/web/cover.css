@@ -39,7 +39,6 @@ body {
 
 ol.lead {
     list-style: square url("http://stichtingvipsport.nl/images/icons/goud.png");
-    
 }
 /* list-style-image: url('http://stichtingvipsport.nl/images/icons/goud.png'); */
 /*li {
@@ -59,6 +58,9 @@ ol.lead {
     display: table-cell;
     vertical-align: top;
 }
+.site-wrapper-inner.table{
+        width:1000px;
+}
 .cover-container {
     margin-right: auto;
     margin-left: auto;
@@ -68,7 +70,6 @@ ol.lead {
 .inner {
     padding: 30px;
 }
-
 
 /*
  * Header
