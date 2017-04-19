@@ -35,4 +35,6 @@ public interface GalgeI
     @WebMethod public String hentUrl(String url);
     
     @WebMethod public void hentOrdFraDr();
+    
+    @WebMethod public String hentNavn();
 }

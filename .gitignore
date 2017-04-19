@@ -23,3 +23,6 @@ Galgeleg/nbproject/private/private.properties
 Galgeleg/build/classes/galgeleg/Galgelogik.class
 >>>>>>> origin/master
 /GalgelegWeb/dist/
+*.class
+
+*.class

@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +26,6 @@ public class GameServlet extends HttpServlet {
 
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-    ServletContext context = getServletContext();
-    final String FILEPATH = context.getRealPath("/WEB-INF/highscore.txt");
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,16 +49,6 @@ public class GameServlet extends HttpServlet {
             System.out.println("MUHAHHHAHAH");
             String navn = (String) request.getSession().getAttribute("currUser");
             int forkerte = spil.getAntalForkerteBogstaver();
-            // int tid = request.getParameter("seconds");
-
-            JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
-            Main.printHighscore(hs);
-            if (Main.canAddHighscore(hs, forkerte, (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000))) {
-                hs = Main.addHighscore(hs, navn, forkerte, (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000));
-            } else {
-                System.out.println("FALSE");
-            }
-            Main.printHighscore(hs);
         }
         response.sendRedirect("game.jsp");
     }

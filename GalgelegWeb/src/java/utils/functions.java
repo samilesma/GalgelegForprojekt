@@ -1,39 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author ahmad
  */
 public class functions {
-    private connector mysql() {
-        BufferedReader br = null;
-        try {
-                String host, db, un, pw;
-                br = new BufferedReader(new FileReader("db.txt"));
-                host = br.readLine();
-                db = br.readLine();
-                un = br.readLine();
-                pw = br.readLine();
-                return new connector(host, db, un, pw);
-        } catch(IOException e) {
-                e.printStackTrace();
-        } finally {
-                try {
-                        if(br != null)
-                                br.close();
-                } catch(IOException ex) {
-                        ex.printStackTrace();
-                }
+    
+    
+    public ArrayList<String> getAllUsers() throws SQLException{
+        connector c = new connector("galgeleg.dk", "root", "ts2017", "galgeleg");
+        ArrayList<String> users = new ArrayList<String>();
+        ResultSet result =  c.select("SELECT sid FROM users");
+      
+        while (result.next()) {
+              System.out.print(result.getString(1));
+            users.add(result.getString(1));
         }
-        return null;
+        return users;
     }
 }

@@ -7,7 +7,6 @@ public class GalgelegServer {
     public static void main(String[] arg) throws Exception
 	{
 		
-                
                 System.out.println("publicerer Galgeleg");
 		GalgeI g = new Galgelogik();
                 
