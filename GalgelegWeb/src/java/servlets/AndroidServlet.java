@@ -6,25 +6,27 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utils.connector;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
  * @author Umais
  */
-public class LoginServlet extends HttpServlet {
-
+@WebServlet(name = "AndroidServlet", urlPatterns = {"/AndroidServlet"})
+public class AndroidServlet extends HttpServlet {
+    
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,31 +36,34 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String name = request.getParameter("username");
-        String pass = request.getParameter("password");
-  
-
-        System.out.println(name);
-        System.out.println(pass);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, JSONException {
+        PrintWriter out = response.getWriter();
+        String type = request.getParameter("type");
         
-        if (spil.hentBruger(name, pass)) {
+        if(type.equals("hentBruger")) {
+            String name = request.getParameter("username");
+            String pass = request.getParameter("password");
             
-            connector con=new connector();
-            ResultSet rs=con.select("SELECT admin FROM users WHERE sid='"+name+"'");
-            rs.next();
-            request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
-            request.getSession().setAttribute("currUser",name);
-            request.getSession().setAttribute("currName",spil.hentNavn());
-            request.getSession().setAttribute("currTime",System.currentTimeMillis());
-            response.sendRedirect("game.jsp");
-            spil.nulstil();
-        } else {//if name&pass not match then it display error page//
-            response.sendRedirect("game.jsp");
+            JSONObject obj = new JSONObject();
+            
+            if (spil.hentBruger(name, pass)) {
+                String fuldenavn = spil.hentNavn();
+                
+                obj.put("error", false);
+                obj.put("fullname", fuldenavn);
+            }
+            else {
+                obj.put("error", false);
+            }
+            out.println(obj.toString());
+        }
+        else if(type.equals("")) {
+            
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -68,11 +73,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
-            processRequest(request,response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            processRequest(request, response);
+        } catch (JSONException ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -85,11 +91,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

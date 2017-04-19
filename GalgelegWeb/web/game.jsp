@@ -23,7 +23,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
     <body>
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
         <%! src.GalgeI spil = service.getGalgelogikPort();%>
-        <%! java.lang.String ordet = spil.getOrdet();%>
+        <%! java.lang.String ordet = spil.getOrdet(); %>
 
         <script>
             window.onload = function () {
