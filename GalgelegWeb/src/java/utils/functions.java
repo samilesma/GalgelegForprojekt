@@ -19,15 +19,20 @@ import java.util.ArrayList;
 public class functions {
     
     
-    public ArrayList<String> getAllUsers() throws SQLException{
+    public ArrayList<String> getAllUsers(int choice) throws SQLException{
         connector c = new connector();
-        ArrayList<String> users = new ArrayList<String>();
-        ResultSet result =  c.select("SELECT sid FROM users");
-      
-        while (result.next()) {
-              System.out.print(result.getString(1));
-            users.add(result.getString(1));
+        ArrayList<String> userID = new ArrayList<String>();
+        ArrayList<String> userName = new ArrayList<String>();
+        ArrayList<String> userSurname = new ArrayList<String>();
+        
+        ResultSet rUser =  c.select("SELECT sid,name,surname FROM users");
+        while (rUser.next()) {
+            userID.add(rUser.getString(1));
+            userName.add(rUser.getString(2));
+            userSurname.add(rUser.getString(3));
         }
-        return users;
+        if(choice==1) return userID;
+        else if(choice==2) return userName;
+        else return userSurname;
     }
 }

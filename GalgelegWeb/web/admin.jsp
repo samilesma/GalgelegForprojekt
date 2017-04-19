@@ -81,23 +81,46 @@
                     </div>
                     </br>
                     <div class="inner cover">
+                        
+                        </br>
+                        </br>
+                        <h1 class="cover-heading">Highscore</h1>
+                        <hr/>
+                        <form action="AdminServlet" method="post">
                         <table style="width:100%" class="lead">
                             <tr class="a">
                                 <th>Studienummer</th>
                                 <th>Navn</th>
                                 <th>Efternavn</th>
+                                <th>Ban</th>
                             </tr>
                             <%
                                 functions f = new functions();
-                                ArrayList<String> userID = f.getAllUsers("ID");
+                                ArrayList<String> userID = f.getAllUsers(1);
+                                ArrayList<String> userName = f.getAllUsers(2);
+                                ArrayList<String> userSurname = f.getAllUsers(3);
                                 
                                 for(int i=0; i<userID.size();i++){
                                     out.println("<tr>");
                                     out.print("<td>"+userID.get(i).toString()+"</td>");
-                                    out.println("</tr>");
+                                    out.print("<td>"+userName.get(i).toString()+"</td>");                                
+                                    out.print("<td>"+userSurname.get(i).toString()+"</td>");%>
+                                    <td style="margin-top:30px"><select id="ban" name="ban" onchange="return setValue();">
+                                        <option value="dropdown" color="BLACK">Not Ban
+                                        <option value="1day">Ban 1 day
+                                        <option value="1week">Ban 1 week
+                                        <option value="per">Ban perminently
+                                        </select></td>
+                                    <%out.println("</tr>");
                                 }
+                                    //String colour = request.getParameter("ban").toString();
+                                   // out.println(colour);
                             %>
-                        </table>
+                        </table>    
+                        </form>
+                        <hr/>
+                        <br/>
+                        <br/>
                     </div>
                     <div class="mastfoot">
                         <div class="inner">
