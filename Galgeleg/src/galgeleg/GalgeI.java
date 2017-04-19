@@ -3,6 +3,7 @@ package galgeleg;
 import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+
 @WebService
 public interface GalgeI
 {
@@ -35,4 +36,6 @@ public interface GalgeI
     @WebMethod public String hentUrl(String url);
     
     @WebMethod public void hentOrdFraDr();
+    
+    @WebMethod public String hentNavn();
 }

@@ -4,6 +4,12 @@
 <xsd:import namespace="http://galgeleg/" schemaLocation="http://ubuntu4.javabog.dk:55556/galgeleg?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
+<message name="hentOrdFraDr">
+<part name="parameters" element="tns:hentOrdFraDr"></part>
+</message>
+<message name="hentOrdFraDrResponse">
+<part name="parameters" element="tns:hentOrdFraDrResponse"></part>
+</message>
 <message name="getBrugteBogstaver">
 <part name="parameters" element="tns:getBrugteBogstaver"></part>
 </message>
@@ -88,13 +94,17 @@
 <message name="hentUrlResponse">
 <part name="parameters" element="tns:hentUrlResponse"></part>
 </message>
-<message name="hentOrdFraDr">
-<part name="parameters" element="tns:hentOrdFraDr"></part>
+<message name="hentNavn">
+<part name="parameters" element="tns:hentNavn"></part>
 </message>
-<message name="hentOrdFraDrResponse">
-<part name="parameters" element="tns:hentOrdFraDrResponse"></part>
+<message name="hentNavnResponse">
+<part name="parameters" element="tns:hentNavnResponse"></part>
 </message>
 <portType name="GalgeI">
+<operation name="hentOrdFraDr">
+<input wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrRequest" message="tns:hentOrdFraDr"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrResponse" message="tns:hentOrdFraDrResponse"></output>
+</operation>
 <operation name="getBrugteBogstaver">
 <input wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverRequest" message="tns:getBrugteBogstaver"></input>
 <output wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverResponse" message="tns:getBrugteBogstaverResponse"></output>
@@ -151,13 +161,22 @@
 <input wsam:Action="http://galgeleg/GalgeI/hentUrlRequest" message="tns:hentUrl"></input>
 <output wsam:Action="http://galgeleg/GalgeI/hentUrlResponse" message="tns:hentUrlResponse"></output>
 </operation>
-<operation name="hentOrdFraDr">
-<input wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrRequest" message="tns:hentOrdFraDr"></input>
-<output wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrResponse" message="tns:hentOrdFraDrResponse"></output>
+<operation name="hentNavn">
+<input wsam:Action="http://galgeleg/GalgeI/hentNavnRequest" message="tns:hentNavn"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentNavnResponse" message="tns:hentNavnResponse"></output>
 </operation>
 </portType>
 <binding name="GalgelogikPortBinding" type="tns:GalgeI">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+<operation name="hentOrdFraDr">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
 <operation name="getBrugteBogstaver">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -284,7 +303,7 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="hentOrdFraDr">
+<operation name="hentNavn">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

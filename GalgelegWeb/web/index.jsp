@@ -3,7 +3,9 @@
     Created on : 13-03-2017, 16:28:30
     Author     : Umais
 --%>
-
+<%
+if(session.getAttribute("currUser") != null && !session.getAttribute("currUser").equals("")) response.sendRedirect("game.jsp");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

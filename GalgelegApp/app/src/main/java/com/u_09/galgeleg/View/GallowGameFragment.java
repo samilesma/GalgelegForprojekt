@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -34,7 +35,6 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     private Galgelogik mGame;
     private ArrayList<Integer> mImages = new ArrayList<>();
     private String mGuess;
-
     private View mView;
     private ImageSwitcher mImageSwitcher;
     private TextView mTvTitle, mTvTheWordIs, mTvTheWord, mTvGuessedLetters, mTvWrongLetters;
@@ -162,6 +162,8 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         mTvTitle.setText("");
         mTvTheWordIs.setText(R.string.ordet_er);
         mTvTheWord.setText(mGame.getSynligtOrd());
+        mGame.getBrugteBogstaver().clear();
+        mGame.setAntalForkerteBogstaver(0);
 
         mTvGuessedLetters.setText("[]");
         mTvWrongLetters.setText("0/7");

@@ -52,9 +52,13 @@
                             <h3 class="masthead-brand">Galgeleg</h3>
                             <nav>
                                 <ul class="nav masthead-nav">
+                                    <%
+                                    boolean currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
+                                    if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
                                     <li><a href="game.jsp">Spil</a></li>
                                     <li class="active"><a href="#">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
+                                    
                                 </ul>
                             </nav>
                         </div>
@@ -75,8 +79,8 @@
                                 <th>Antal forkerte</th> 
                                 <th>Tid</th>
                             </tr>
-                            <%! final static String FILEPATH = "/opt/tomcat/webapps/GalgelegWeb/WEB-INF/highscore.txt"; %>
                             <%
+                                /*
                                 JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
                                 for(int i=1;i<=hs.length();i++)
                                 {
@@ -90,6 +94,7 @@
                                     out.print("<td>"+hs.getJSONObject(i-1).getInt("tid")+"</td>");
                                     out.println("</tr>");
                                 }
+                                */
                             %>
                         </table>
 

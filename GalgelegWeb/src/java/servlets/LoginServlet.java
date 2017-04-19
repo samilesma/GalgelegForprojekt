@@ -6,11 +6,16 @@
 package servlets;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.connector;
 
 /**
  *
@@ -30,22 +35,26 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String name = request.getParameter("username");
         String pass = request.getParameter("password");
+  
 
         System.out.println(name);
         System.out.println(pass);
-
+        
         if (spil.hentBruger(name, pass)) {
-            RequestDispatcher rd = request.getRequestDispatcher("game.jsp");
+            
+            connector con=new connector("galgeleg.dk","root","ts2017","galgeleg");
+            ResultSet rs=con.select("SELECT admin FROM users WHERE sid='"+name+"'");
+            rs.next();
+            request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
             request.getSession().setAttribute("currUser",name);
+            request.getSession().setAttribute("currName",spil.hentNavn());
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
-            rd.forward(request, response);
+            response.sendRedirect("game.jsp");
         } else {//if name&pass not match then it display error page//
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("game.jsp");
         }
     }
 
@@ -59,9 +68,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            processRequest(request,response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,9 +85,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

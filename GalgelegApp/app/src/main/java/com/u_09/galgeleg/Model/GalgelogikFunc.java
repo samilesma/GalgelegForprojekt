@@ -18,7 +18,7 @@ public class GalgelogikFunc {
     private static final String NAMESPACE = "http://ubuntu4.javabog.dk:55556/galgeleg";
     private static String METHOD_NAME = "logStatus";
     private static final String MAIN_REQUEST_URL = "http://ubuntu4.javabog.dk:55556/galgeleg?wsdl";
-    private static final String SOAP_ACTION = "http://ubuntu4.javabog.dk:55556/galgeleg/logStatus";
+    private static final String SOAP_ACTION = "http://ubuntu4.javabog.dk:55556/galgeleg/";
 
     public static void main(String[] args) throws IOException, XmlPullParserException {
 

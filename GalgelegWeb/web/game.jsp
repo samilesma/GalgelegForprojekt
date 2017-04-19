@@ -3,6 +3,9 @@
     Created on : 13-03-2017, 20:03:13
     Author     : Umais
 --%>
+<%
+if(session.getAttribute("currUser") == null || session.getAttribute("currUser").equals("")) response.sendRedirect("index.jsp");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,6 +42,9 @@
                             <h3 class="masthead-brand">Galgeleg</h3>
                             <nav>
                                 <ul class="nav masthead-nav">
+                                    <%
+                                    boolean currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
+                                    if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
                                     <li class="active"><a href="#">Spil</a></li>
                                     <li><a href="highscore.jsp">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
@@ -50,9 +56,10 @@
                     <div class="inner cover">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
+                            String currName = (String) request.getSession().getAttribute("currName");
                             if (currUser != null) {
                         %>
-                        <h1 class="cover-heading">Velkommen til Galgespillet <%=currUser%> </h1>  
+                        <h1 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h1>  
                         <hr/>
 
                         <div class="row">
@@ -76,7 +83,7 @@
                         <%
                             try {
                                 java.lang.String synligtOrd = spil.getSynligtOrd();%>
-                        <p id="ordetLabel" class="lead">Ordet er: <%=synligtOrd%></p>
+                        <p id="ordetLabel" class="lead"><%=spil.getOrdet()%> Ordet er: <%=synligtOrd%></p>
                         <% } catch (Exception ex) {
 
                             }
