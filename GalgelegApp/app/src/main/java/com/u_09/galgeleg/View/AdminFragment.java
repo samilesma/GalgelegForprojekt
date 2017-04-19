@@ -8,15 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.u_09.galgeleg.Model.Function;
 import com.u_09.galgeleg.R;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ibsenb on 18/04/2017.
  */
 
-public class AdminFragment extends Fragment implements View.OnClickListener {
+public class AdminFragment extends Fragment {
 
     private Spinner dropDown;
+    private Function function=new Function();
 
 
     @Override
@@ -24,14 +30,21 @@ public class AdminFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.admin_fragment, container, false);
         Spinner dropdown = (Spinner) view.findViewById(R.id.dropDown);
-        ArrayAdapter<String> users = new ArrayAdapter<String>(AdminFragment.this, android.R.layout.simple_spinner_dropdown_item,items);
+        ArrayAdapter<String> adapter;
+        ArrayList<String> userList = new ArrayList<>();
+//*
+        try {
+            userList = function.getUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//*/
+        adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, userList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+
         return view;
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
 
     }
 

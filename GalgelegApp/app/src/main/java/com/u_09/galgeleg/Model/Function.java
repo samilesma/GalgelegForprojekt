@@ -10,10 +10,9 @@ import java.util.ArrayList;
  */
 
 public class Function {
-    private static Connector con = new Connector("galgeleg.dk","galgeleg","root","ts2017");
+    private Connector con = new Connector("galgeleg.dk","galgeleg","root","ts2017");
 
-
-    public static void sendMsg(String sid, String msg) throws SQLException{
+    public void sendMsg(String sid, String msg) throws SQLException{
         long timestamp = System.currentTimeMillis();
         con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[]{"l",Long.toString(timestamp)});
     }
@@ -49,10 +48,8 @@ public class Function {
         while(rs.next()){
             users.add(rs.getString("sid"));
         }
-
         return users;
     }
 
-   
 
 }
