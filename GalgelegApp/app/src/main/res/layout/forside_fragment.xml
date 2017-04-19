@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightblack"
+                    android:gravity="center|top"
+                    android:orientation="vertical"
+                    tools:context=".View.ForsideFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VELKOMMEN TIL VORES GALGELEG!"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/solution_picture"
+        android:contentDescription="@string/galgelegbillede"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indtast brugernavn"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Brugernavn"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:id="@+id/et_brugernavn"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indtast adgangskode"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Adgangskode"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:id="@+id/et_kode"
+        android:layout_marginTop="15dp"
+        />
+
+</LinearLayout>

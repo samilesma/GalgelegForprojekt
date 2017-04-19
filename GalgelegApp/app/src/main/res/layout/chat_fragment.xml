@@ -8,20 +8,28 @@
                     android:gravity="center"
                     tools:context=".View.ChatFragment">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
-        android:id="@+id/tv_chat"
+        android:id="@+id/lv_chat"
         android:textColor="@color/green"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/et_msg"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:id="@+id/btn_send"
         android:text="@string/chat_send"
         android:textSize="18sp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="90dp"
         android:backgroundTint="@color/lightgreen"
         />
 </LinearLayout>
