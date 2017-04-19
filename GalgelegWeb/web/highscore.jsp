@@ -79,10 +79,8 @@
                                 <th>Antal forkerte</th> 
                                 <th>Tid</th>
                             </tr>
-                            <%! final static String FILEPATH = "/opt/tomcat/webapps/GalgelegWeb/WEB-INF/highscore.txt"; %>
                             <%
-                                ServletContext context = getServletContext();
-                                final String FILEPATH = context.getRealPath("/WEB-INF/highscore.txt");
+                                /*
                                 JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
                                 for(int i=1;i<=hs.length();i++)
                                 {
@@ -96,6 +94,7 @@
                                     out.print("<td>"+hs.getJSONObject(i-1).getInt("tid")+"</td>");
                                     out.println("</tr>");
                                 }
+                                */
                             %>
                         </table>
 

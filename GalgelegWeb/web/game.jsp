@@ -3,6 +3,9 @@
     Created on : 13-03-2017, 20:03:13
     Author     : Umais
 --%>
+<%
+if(session.getAttribute("currUser") == null || session.getAttribute("currUser").equals("")) response.sendRedirect("index.jsp");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
