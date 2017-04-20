@@ -62,10 +62,20 @@ public class functions {
         con.update("UPDATE chat SET deleted=1 WHERE id="+id);
     }
 
-    public void banUser(int id, long timestamp) throws SQLException{
+    public void banUser(String sid, long timestamp) throws SQLException{
         timestamp = System.currentTimeMillis();
-        con.update("UPDATE users SET ban="+timestamp+" WHERE id="+id);
+        con.update("UPDATE users SET ban="+timestamp+" WHERE sid="+sid);
     }
     
+    public void challengeFriend(String sidOne, String sidTwo, String word, long timestamp) throws SQLException{
+        timestamp = System.currentTimeMillis();
+        con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+timestamp+",'"+word+"')",new String[]{"l",Long.toString(timestamp)});
+        /*
+        MULTIPLAYER OG CHALLENGES skal måske samles til en tabel, da andet ikke giver mening.
+        */
+    }
+    public void rejectChallenge(int challengeID) throws SQLException {
+        con.update("DELETE FROM challenges WHERE id="+challengeID);
+    }
     
 }
