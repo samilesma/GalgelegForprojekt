@@ -4,6 +4,8 @@
     Author     : Samil
 --%>
 
+<%@page import="utils.connector"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="utils.functions"%>
 <%-- 
@@ -47,11 +49,6 @@
         
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
         <%! src.GalgeI spil = service.getGalgelogikPort();%>
-        <script>
-            window.onload = function () {
-                document.getElementById("letter").focus();
-            };
-        </script>
                 <%
                 String currUser = (String) request.getSession().getAttribute("currUser");
                 boolean currAdmin = false;
@@ -86,38 +83,42 @@
                         </br>
                         <h1 class="cover-heading">Highscore</h1>
                         <hr/>
-                        <form action="AdminServlet" method="post">
                         <table style="width:100%" class="lead">
                             <tr class="a">
                                 <th>Studienummer</th>
                                 <th>Navn</th>
                                 <th>Efternavn</th>
                                 <th>Ban</th>
+                                <th></th>
                             </tr>
                             <%
-                                functions f = new functions();
-                                ArrayList<String> userID = f.getAllUsers(1);
-                                ArrayList<String> userName = f.getAllUsers(2);
-                                ArrayList<String> userSurname = f.getAllUsers(3);
-                                
-                                for(int i=0; i<userID.size();i++){
+                                connector con=new connector();
+                                ResultSet rUser =  con.select("SELECT sid,name,surname FROM users");
+                                while (rUser.next()) {
                                     out.println("<tr>");
-                                    out.print("<td>"+userID.get(i).toString()+"</td>");
-                                    out.print("<td>"+userName.get(i).toString()+"</td>");                                
-                                    out.print("<td>"+userSurname.get(i).toString()+"</td>");%>
-                                    <td style="margin-top:30px"><select id="ban" name="ban" onchange="return setValue();">
-                                        <option value="dropdown" color="BLACK">Not Ban
-                                        <option value="1day">Ban 1 day
-                                        <option value="1week">Ban 1 week
-                                        <option value="per">Ban perminently
-                                        </select></td>
-                                    <%out.println("</tr>");
+                                    out.println("<form action='AdminServlet' method='post' style='margin:5px 0px;'>");
+                                    out.print("<td>"+rUser.getString("sid")+"</td>");
+                                    out.print("<td>"+rUser.getString("name")+"</td>");
+                                    out.print("<td>"+rUser.getString("surname")+"</td>");
+                                    %>
+                                    <td style="margin-top:30px">
+                                        <select name="ban" class="form-control">
+                                            <option value="dropdown">Not Ban</option>
+                                            <option value="1day">Ban 1 day</option>
+                                            <option value="1week">Ban 1 week</option>
+                                            <option value="per">Ban perminently</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="submit" value="Ban" class="btn btn-default" style="margin-left:10px;"/></td>
+                                    <input type="hidden" name="sid" value="<% rUser.getString("sid"); %>" />
+                                    <%
+                                    out.println("</form>");
+                                    out.println("</tr>");
                                 }
                                     //String colour = request.getParameter("ban").toString();
                                    // out.println(colour);
                             %>
-                        </table>    
-                        </form>
+                        </table>
                         <hr/>
                         <br/>
                         <br/>

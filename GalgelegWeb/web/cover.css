@@ -172,3 +172,9 @@ ol.lead {
         width: 900px;
     }
 }
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: black;
+}
