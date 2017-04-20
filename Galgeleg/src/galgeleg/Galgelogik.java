@@ -150,7 +150,6 @@ public class Galgelogik implements GalgeI{
         System.out.println("---------- ");
     }
     
-    
     @Override
     public String hentUrl(String url){
         BufferedReader br = null;
@@ -201,7 +200,7 @@ public class Galgelogik implements GalgeI{
         
         System.out.println("data = " + data);
         
-        data = data.replaceAll("<.+?>", " ").toLowerCase().replaceAll("[^a-zæøå]", " ");
+        data = data.replaceAll("[^a-zæøå]", " ");
         System.out.println("data = " + data);
         muligeOrd.clear();
         muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));

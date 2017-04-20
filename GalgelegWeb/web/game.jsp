@@ -18,7 +18,6 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
         <link href="cover.css" rel="stylesheet">
         <title>Galgeleg</title>
         <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
-
     </head>
     <body>
         <%! src.GalgelogikService service = new src.GalgelogikService(); %>
@@ -52,7 +51,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                             </nav>
                         </div>
                     </div>
-                    </br>
+                    <br/>
                     <div class="inner cover">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
