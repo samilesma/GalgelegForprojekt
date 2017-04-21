@@ -30,7 +30,7 @@
     <div id="chatbox"></div>
      
     <form name="message" action="">
-        <input name="allmsg" type="text" id="allmsg" size="63"/> <br>
+        <input name="allmsg" type="text" id="allmsg" size="63" style="margin-right: 50px; height:200px"/> <br><br>
         <input name="usermsg" type="text" id="usermsg" size="63" />
         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
     </form>
