@@ -5,8 +5,10 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,10 +38,17 @@ public class ChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        String sid = (String) request.getSession().getAttribute("currUser");
-        String msg = request.getParameter("usermsg");
-        function.sendMsg(sid, msg);
-        response.sendRedirect("chat.jsp");        
+        if(request.getParameterMap().containsKey("type") && request.getParameter("type")=="getmessage")
+        {
+            Gson gson=new Gson();
+            out.println(gson.toJson(function.getMessages(Long.parseLong(request.getParameter("date")))));
+        }
+        else
+        {
+            String sid = (String) request.getSession().getAttribute("currUser");
+            String msg = request.getParameter("usermsg");
+            function.sendMsg(sid, msg);
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
