@@ -32,9 +32,10 @@
     <div id="chatbox"></div>
      
     <form action="ChatServlet" method="post">
-        <input name="allmsg" type="text" id="allmsg" size="63" style="margin-right: 50px; height:200px"/> <br><br>
-        <input name="usermsg" type="text" id="usermsg" size="63" />
-        <button type="submit">Send</button>
+        <div style="width:50%; height:500px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
+        <br>
+        <input name="usermsg" type="text" id="usermsg" style="width:400px" />
+        <button type="submit" style="width:100px;">Send</button>
     </form>
 </div>
         
