@@ -1,20 +1,18 @@
 package com.u_09.galgeleg;
 
-import com.u_09.galgeleg.Model.Galgelogik;
-
 public class GalgelegTest {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         Galgelogik spil = new Galgelogik();
         spil.nulstil();
-/*
+
     try {
       spil.hentOrdFraDr();
     } catch (Exception e) {
       e.printStackTrace();
     }
-*/
+
         spil.logStatus();
 
         spil.gætBogstav("e");
@@ -73,5 +71,5 @@ public class GalgelegTest {
         spil.gætBogstav("g");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
-    }
+    }*/
 }

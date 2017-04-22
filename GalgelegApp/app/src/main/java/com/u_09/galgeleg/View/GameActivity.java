@@ -7,10 +7,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.u_09.galgeleg.Model.Galgelogik;
+import com.u_09.galgeleg.Model.GalgelogikFunc;
 import com.u_09.galgeleg.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -19,7 +22,7 @@ public class GameActivity extends AppCompatActivity {
     private ChooseWordPopupFragment mChooseWordPopupFragment;
     private HighScoreFragment mHighScoreFragment;
     private HelpFragment mHelpFragment;
-    private Galgelogik mGalgelogik;
+    private GalgelogikFunc mGalgelogik;
     private ForsideFragment mForsideFragment;
 
     @Override
@@ -38,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_content, mForsideFragment).commit();
         }
 
-        mGalgelogik = new Galgelogik();
+        mGalgelogik = new GalgelogikFunc();
         hentOrd();
 
     }
@@ -76,7 +79,15 @@ public class GameActivity extends AppCompatActivity {
                 if (resultat != null) {
                     if (resultat.toString().contains("Succes")) {
                         Log.d("MULIGE ORD SUCCESS: ", resultat.toString());
-                        Log.d("MULIGE ORD: ", "" + mGalgelogik.getMuligeOrd());
+                        try {
+                            Log.d("MULIGE ORD: ", "" + mGalgelogik.getMuligeOrd());
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         Log.d("MULIGE ORD FEJL: ", resultat.toString());
                     }
@@ -108,19 +119,19 @@ public class GameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setOrdetFromActivity(int i) {
+    public void setOrdetFromActivity(int i) throws InterruptedException, ExecutionException, JSONException {
         mGalgelogik.setOrdet(i);
     }
 
-    public ArrayList<String> getMuligeOrdFromActivity() {
+    public ArrayList<String> getMuligeOrdFromActivity() throws InterruptedException, ExecutionException, JSONException {
         return mGalgelogik.getMuligeOrd();
     }
 
-    public Galgelogik getmGalgelogik() {
+    public GalgelogikFunc getmGalgelogik() {
         return mGalgelogik;
     }
 
-    public void setSynligtOrdFromActivity() {
+    public void setSynligtOrdFromActivity() throws InterruptedException, ExecutionException, JSONException {
         mGalgelogik.opdaterSynligtOrd();
     }
 }

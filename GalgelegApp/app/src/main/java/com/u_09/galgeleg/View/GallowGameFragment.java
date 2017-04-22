@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -23,16 +22,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.u_09.galgeleg.Model.Galgelogik;
+import com.u_09.galgeleg.Model.GalgelogikFunc;
 import com.u_09.galgeleg.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class GallowGameFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
 
     private SharedPreferences mPrefs;
 
-    private Galgelogik mGame;
+    private GalgelogikFunc mGame;
     private ArrayList<Integer> mImages = new ArrayList<>();
     private String mGuess;
     private View mView;
@@ -79,7 +81,11 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
             mPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
             refillImageArray();
             mGame = ((GameActivity) getActivity()).getmGalgelogik();
-            newGame();
+            try {
+                newGame();
+            } catch (InterruptedException | ExecutionException | JSONException e) {
+                e.printStackTrace();
+            }
             mEtLetter.requestFocus();
         }
 
@@ -89,17 +95,25 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == mBtnGuess) {
-            mGuess = mEtLetter.getText().toString();
-            String guessInfo;
-            if (mGame.getBrugteBogstaver().contains(mGuess)) guessInfo = "Allerede brugt!";
-            else if (mGame.getOrdet().contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
-            else guessInfo = "Øv! Forkert gæt!";
-            Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
-            mGame.gætBogstav(mGuess);
-            updateUIOnGuess();
+                mGuess = mEtLetter.getText().toString();
+                String guessInfo;
+            try {
+                if (mGame.getBrugteBogstaver().contains(mGuess)) guessInfo = "Allerede brugt!";
+                else if (mGame.getOrdet().contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
+                else guessInfo = "Øv! Forkert gæt!";
+                Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
+                mGame.gætBogstav(mGuess);
+                updateUIOnGuess();
+            } catch (InterruptedException | ExecutionException | JSONException e) {
+                e.printStackTrace();
+            }
         } else if (v == mBtnNewWord) {
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopupFragment()).addToBackStack(null).commit();
-            newGame();
+            try {
+                newGame();
+            } catch (InterruptedException | ExecutionException | JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -111,7 +125,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         return false;
     }
 
-    public void updateUIOnGuess() {
+    public void updateUIOnGuess() throws InterruptedException, ExecutionException, JSONException {
         mEtLetter.setText("");
         mEtLetter.requestFocus();
         mTvTheWord.setText(mGame.getSynligtOrd());
@@ -142,7 +156,11 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     String playerName = mEtName.getText().toString();
-                    mPrefs.edit().putInt(playerName, mGame.getAntalForkerteBogstaver()).apply();
+                    try {
+                        mPrefs.edit().putInt(playerName, mGame.getAntalForkerteBogstaver()).apply();
+                    } catch (InterruptedException | ExecutionException | JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }).setNegativeButton("Annullér", new DialogInterface.OnClickListener() {
                 @Override
@@ -154,7 +172,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    public void newGame() {
+    public void newGame() throws InterruptedException, ExecutionException, JSONException {
 
         mImageSwitcher.setImageResource(R.drawable.galge);
         refillImageArray();
@@ -163,7 +181,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         mTvTheWordIs.setText(R.string.ordet_er);
         mTvTheWord.setText(mGame.getSynligtOrd());
         mGame.getBrugteBogstaver().clear();
-        mGame.setAntalForkerteBogstaver(0);
+        // mGame.setAntalForkerteBogstaver(0);
 
         mTvGuessedLetters.setText("[]");
         mTvWrongLetters.setText("0/7");

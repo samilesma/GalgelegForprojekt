@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -23,10 +24,10 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "AndroidServlet", urlPatterns = {"/AndroidServlet"})
 public class AndroidServlet extends HttpServlet {
-    
+
     src.GalgelogikService service = new src.GalgelogikService();
     src.GalgeI spil = service.getGalgelogikPort();
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,27 +41,87 @@ public class AndroidServlet extends HttpServlet {
             throws ServletException, IOException, JSONException {
         PrintWriter out = response.getWriter();
         String type = request.getParameter("type");
+
+        JSONObject returnObj = new JSONObject();
         
-        if(type.equals("hentBruger")) {
-            String name = request.getParameter("username");
-            String pass = request.getParameter("password");
-            
-            JSONObject obj = new JSONObject();
-            
-            if (spil.hentBruger(name, pass)) {
+        switch (type) {
+            case "erSidsteBogstavKorrekt":
+                boolean sidsteBogstavVarKorrekt = spil.erSidsteBogstavKorrekt();
+                returnObj.put("sidsteBogstavVarKorrekt", sidsteBogstavVarKorrekt);
+                break;
+            case "erSpilletSlut":
+                boolean spilletErSlut = spil.erSpilletSlut();
+                returnObj.put("spilletErSlut", spilletErSlut);
+                break;
+            case "erSpilletTabt":
+                boolean spilletErTabt = spil.erSpilletTabt();
+                returnObj.put("spilletErTabt", spilletErTabt);
+                break;
+            case "erSpilletVundet":
+                boolean spilletErVundet = spil.erSpilletVundet();
+                returnObj.put("spilletErVundet", spilletErVundet);
+                break;
+            case "getAntalForkerteBogstaver":
+                int antalForkerteBogstaver = spil.getAntalForkerteBogstaver();
+                returnObj.put("antalForkerteBogstaver", antalForkerteBogstaver);
+                break;
+            case "getBrugteBogstaver":
+                List<String> brugteBogstaver = spil.getBrugteBogstaver();
+                returnObj.put("brugteBogstaver", brugteBogstaver);
+                break;
+            case "getOrdet":
+                String ordet = spil.getOrdet();
+                returnObj.put("ordet", ordet);
+                break;
+            case "getSynligtOrd":
+                String synligtOrd = spil.getSynligtOrd();
+                returnObj.put("synligtOrd", synligtOrd);
+                break;
+            case "gætBogstav":
+                String bogstav = request.getParameter("bogstav");
+                spil.gætBogstav(bogstav);
+                break;    
+            case "hentBruger":
+                String name = request.getParameter("username");
+                String pass = request.getParameter("password");
+
+                if (spil.hentBruger(name, pass)) {
+                    String fuldenavn = spil.hentNavn();
+
+                    returnObj.put("error", false);
+                    returnObj.put("fullname", fuldenavn);
+                } else {
+                    returnObj.put("error", true);
+                }
+                break;
+            case "hentNavn":
                 String fuldenavn = spil.hentNavn();
-                
-                obj.put("error", false);
-                obj.put("fullname", fuldenavn);
-            }
-            else {
-                obj.put("error", true);
-            }
-            out.println(obj.toString());
+                returnObj.put("fuldenavn", fuldenavn);
+                break;
+            case "getMuligeOrd":
+                /* TODO Skal rettes så metoden getMuligeOrd også ligger i Galgeloggikken på serveren.
+                   Jeg har sat metoden ind. Jar-filen skal bare oploades.
+                */
+                // List<String> muligeOrd = spil.getMuligeOrd();
+                // returnObj.put("muligeOrd", muligeOrd);
+                break;
+            case "nulstil":
+                spil.nulstil();
+                break;
+            case "opdaterSynligtOrd":
+                spil.opdaterSynligtOrd();
+                break;
+            case "setOrdet":
+                /* TODO Skal rettes så metoden setOrdet også ligger i Galgeloggikken på serveren.
+                   Jeg har sat metoden ind. Jar-filen skal bare oploades.
+                */
+                String iString = request.getParameter("i");
+                int i = Integer.parseInt(iString);
+                // spil.setOrdet(i);
+                break;
         }
-        else if(type.equals("")) {
-            
-        }
+        out.println(returnObj.toString());
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
