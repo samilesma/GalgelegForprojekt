@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="utils.connector"%>
+<%@page import="utils.functions"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="utils.functions"%>
@@ -93,6 +94,8 @@
                             </tr>
                             <%
                                 connector con=new connector();
+
+
                                 ResultSet rUser =  con.select("SELECT sid,name,surname FROM users");
                                 while (rUser.next()) {
                                     out.println("<tr>");
@@ -103,14 +106,17 @@
                                     %>
                                     <td style="margin-top:30px">
                                         <select name="ban" class="form-control">
-                                            <option value="dropdown">Not Ban</option>
-                                            <option value="1day">Ban 1 day</option>
-                                            <option value="1week">Ban 1 week</option>
-                                            <option value="per">Ban perminently</option>
+                                            <%
+                                                out.print("<option value='1day" +rUser.getString("sid")+ "'>Ban 1 day</option>");
+                                                out.print("<option value='1week" +rUser.getString("sid")+ "'>Ban 1 week</option>"); 
+                                                out.print("<option value='per" +rUser.getString("sid")+ "'>Ban perminently</option>"); 
+
+                                            %>
                                         </select>
                                     </td>
-                                    <td><input type="submit" value="Ban" class="btn btn-default" style="margin-left:10px;"/></td>
                                     <input type="hidden" name="sid" value="<% rUser.getString("sid"); %>" />
+                                    <td><input type='submit'/></td>
+                                    
                                     <%
                                     out.println("</form>");
                                     out.println("</tr>");

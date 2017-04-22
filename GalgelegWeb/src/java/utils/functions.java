@@ -82,8 +82,7 @@ public class functions {
     }
     
     public void banUser(String sid, long timestamp) throws SQLException{
-        timestamp = System.currentTimeMillis();
-        con.update("UPDATE users SET ban="+timestamp+" WHERE sid="+sid);
+        con.update("UPDATE users SET banned="+timestamp+" WHERE sid='"+sid+"'");
     }
     
     public void challengeFriend(String sidOne, String sidTwo, String word, long timestamp) throws SQLException{
