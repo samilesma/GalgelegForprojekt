@@ -17,8 +17,11 @@ import java.util.ArrayList;
  * @author ahmad
  */
 public class functions {
-    private connector con = new connector();
+    private connector con;
     
+    public functions(){
+        con=new connector();
+    }
     
     public ArrayList<String> getAllUsers(int choice) throws SQLException{
         //connector c = new connector();
@@ -39,7 +42,7 @@ public class functions {
     
     public void sendMsg(String sid, String msg) throws SQLException{
         Long timestamp = System.currentTimeMillis();
-        con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[]{"l",Long.toString(timestamp)});
+        con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[][]{new String[]{"l",Long.toString(timestamp)}});
     }
     
     public ArrayList<ArrayList<String>> getMessages(long timestamp) throws SQLException{
