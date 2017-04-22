@@ -42,7 +42,7 @@ public class functions {
     
     public void sendMsg(String sid, String msg) throws SQLException{
         Long timestamp = System.currentTimeMillis();
-        con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[][]{new String[]{"l",Long.toString(timestamp)}});
+        con.update("INSERT INTO chat (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[][]{new String[]{"l",Long.toString(timestamp)}});
     }
     
     public ArrayList<ArrayList<String>> getMessages(long timestamp) throws SQLException{
