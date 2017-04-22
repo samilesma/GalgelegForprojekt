@@ -20,7 +20,9 @@
         <title>Galgeleg</title>
     </head>
     <body>
+        
         <h1>Chat</h1>
+        
         <div class="site-wrapper">
     <div id="menu">
         <p class="welcome">Galgelegs Chat <b></b></p>
@@ -29,10 +31,10 @@
      
     <div id="chatbox"></div>
      
-    <form name="message" action="">
+    <form action="ChatServlet" method="post">
         <input name="allmsg" type="text" id="allmsg" size="63" style="margin-right: 50px; height:200px"/> <br><br>
         <input name="usermsg" type="text" id="usermsg" size="63" />
-        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+        <button type="submit">Send</button>
     </form>
 </div>
         
