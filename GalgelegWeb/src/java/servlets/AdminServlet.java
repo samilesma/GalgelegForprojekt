@@ -37,9 +37,10 @@ public class AdminServlet extends HttpServlet {
             f.banUser(sid, unixTime+(24*60*60));
         }else if (banned.equals("1week")){
             f.banUser(sid,unixTime+(24*60*60*7));
-        }else
+        }else{
             f.banUser(sid,-1);
-                
+        }
+        response.sendRedirect("admin.jsp");
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
