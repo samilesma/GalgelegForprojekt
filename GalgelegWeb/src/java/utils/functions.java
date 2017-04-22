@@ -41,7 +41,7 @@ public class functions {
     }
     
     public void sendMsg(String sid, String msg) throws SQLException{
-        Long timestamp = System.currentTimeMillis();
+        Long timestamp = System.currentTimeMillis()/1000L;
         con.update("INSERT INTO chat (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[][]{new String[]{"l",Long.toString(timestamp)}});
     }
     
