@@ -42,6 +42,23 @@ public class functions {
         con.update("INSERT INTO messages (sid,msg,timestamp) VALUES ('"+sid+"',?,'"+timestamp+"')",new String[]{"l",Long.toString(timestamp)});
     }
     
+    public ArrayList<ArrayList<String>> getMessages(long timestamp) throws SQLException{
+        timestamp = System.currentTimeMillis();
+        ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
+        msg.add(new ArrayList<String>());
+        msg.add(new ArrayList<String>());
+        msg.add(new ArrayList<String>());
+        ResultSet rs = con.select("SELECT sid,msg,timestamp FROM chat WHERE deleted=0 AND timestamp>"+timestamp);
+        while(rs.next()){
+            msg.get(0).add(rs.getString("sid"));
+            msg.get(1).add(rs.getString("msg"));
+            msg.get(2).add(rs.getString("timestamp"));
+        }
+
+        return msg;
+    }
+    
+    
     public ArrayList<ArrayList<String>> getAllMessages() throws SQLException{
         ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
         msg.add(new ArrayList<String>());
