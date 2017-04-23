@@ -6,18 +6,14 @@
 package servlets;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
 import org.json.JSONException;
-import utils.Main;
 import utils.connector;
 
 /**
@@ -26,8 +22,8 @@ import utils.connector;
  */
 public class GameServlet extends HttpServlet {
 
-    src.GalgelogikService service = new src.GalgelogikService();
-    src.GalgeI spil = service.getGalgelogikPort();
+    galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
+    galgeleg.GalgeI spil = service.getGalgelogikPort();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

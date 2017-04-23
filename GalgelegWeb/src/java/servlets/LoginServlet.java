@@ -22,8 +22,8 @@ import utils.connector;
  */
 public class LoginServlet extends HttpServlet {
 
-    src.GalgelogikService service = new src.GalgelogikService();
-    src.GalgeI spil = service.getGalgelogikPort();
+    galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
+    galgeleg.GalgeI spil = service.getGalgelogikPort();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

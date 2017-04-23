@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
     private HighScoreFragment mHighScoreFragment;
     private HelpFragment mHelpFragment;
     private GalgelogikFunc mGalgelogik;
-    private ForsideFragment mForsideFragment;
+    private SignInFragment mSignInFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,10 @@ public class GameActivity extends AppCompatActivity {
         mChooseWordPopupFragment = new ChooseWordPopupFragment();
         mHighScoreFragment = new HighScoreFragment();
         mHelpFragment = new HelpFragment();
-        mForsideFragment = new ForsideFragment();
+        mSignInFragment = new SignInFragment();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_content, mForsideFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_content, mSignInFragment).commit();
         }
 
         mGalgelogik = new GalgelogikFunc();
@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
         if (id == R.id.action_main_menu) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mMainMenuFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_game) {
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopupFragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mGallowGameFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_highscore) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHighScoreFragment).addToBackStack(null).commit();
         } else if (id == R.id.action_help) {

@@ -101,9 +101,9 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 if (mGame.getBrugteBogstaver().contains(mGuess)) guessInfo = "Allerede brugt!";
                 else if (mGame.getOrdet().contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
                 else guessInfo = "Øv! Forkert gæt!";
-                Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
                 mGame.gætBogstav(mGuess);
                 updateUIOnGuess();
+                Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
             } catch (InterruptedException | ExecutionException | JSONException e) {
                 e.printStackTrace();
             }

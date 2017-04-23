@@ -48,8 +48,8 @@
     </head>
     <body>
         
-        <%! src.GalgelogikService service = new src.GalgelogikService(); %>
-        <%! src.GalgeI spil = service.getGalgelogikPort();%>
+        <%! galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); %>
+        <%! galgeleg.GalgeI spil = service.getGalgelogikPort();%>
                 <%
                 String currUser = (String) request.getSession().getAttribute("currUser");
                 boolean currAdmin = false;

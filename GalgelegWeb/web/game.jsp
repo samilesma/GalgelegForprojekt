@@ -20,8 +20,8 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
         <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
     </head>
     <body>
-        <%! src.GalgelogikService service = new src.GalgelogikService(); %>
-        <%! src.GalgeI spil = service.getGalgelogikPort();%>
+        <%! galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); %>
+        <%! galgeleg.GalgeI spil = service.getGalgelogikPort();%>
         <%! java.lang.String ordet = spil.getOrdet(); %>
 
         <script>

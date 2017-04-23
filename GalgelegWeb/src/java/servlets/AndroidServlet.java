@@ -24,9 +24,9 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "AndroidServlet", urlPatterns = {"/AndroidServlet"})
 public class AndroidServlet extends HttpServlet {
-
-    src.GalgelogikService service = new src.GalgelogikService();
-    src.GalgeI spil = service.getGalgelogikPort();
+    
+    galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
+    galgeleg.GalgeI spil = service.getGalgelogikPort();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -99,11 +99,8 @@ public class AndroidServlet extends HttpServlet {
                 returnObj.put("fuldenavn", fuldenavn);
                 break;
             case "getMuligeOrd":
-                /* TODO Skal rettes så metoden getMuligeOrd også ligger i Galgeloggikken på serveren.
-                   Jeg har sat metoden ind. Jar-filen skal bare oploades.
-                */
-                // List<String> muligeOrd = spil.getMuligeOrd();
-                // returnObj.put("muligeOrd", muligeOrd);
+                List<String> muligeOrd = spil.getMuligeOrd();
+                returnObj.put("muligeOrd", muligeOrd);
                 break;
             case "nulstil":
                 spil.nulstil();
@@ -112,12 +109,9 @@ public class AndroidServlet extends HttpServlet {
                 spil.opdaterSynligtOrd();
                 break;
             case "setOrdet":
-                /* TODO Skal rettes så metoden setOrdet også ligger i Galgeloggikken på serveren.
-                   Jeg har sat metoden ind. Jar-filen skal bare oploades.
-                */
                 String iString = request.getParameter("i");
                 int i = Integer.parseInt(iString);
-                // spil.setOrdet(i);
+                spil.setOrdet(i);
                 break;
         }
         out.println(returnObj.toString());

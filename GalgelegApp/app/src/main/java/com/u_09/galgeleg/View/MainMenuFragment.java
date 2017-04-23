@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.u_09.galgeleg.R;
 
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
     private View mView;
+    private TextView mTvTitle;
     private Button mBtnPlayGame, mBtnHighScore, mBtnHelp, mBtnTest, mBtnChat;
     private ChooseWordPopupFragment mChooseWordPopupFragment;
     private HighScoreFragment mHighScoreFragment;
@@ -29,6 +31,10 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         mHelpFragment = new HelpFragment();
         mChatFragment = new ChatFragment();
         mAdminFragment = new AdminFragment();
+
+        mTvTitle = (TextView) mView.findViewById(R.id.tv_title);
+        String fullname = getArguments().getString("fullname");
+        mTvTitle.setText("Velkommen til Galgespillet \n" + fullname);
 
         mBtnPlayGame = (Button) mView.findViewById(R.id.button_play_game);
         mBtnHighScore = (Button) mView.findViewById(R.id.button_highscore);

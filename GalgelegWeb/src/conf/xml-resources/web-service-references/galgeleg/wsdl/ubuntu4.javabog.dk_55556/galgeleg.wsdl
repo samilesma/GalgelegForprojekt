@@ -4,35 +4,17 @@
 <xsd:import namespace="http://galgeleg/" schemaLocation="http://ubuntu4.javabog.dk:55556/galgeleg?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
+<message name="hentNavn">
+<part name="parameters" element="tns:hentNavn"></part>
+</message>
+<message name="hentNavnResponse">
+<part name="parameters" element="tns:hentNavnResponse"></part>
+</message>
 <message name="hentOrdFraDr">
 <part name="parameters" element="tns:hentOrdFraDr"></part>
 </message>
 <message name="hentOrdFraDrResponse">
 <part name="parameters" element="tns:hentOrdFraDrResponse"></part>
-</message>
-<message name="getBrugteBogstaver">
-<part name="parameters" element="tns:getBrugteBogstaver"></part>
-</message>
-<message name="getBrugteBogstaverResponse">
-<part name="parameters" element="tns:getBrugteBogstaverResponse"></part>
-</message>
-<message name="getSynligtOrd">
-<part name="parameters" element="tns:getSynligtOrd"></part>
-</message>
-<message name="getSynligtOrdResponse">
-<part name="parameters" element="tns:getSynligtOrdResponse"></part>
-</message>
-<message name="getOrdet">
-<part name="parameters" element="tns:getOrdet"></part>
-</message>
-<message name="getOrdetResponse">
-<part name="parameters" element="tns:getOrdetResponse"></part>
-</message>
-<message name="getAntalForkerteBogstaver">
-<part name="parameters" element="tns:getAntalForkerteBogstaver"></part>
-</message>
-<message name="getAntalForkerteBogstaverResponse">
-<part name="parameters" element="tns:getAntalForkerteBogstaverResponse"></part>
 </message>
 <message name="erSidsteBogstavKorrekt">
 <part name="parameters" element="tns:erSidsteBogstavKorrekt"></part>
@@ -40,11 +22,11 @@
 <message name="erSidsteBogstavKorrektResponse">
 <part name="parameters" element="tns:erSidsteBogstavKorrektResponse"></part>
 </message>
-<message name="erSpilletVundet">
-<part name="parameters" element="tns:erSpilletVundet"></part>
+<message name="erSpilletSlut">
+<part name="parameters" element="tns:erSpilletSlut"></part>
 </message>
-<message name="erSpilletVundetResponse">
-<part name="parameters" element="tns:erSpilletVundetResponse"></part>
+<message name="erSpilletSlutResponse">
+<part name="parameters" element="tns:erSpilletSlutResponse"></part>
 </message>
 <message name="erSpilletTabt">
 <part name="parameters" element="tns:erSpilletTabt"></part>
@@ -52,17 +34,65 @@
 <message name="erSpilletTabtResponse">
 <part name="parameters" element="tns:erSpilletTabtResponse"></part>
 </message>
-<message name="erSpilletSlut">
-<part name="parameters" element="tns:erSpilletSlut"></part>
+<message name="erSpilletVundet">
+<part name="parameters" element="tns:erSpilletVundet"></part>
 </message>
-<message name="erSpilletSlutResponse">
-<part name="parameters" element="tns:erSpilletSlutResponse"></part>
+<message name="erSpilletVundetResponse">
+<part name="parameters" element="tns:erSpilletVundetResponse"></part>
+</message>
+<message name="getAntalForkerteBogstaver">
+<part name="parameters" element="tns:getAntalForkerteBogstaver"></part>
+</message>
+<message name="getAntalForkerteBogstaverResponse">
+<part name="parameters" element="tns:getAntalForkerteBogstaverResponse"></part>
+</message>
+<message name="getBrugteBogstaver">
+<part name="parameters" element="tns:getBrugteBogstaver"></part>
+</message>
+<message name="getBrugteBogstaverResponse">
+<part name="parameters" element="tns:getBrugteBogstaverResponse"></part>
+</message>
+<message name="getMuligeOrd">
+<part name="parameters" element="tns:getMuligeOrd"></part>
+</message>
+<message name="getMuligeOrdResponse">
+<part name="parameters" element="tns:getMuligeOrdResponse"></part>
+</message>
+<message name="getOrdet">
+<part name="parameters" element="tns:getOrdet"></part>
+</message>
+<message name="getOrdetResponse">
+<part name="parameters" element="tns:getOrdetResponse"></part>
+</message>
+<message name="getSynligtOrd">
+<part name="parameters" element="tns:getSynligtOrd"></part>
+</message>
+<message name="getSynligtOrdResponse">
+<part name="parameters" element="tns:getSynligtOrdResponse"></part>
+</message>
+<message name="gætBogstav">
+<part name="parameters" element="tns:gætBogstav"></part>
+</message>
+<message name="gætBogstavResponse">
+<part name="parameters" element="tns:gætBogstavResponse"></part>
 </message>
 <message name="hentBruger">
 <part name="parameters" element="tns:hentBruger"></part>
 </message>
 <message name="hentBrugerResponse">
 <part name="parameters" element="tns:hentBrugerResponse"></part>
+</message>
+<message name="hentUrl">
+<part name="parameters" element="tns:hentUrl"></part>
+</message>
+<message name="hentUrlResponse">
+<part name="parameters" element="tns:hentUrlResponse"></part>
+</message>
+<message name="logStatus">
+<part name="parameters" element="tns:logStatus"></part>
+</message>
+<message name="logStatusResponse">
+<part name="parameters" element="tns:logStatusResponse"></part>
 </message>
 <message name="nulstil">
 <part name="parameters" element="tns:nulstil"></part>
@@ -76,70 +106,72 @@
 <message name="opdaterSynligtOrdResponse">
 <part name="parameters" element="tns:opdaterSynligtOrdResponse"></part>
 </message>
-<message name="gætBogstav">
-<part name="parameters" element="tns:gætBogstav"></part>
+<message name="setOrdet">
+<part name="parameters" element="tns:setOrdet"></part>
 </message>
-<message name="gætBogstavResponse">
-<part name="parameters" element="tns:gætBogstavResponse"></part>
-</message>
-<message name="logStatus">
-<part name="parameters" element="tns:logStatus"></part>
-</message>
-<message name="logStatusResponse">
-<part name="parameters" element="tns:logStatusResponse"></part>
-</message>
-<message name="hentUrl">
-<part name="parameters" element="tns:hentUrl"></part>
-</message>
-<message name="hentUrlResponse">
-<part name="parameters" element="tns:hentUrlResponse"></part>
-</message>
-<message name="hentNavn">
-<part name="parameters" element="tns:hentNavn"></part>
-</message>
-<message name="hentNavnResponse">
-<part name="parameters" element="tns:hentNavnResponse"></part>
+<message name="setOrdetResponse">
+<part name="parameters" element="tns:setOrdetResponse"></part>
 </message>
 <portType name="GalgeI">
+<operation name="hentNavn">
+<input wsam:Action="http://galgeleg/GalgeI/hentNavnRequest" message="tns:hentNavn"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentNavnResponse" message="tns:hentNavnResponse"></output>
+</operation>
 <operation name="hentOrdFraDr">
 <input wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrRequest" message="tns:hentOrdFraDr"></input>
 <output wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrResponse" message="tns:hentOrdFraDrResponse"></output>
-</operation>
-<operation name="getBrugteBogstaver">
-<input wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverRequest" message="tns:getBrugteBogstaver"></input>
-<output wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverResponse" message="tns:getBrugteBogstaverResponse"></output>
-</operation>
-<operation name="getSynligtOrd">
-<input wsam:Action="http://galgeleg/GalgeI/getSynligtOrdRequest" message="tns:getSynligtOrd"></input>
-<output wsam:Action="http://galgeleg/GalgeI/getSynligtOrdResponse" message="tns:getSynligtOrdResponse"></output>
-</operation>
-<operation name="getOrdet">
-<input wsam:Action="http://galgeleg/GalgeI/getOrdetRequest" message="tns:getOrdet"></input>
-<output wsam:Action="http://galgeleg/GalgeI/getOrdetResponse" message="tns:getOrdetResponse"></output>
-</operation>
-<operation name="getAntalForkerteBogstaver">
-<input wsam:Action="http://galgeleg/GalgeI/getAntalForkerteBogstaverRequest" message="tns:getAntalForkerteBogstaver"></input>
-<output wsam:Action="http://galgeleg/GalgeI/getAntalForkerteBogstaverResponse" message="tns:getAntalForkerteBogstaverResponse"></output>
 </operation>
 <operation name="erSidsteBogstavKorrekt">
 <input wsam:Action="http://galgeleg/GalgeI/erSidsteBogstavKorrektRequest" message="tns:erSidsteBogstavKorrekt"></input>
 <output wsam:Action="http://galgeleg/GalgeI/erSidsteBogstavKorrektResponse" message="tns:erSidsteBogstavKorrektResponse"></output>
 </operation>
-<operation name="erSpilletVundet">
-<input wsam:Action="http://galgeleg/GalgeI/erSpilletVundetRequest" message="tns:erSpilletVundet"></input>
-<output wsam:Action="http://galgeleg/GalgeI/erSpilletVundetResponse" message="tns:erSpilletVundetResponse"></output>
+<operation name="erSpilletSlut">
+<input wsam:Action="http://galgeleg/GalgeI/erSpilletSlutRequest" message="tns:erSpilletSlut"></input>
+<output wsam:Action="http://galgeleg/GalgeI/erSpilletSlutResponse" message="tns:erSpilletSlutResponse"></output>
 </operation>
 <operation name="erSpilletTabt">
 <input wsam:Action="http://galgeleg/GalgeI/erSpilletTabtRequest" message="tns:erSpilletTabt"></input>
 <output wsam:Action="http://galgeleg/GalgeI/erSpilletTabtResponse" message="tns:erSpilletTabtResponse"></output>
 </operation>
-<operation name="erSpilletSlut">
-<input wsam:Action="http://galgeleg/GalgeI/erSpilletSlutRequest" message="tns:erSpilletSlut"></input>
-<output wsam:Action="http://galgeleg/GalgeI/erSpilletSlutResponse" message="tns:erSpilletSlutResponse"></output>
+<operation name="erSpilletVundet">
+<input wsam:Action="http://galgeleg/GalgeI/erSpilletVundetRequest" message="tns:erSpilletVundet"></input>
+<output wsam:Action="http://galgeleg/GalgeI/erSpilletVundetResponse" message="tns:erSpilletVundetResponse"></output>
+</operation>
+<operation name="getAntalForkerteBogstaver">
+<input wsam:Action="http://galgeleg/GalgeI/getAntalForkerteBogstaverRequest" message="tns:getAntalForkerteBogstaver"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getAntalForkerteBogstaverResponse" message="tns:getAntalForkerteBogstaverResponse"></output>
+</operation>
+<operation name="getBrugteBogstaver">
+<input wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverRequest" message="tns:getBrugteBogstaver"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getBrugteBogstaverResponse" message="tns:getBrugteBogstaverResponse"></output>
+</operation>
+<operation name="getMuligeOrd">
+<input wsam:Action="http://galgeleg/GalgeI/getMuligeOrdRequest" message="tns:getMuligeOrd"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getMuligeOrdResponse" message="tns:getMuligeOrdResponse"></output>
+</operation>
+<operation name="getOrdet">
+<input wsam:Action="http://galgeleg/GalgeI/getOrdetRequest" message="tns:getOrdet"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getOrdetResponse" message="tns:getOrdetResponse"></output>
+</operation>
+<operation name="getSynligtOrd">
+<input wsam:Action="http://galgeleg/GalgeI/getSynligtOrdRequest" message="tns:getSynligtOrd"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getSynligtOrdResponse" message="tns:getSynligtOrdResponse"></output>
+</operation>
+<operation name="gætBogstav">
+<input wsam:Action="http://galgeleg/GalgeI/gætBogstavRequest" message="tns:gætBogstav"></input>
+<output wsam:Action="http://galgeleg/GalgeI/gætBogstavResponse" message="tns:gætBogstavResponse"></output>
 </operation>
 <operation name="hentBruger">
 <input wsam:Action="http://galgeleg/GalgeI/hentBrugerRequest" message="tns:hentBruger"></input>
 <output wsam:Action="http://galgeleg/GalgeI/hentBrugerResponse" message="tns:hentBrugerResponse"></output>
+</operation>
+<operation name="hentUrl">
+<input wsam:Action="http://galgeleg/GalgeI/hentUrlRequest" message="tns:hentUrl"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentUrlResponse" message="tns:hentUrlResponse"></output>
+</operation>
+<operation name="logStatus">
+<input wsam:Action="http://galgeleg/GalgeI/logStatusRequest" message="tns:logStatus"></input>
+<output wsam:Action="http://galgeleg/GalgeI/logStatusResponse" message="tns:logStatusResponse"></output>
 </operation>
 <operation name="nulstil">
 <input wsam:Action="http://galgeleg/GalgeI/nulstilRequest" message="tns:nulstil"></input>
@@ -149,62 +181,23 @@
 <input wsam:Action="http://galgeleg/GalgeI/opdaterSynligtOrdRequest" message="tns:opdaterSynligtOrd"></input>
 <output wsam:Action="http://galgeleg/GalgeI/opdaterSynligtOrdResponse" message="tns:opdaterSynligtOrdResponse"></output>
 </operation>
-<operation name="gætBogstav">
-<input wsam:Action="http://galgeleg/GalgeI/gætBogstavRequest" message="tns:gætBogstav"></input>
-<output wsam:Action="http://galgeleg/GalgeI/gætBogstavResponse" message="tns:gætBogstavResponse"></output>
-</operation>
-<operation name="logStatus">
-<input wsam:Action="http://galgeleg/GalgeI/logStatusRequest" message="tns:logStatus"></input>
-<output wsam:Action="http://galgeleg/GalgeI/logStatusResponse" message="tns:logStatusResponse"></output>
-</operation>
-<operation name="hentUrl">
-<input wsam:Action="http://galgeleg/GalgeI/hentUrlRequest" message="tns:hentUrl"></input>
-<output wsam:Action="http://galgeleg/GalgeI/hentUrlResponse" message="tns:hentUrlResponse"></output>
-</operation>
-<operation name="hentNavn">
-<input wsam:Action="http://galgeleg/GalgeI/hentNavnRequest" message="tns:hentNavn"></input>
-<output wsam:Action="http://galgeleg/GalgeI/hentNavnResponse" message="tns:hentNavnResponse"></output>
+<operation name="setOrdet">
+<input wsam:Action="http://galgeleg/GalgeI/setOrdetRequest" message="tns:setOrdet"></input>
+<output wsam:Action="http://galgeleg/GalgeI/setOrdetResponse" message="tns:setOrdetResponse"></output>
 </operation>
 </portType>
 <binding name="GalgelogikPortBinding" type="tns:GalgeI">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+<operation name="hentNavn">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
 <operation name="hentOrdFraDr">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="getBrugteBogstaver">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="getSynligtOrd">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="getOrdet">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="getAntalForkerteBogstaver">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -222,7 +215,7 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="erSpilletVundet">
+<operation name="erSpilletSlut">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -240,7 +233,61 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="erSpilletSlut">
+<operation name="erSpilletVundet">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getAntalForkerteBogstaver">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getBrugteBogstaver">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getMuligeOrd">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getOrdet">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="getSynligtOrd">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="gætBogstav">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -250,6 +297,24 @@
 </output>
 </operation>
 <operation name="hentBruger">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="hentUrl">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="logStatus">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -276,34 +341,7 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="gætBogstav">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="logStatus">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="hentUrl">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="hentNavn">
+<operation name="setOrdet">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

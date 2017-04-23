@@ -10,16 +10,13 @@
     >
 
     <TextView
-        android:id="@+id/help_title"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:lineSpacingExtra="8dp"
-        android:text="@string/hovedmenu_titel"
-        android:textAlignment="center"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAlignment="center"
         />
 
     <LinearLayout

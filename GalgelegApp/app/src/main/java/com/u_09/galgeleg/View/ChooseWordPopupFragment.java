@@ -15,7 +15,10 @@ import android.widget.ListView;
 
 import com.u_09.galgeleg.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Umais on 15/01/2017.
@@ -42,12 +45,16 @@ public class ChooseWordPopupFragment extends Fragment implements AdapterView.OnI
         mLvWords.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mLvWords.setOnItemClickListener(this);
 
-        hentMuligeOrdArray();
+        try {
+            hentMuligeOrdArray();
+        } catch (InterruptedException | ExecutionException | JSONException e) {
+            e.printStackTrace();
+        }
 
         return mView;
     }
 
-    private void hentMuligeOrdArray() {
+    private void hentMuligeOrdArray() throws InterruptedException, ExecutionException, JSONException {
         mMuligeOrdArray = ((GameActivity)getActivity()).getMuligeOrdFromActivity();
         mLvWordsAdapter = new ArrayAdapter<>(getContext(), R.layout.choose_word_list_element, mMuligeOrdArray);
         mLvWords.setAdapter(mLvWordsAdapter);
@@ -60,8 +67,12 @@ public class ChooseWordPopupFragment extends Fragment implements AdapterView.OnI
         item.setChecked(true);
         String ordet = item.getText().toString();
         Log.d("WORD: ", i + " - " + item.getText().toString());
-        ((GameActivity)getActivity()).setOrdetFromActivity(i);
-        ((GameActivity)getActivity()).setSynligtOrdFromActivity();
+        try {
+            ((GameActivity)getActivity()).setOrdetFromActivity(i);
+            ((GameActivity)getActivity()).setSynligtOrdFromActivity();
+        } catch (InterruptedException | ExecutionException | JSONException e) {
+            e.printStackTrace();
+        }
         getFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop)

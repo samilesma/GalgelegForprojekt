@@ -15,9 +15,6 @@ public class GalgelogikFunc {
 
     private static final String REST_ROOT_URL = "http://galgeleg.dk/GalgelegWeb/AndroidServlet";
     private static final String PARAMETER_TYPE = "?type=";
-    private static final String PARAMETER_USERNAME = "&username=";
-    private static final String PARAMETER_PASSWORD = "&password=";
-    private static final String TYPE_LOGIN = "login";
     private static final String TYPE_ERSIDSTEBOGSTAVKORREKT = "erSidsteBogstavKorrekt";
     private static final String TYPE_ERSPILLETSLUT = "erSpilletSlut";
     private static final String TYPE_ERSPILLETTABT = "erSpilletTabt";
@@ -28,6 +25,9 @@ public class GalgelogikFunc {
     private static final String TYPE_GETSYNLIGTORD = "getSynligtOrd";
     private static final String TYPE_GÆTBOGSTAV = "gætBogstav";
     private static final String PARAMETER_BOGSTAV = "&bogstav=";
+    private static final String TYPE_HENTBRUGER = "hentBruger";
+    private static final String PARAMETER_USERNAME = "&username=";
+    private static final String PARAMETER_PASSWORD = "&password=";
     private static final String TYPE_HENTNAVN = "hentNavn";
     private static final String TYPE_HENTORDFRADR = "hentOrdFraDr";
     private static final String TYPE_HENTURL = "hentUrl";
@@ -96,9 +96,8 @@ public class GalgelogikFunc {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GÆTBOGSTAV + PARAMETER_BOGSTAV + bogstav);
     }
 
-    public boolean hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
-        JSONObject data = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_LOGIN + PARAMETER_USERNAME + username + PARAMETER_PASSWORD + password).get());
-        return data.getBoolean("error");
+    public JSONObject hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
+        return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTBRUGER + PARAMETER_USERNAME + username + PARAMETER_PASSWORD + password).get());
     }
 
     public String hentNavn() throws ExecutionException, InterruptedException, JSONException {

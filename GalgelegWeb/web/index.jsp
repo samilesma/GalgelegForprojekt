@@ -19,8 +19,8 @@ if(session.getAttribute("currUser") != null && !session.getAttribute("currUser")
         <title>Galgeleg</title>
     </head>
     <body>
-        <%! src.GalgelogikService service = new src.GalgelogikService(); %>
-        <%! src.GalgeI spil = service.getGalgelogikPort();%>
+        <%! galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); %>
+        <%! galgeleg.GalgeI spil = service.getGalgelogikPort();%>
         
         <script>
             window.onload = function () {

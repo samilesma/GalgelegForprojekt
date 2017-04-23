@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +23,8 @@ import utils.Main;
  */
 public class HighscoreServlet extends HttpServlet {
 
-    src.GalgelogikService service = new src.GalgelogikService();
-    src.GalgeI spil = service.getGalgelogikPort();
+    galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
+    galgeleg.GalgeI spil = service.getGalgelogikPort();
     final static String FILEPATH = "C:\\Users\\ahmad\\Desktop\\Opgaver\\4 - Semester\\Distribuerede systemer\\GalgelegForprojekt\\highscore.txt";
 
     /**

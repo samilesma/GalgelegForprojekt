@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-galgeleg" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/galgeleg"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/galgeleg" destdir="${build.generated.dir}/jax-wsCache/galgeleg" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/galgeleg/wsdl/ubuntu4.javabog.dk_55556/galgeleg.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://ubuntu4.javabog.dk:55556/galgeleg?wsdl" xnocompile="true" xendorsed="true" package="src">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/galgeleg" destdir="${build.generated.dir}/jax-wsCache/galgeleg" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/galgeleg/wsdl/ubuntu4.javabog.dk_55556/galgeleg.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://ubuntu4.javabog.dk:55556/galgeleg?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/galgeleg/wsdl/ubuntu4.javabog.dk_55556/galgeleg.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/galgeleg"/>
         </wsimport>
@@ -39,7 +39,7 @@
         </copy>
     </target>
     <target name="wsimport-client-clean-galgeleg" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/src"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/galgeleg"/>
         <delete dir="${build.generated.dir}/jax-wsCache/galgeleg"/>
     </target>
     <target name="wsimport-client-generate" depends="wsimport-client-galgeleg"/>

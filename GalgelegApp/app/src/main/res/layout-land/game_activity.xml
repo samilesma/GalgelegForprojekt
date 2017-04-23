@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:gravity="bottom|end"
-        android:id="@+id/textView"
-        android:text="@string/programmør"
+        android:id="@+id/tv_spiller"
+        android:text="@string/spiller"
         android:textColor="@color/white"
         android:textSize="10sp"
         />
