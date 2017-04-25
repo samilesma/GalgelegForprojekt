@@ -183,3 +183,7 @@ button, input, optgroup, select, textarea {
     margin: 0 auto;
     display: block;
 }
+
+.form-control {
+    text-align: center;
+}

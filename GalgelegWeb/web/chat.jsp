@@ -34,6 +34,7 @@
             });
         },3000);
         </script>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <title>Galgeleg</title>
     </head>
     <body>

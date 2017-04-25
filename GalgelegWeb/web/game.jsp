@@ -16,6 +16,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="cover.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <title>Galgeleg</title>
         <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
     </head>
@@ -58,8 +59,8 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                             String currName = (String) request.getSession().getAttribute("currName");
                             if (currUser != null) {
                         %>
-                        <h1 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h1>  
-                        <hr/>
+                        <h2 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h2>  
+                        <hr>
 
                         <div class="row">
 
@@ -112,8 +113,9 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                         <form action="GameServlet" method="post" id="newGameForm" hidden="true">
                             <button type="submit" class="btn btn-lg btn-primary">Nyt spil</button>
                         </form>
-                        <hr/>
+                        <hr>
                     </div>
+                    
                     <%
                         try {
                             boolean result = spil.erSidsteBogstavKorrekt();

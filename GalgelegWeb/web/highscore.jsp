@@ -22,6 +22,7 @@
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="cover.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <title>Galgeleg</title>
         <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
         <style>
