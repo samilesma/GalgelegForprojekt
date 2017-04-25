@@ -178,3 +178,8 @@ button, input, optgroup, select, textarea {
     font: inherit;
     color: black;
 }
+
+#hangmanpic {
+    margin: 0 auto;
+    display: block;
+}

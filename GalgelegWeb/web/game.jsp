@@ -63,7 +63,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
 
                         <div class="row">
 
-                            <div class="col-xs-6 col-md-3">
+                            <div class="col-xs-12">
                                 <img id="hangmanpic" src=
                                          <%
                                              int errors = spil.getAntalForkerteBogstaver();
