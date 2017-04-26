@@ -38,6 +38,7 @@ public class ChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        out.println("test");
         if(request.getParameterMap().containsKey("type") && request.getParameter("type")=="getmessage")
         {
             Gson gson=new Gson();

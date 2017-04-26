@@ -46,6 +46,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                                     boolean currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
                                     if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
                                     <li class="active"><a href="#">Spil</a></li>
+                                    <li><a href="chat.jsp">Chat</a></li>
                                     <li><a href="highscore.jsp">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
                                 </ul>
