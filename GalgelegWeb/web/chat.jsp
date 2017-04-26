@@ -8,8 +8,10 @@
 <%@page import="utils.functions" %>
 <%@page import="java.sql.ResultSet" %>
 <%@page import="java.util.ArrayList" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+String currName = (String) request.getSession().getAttribute("currName");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,8 +22,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="ajax.js"></script>
         <script>
+        function setMsg(msg,sid,time)
+        {
+            $("div#chatbox").append("<div class='msg'><div class='name'>"+sid+"</div><div class='msg'>"+msg+"</div>");
+        }
+        
+        $("document").ready(function(){
+            $("form").submit(function(){
+                setMsg($(this).find("#usermsg").val(),"<%=currName%>",new Date() / 1000 | 0);
+            });
+        });
+        
         setInterval(function(){
-            var date = (new Date() / 1000 | 0)-2;
+            var date = (new Date() / 1000 | 0)-3;
             $.ajax({
                 cache:false,
                 type:"POST",
@@ -30,7 +43,7 @@
                 data:{type:"getmessage",date:date},
                 success:function(data)
                 {
-                    alert(data);
+                    
                 }
             });
         },3000);
@@ -43,20 +56,16 @@
         <h1>Chat</h1>
         
         <div class="site-wrapper">
-    <div id="menu">
-        <p class="welcome">Galgelegs Chat <b></b></p>
-        <div style="clear:both"></div>
-    </div>
-     
-    <div id="chatbox"></div>
-     
-    <form action="ChatServlet" method="post" class="ajax">
-        <div style="width:50%; height:500px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
-        <br>
-        <input name="usermsg" type="text" id="usermsg" style="width:400px" />
-        <button type="submit" style="width:100px;">Send</button>
-    </form>
-</div>
-        
+            <div id="menu">
+                <p class="welcome">Galgelegs Chat <b></b></p>
+                <div style="clear:both"></div>
+            </div>
+            <div id="chatbox" style="width:50%; height:500px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
+            <br/>
+            <form action="ChatServlet" method="post" class="ajax">
+                <input name="usermsg" type="text" id="usermsg" style="width:400px" />
+                <button type="submit" style="width:100px;">Send</button>
+            </form>
+        </div>
     </body>
 </html>

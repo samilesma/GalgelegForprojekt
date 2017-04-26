@@ -38,11 +38,13 @@ public class ChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        out.println("test");
-        if(request.getParameterMap().containsKey("type") && request.getParameter("type")=="getmessage")
+        if(request.getParameterMap().containsKey("type") && request.getParameter("type").equals("getmessage"))
         {
             Gson gson=new Gson();
-            out.println(gson.toJson(function.getMessages(Long.parseLong(request.getParameter("date")))));
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(gson.toJson(function.getMessages((String)request.getSession().getAttribute("currUser"),Long.parseLong(request.getParameter("date")))));
+            System.out.println(Long.parseLong(request.getParameter("date")));
         }
         else
         {
@@ -51,6 +53,8 @@ public class ChatServlet extends HttpServlet {
             function.sendMsg(sid, msg);
         }
     }
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
