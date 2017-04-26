@@ -24,6 +24,10 @@
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>servlets.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChallengeServlet</servlet-name>
+        <servlet-class>servlets.ChallengeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -48,17 +52,18 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/AdminServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChallengeServlet</servlet-name>
+        <url-pattern>/ChallengeServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <!-- Set Favourites Icon MIME-Type -->
     <mime-mapping>
-    <extension>ico</extension>
-
-    <mime-type>image/x-icon</mime-type>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
     </mime-mapping>
-    
 </web-app>

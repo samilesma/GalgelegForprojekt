@@ -71,8 +71,9 @@
                             <nav>
                                 <ul class="nav masthead-nav">
                                     <li class="active"><a href="#">Admin</a></li>
-                                    <li><a href="chat.jsp">Chat</a></li>
                                     <li><a href="game.jsp">Spil</a></li>
+                                    <li><a href="chat.jsp">Chat</a></li>
+                                    <li><a href="challenges.jsp">Chall</a></li>
                                     <li><a href="highscore.jsp">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
                                 </ul>
@@ -117,7 +118,7 @@
                                         </select>
                                     </td>
                                     <input type="hidden" name="sid" value="<% rUser.getString("sid"); %>" />
-                                    <td><input type='submit'/></td>
+                                    <td><input type='submit' /></td>
                                     
                                     <%
                                     out.println("</form>");

@@ -61,6 +61,7 @@ ol.lead {
 .site-wrapper-inner.table{
         width:1000px;
 }
+
 .cover-container {
     margin-right: auto;
     margin-left: auto;
@@ -186,4 +187,19 @@ button, input, optgroup, select, textarea {
 
 .form-control {
     text-align: center;
+}
+
+body {
+  padding : 10px ;
+}
+
+#tab .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+  padding: 10px 80px;
+}
+
+#tab .tab-content {
+  color : white;
+  padding : 30px 15px;
+  margin-right:500px;
 }
