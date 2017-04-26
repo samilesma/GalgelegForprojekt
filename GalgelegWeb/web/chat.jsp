@@ -22,9 +22,13 @@ String currName = (String) request.getSession().getAttribute("currName");
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="ajax.js"></script>
         <script>
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+            
         function setMsg(msg,sid,time)
         {
-            $("div#chatbox").append("<div class='msg'><div class='name'>"+sid+"</div><div class='msg'>"+msg+"</div>");
+            $("div#chatbox").append("<div class='mesg'><div class='name'>"+sid+"</div><div class='msg'>"+escapeHtml(msg)+"</div>");
         }
         
         $("document").ready(function(){

@@ -187,3 +187,9 @@ button, input, optgroup, select, textarea {
 .form-control {
     text-align: center;
 }
+
+div.mesg div.name{
+    text-align: center;
+    
+    
+}
