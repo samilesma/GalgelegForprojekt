@@ -203,3 +203,21 @@ body {
   padding : 30px 15px;
   margin-right:500px;
 }
+
+div.msg{
+    float:left;
+}
+
+div.name{
+    float : left;
+}
+
+div#chatbox {
+    width:50%; 
+    height:500px; 
+    padding: 20px; 
+    margin:auto; 
+    border:2px solid #929391; 
+    border-radius:20px;
+    overflow: scroll;
+}
