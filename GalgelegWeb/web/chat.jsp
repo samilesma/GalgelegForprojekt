@@ -28,12 +28,15 @@ String currName = (String) request.getSession().getAttribute("currName");
             
         function setMsg(msg,sid,time)
         {
-            $("div#chatbox").append("<div class='mesg'><div class='name'>"+sid+"</div><div class='msg'>"+escapeHtml(msg)+"</div>");
+            $("div#chatbox").append("<div class='mesg'><div class='name'>"+sid+":<span style='margin-left:1em'> </span></div><div class='msg'>"+escapeHtml(msg)+"</div></div><br/>");
+            $("#chatbox").scrollTop($("#chatbox").prop("scrollHeight"));
+        
         }
         
         $("document").ready(function(){
             $("form").submit(function(){
                 setMsg($(this).find("#usermsg").val(),"<%=currName%>",new Date() / 1000 | 0);
+                $("#usermsg").val("");
             });
         });
         
@@ -57,17 +60,36 @@ String currName = (String) request.getSession().getAttribute("currName");
     </head>
     <body>
         
-        <h1>Chat</h1>
-        
+            <div class="container ">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Galgeleg</h3>
+                            <nav>
+                                <ul class="nav masthead-nav">
+                                    <%
+                                    boolean currAdmin = (boolean) request.getSession().getAttribute("currAdmin");
+                                    if(currAdmin) { %> 
+                                    <li><a href="admin.jsp">Admin</a></li> <% } %>
+                                    <li><a href="game.jsp">Spil</a></li>
+                                    <li class="active"><a href="#">Chat</a></li>
+                                    <li><a href="highscore.jsp">Highscore</a></li>
+                                    <li><a href="logout.jsp">Log ud</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+            </div>
+             
+       
         <div class="site-wrapper">
+             <h1>Chat</h1>
+            
             <div id="menu">
                 <p class="welcome">Galgelegs Chat <b></b></p>
                 <div style="clear:both"></div>
             </div>
-            <div id="chatbox" style="width:50%; height:500px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
+            <div id="chatbox"></div>
             <br/>
             <form action="ChatServlet" method="post" class="ajax">
-                <input name="usermsg" type="text" id="usermsg" style="width:400px" />
+                <input name="usermsg" pattern=".{1}|.{1,200}" required title="Enten 1 eller 1 til 200" type="text" id="usermsg" style="width:400px" />
                 <button type="submit" style="width:100px;">Send</button>
             </form>
         </div>

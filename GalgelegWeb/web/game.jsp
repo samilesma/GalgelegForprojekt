@@ -30,7 +30,7 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                 document.getElementById("letter").focus();
             };
         </script>
-
+      <div class="akhuysen">
         <div class="site-wrapper">
 
             <div class="site-wrapper-inner">
@@ -54,7 +54,8 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
                         </div>
                     </div>
                     <br/>
-                    <div class="inner cover">
+                    
+                    <div class="col-xs-6">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
                             String currName = (String) request.getSession().getAttribute("currName");
@@ -180,6 +181,8 @@ if(session.getAttribute("currUser") == null || session.getAttribute("currUser").
             </div>
 
         </div>
+                    
+      </div>
 
         <% } else { %>
         <jsp:forward page = "index.jsp" />
