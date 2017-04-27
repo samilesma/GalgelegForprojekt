@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import galgeleg.IllegalAccessException_Exception;
+import galgeleg.InvocationTargetException_Exception;
+import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -34,19 +38,19 @@ public class GameServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException, SQLException {
-        if (spil.erSpilletSlut()) {
-            spil.nulstil();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException, SQLException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception {
+        if (spil.check(Arrays.asList((String)request.getSession().getAttribute("currUser"),"erSpilletSlut"))) {
+            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),"nulstil"));
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
         } else {
             String letter = request.getParameter("letter");
-            spil.gætBogstav(letter);
+            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),letter,"gætBogstav"));
         }
         
-        if (spil.erSpilletVundet()) {
+        if (spil.check(Arrays.asList((String)request.getSession().getAttribute("currUser"),"erSpilletVundet"))) {
             System.out.println("MUHAHHHAHAH");
             String navn = (String) request.getSession().getAttribute("currUser");
-            int forkerte = spil.getAntalForkerteBogstaver();
+            int forkerte = spil.getint(Arrays.asList((String)request.getSession().getAttribute("currUser"),"getAntalForkerteBogstaver"));
             int tid=(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000);
             connector con=new connector();
             con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('"+navn+"','"+forkerte+"','"+tid+"','"+System.currentTimeMillis() / 1000L+"')");
@@ -71,6 +75,12 @@ public class GameServlet extends HttpServlet {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,6 +99,12 @@ public class GameServlet extends HttpServlet {
         } catch (JSONException ex) {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
             Logger.getLogger(GameServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

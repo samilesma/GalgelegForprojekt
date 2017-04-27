@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import galgeleg.IllegalAccessException_Exception;
+import galgeleg.InvocationTargetException_Exception;
+import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,11 +41,11 @@ public class HighscoreServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JSONException {
+            throws ServletException, IOException, JSONException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception {
         
         System.out.println("MUHAHHHAHAH");
         String navn = (String) request.getSession().getAttribute("currUser");
-        int forkerte = spil.getAntalForkerteBogstaver();
+        int forkerte = spil.getint(Arrays.asList((String)request.getSession().getAttribute("currUser"),"getAntalForkerteBogstaver"));
         // int tid = request.getParameter("seconds");
 
         JSONArray hs = new JSONArray(Main.readFile(FILEPATH, StandardCharsets.UTF_8));
@@ -73,6 +77,12 @@ public class HighscoreServlet extends HttpServlet {
             processRequest(request, response);
         } catch (JSONException ex) {
             Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,6 +100,12 @@ public class HighscoreServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (JSONException ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
             Logger.getLogger(HighscoreServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

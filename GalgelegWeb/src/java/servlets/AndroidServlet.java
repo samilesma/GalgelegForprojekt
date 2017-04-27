@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import galgeleg.IllegalAccessException_Exception;
+import galgeleg.InvocationTargetException_Exception;
+import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,55 +42,54 @@ public class AndroidServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JSONException {
+            throws ServletException, IOException, JSONException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception {
         PrintWriter out = response.getWriter();
         String type = request.getParameter("type");
-
         JSONObject returnObj = new JSONObject();
         
         switch (type) {
             case "erSidsteBogstavKorrekt":
-                boolean sidsteBogstavVarKorrekt = spil.erSidsteBogstavKorrekt();
+                boolean sidsteBogstavVarKorrekt = spil.check(Arrays.asList(request.getParameter("sid"),"erSidsteBogstavKorrekt"));
                 returnObj.put("sidsteBogstavVarKorrekt", sidsteBogstavVarKorrekt);
                 break;
             case "erSpilletSlut":
-                boolean spilletErSlut = spil.erSpilletSlut();
+                boolean spilletErSlut = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletSlut"));
                 returnObj.put("spilletErSlut", spilletErSlut);
                 break;
             case "erSpilletTabt":
-                boolean spilletErTabt = spil.erSpilletTabt();
+                boolean spilletErTabt = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletTabt"));
                 returnObj.put("spilletErTabt", spilletErTabt);
                 break;
             case "erSpilletVundet":
-                boolean spilletErVundet = spil.erSpilletVundet();
+                boolean spilletErVundet = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletVundet"));
                 returnObj.put("spilletErVundet", spilletErVundet);
                 break;
             case "getAntalForkerteBogstaver":
-                int antalForkerteBogstaver = spil.getAntalForkerteBogstaver();
+                int antalForkerteBogstaver = spil.getint(Arrays.asList(request.getParameter("sid"),"getAntalForkerteBogstaver"));
                 returnObj.put("antalForkerteBogstaver", antalForkerteBogstaver);
                 break;
             case "getBrugteBogstaver":
-                List<String> brugteBogstaver = spil.getBrugteBogstaver();
+                List<String> brugteBogstaver = spil.getlist(Arrays.asList(request.getParameter("sid"),"getBrugteBogstaver"));
                 returnObj.put("brugteBogstaver", brugteBogstaver);
                 break;
             case "getOrdet":
-                String ordet = spil.getOrdet();
+                String ordet = spil.get(Arrays.asList(request.getParameter("sid"),"getOrdet"));
                 returnObj.put("ordet", ordet);
                 break;
             case "getSynligtOrd":
-                String synligtOrd = spil.getSynligtOrd();
+                String synligtOrd = spil.get(Arrays.asList(request.getParameter("sid"),"getSynligtOrd"));
                 returnObj.put("synligtOrd", synligtOrd);
                 break;
             case "gætBogstav":
                 String bogstav = request.getParameter("bogstav");
-                spil.gætBogstav(bogstav);
+                spil.doit(Arrays.asList(request.getParameter("sid"),bogstav,"gætBogstav"));
                 break;    
             case "hentBruger":
                 String name = request.getParameter("username");
                 String pass = request.getParameter("password");
 
                 if (spil.hentBruger(name, pass)) {
-                    String fuldenavn = spil.hentNavn();
+                    String fuldenavn = spil.get(Arrays.asList(request.getParameter("sid"),"hentNavn"));
 
                     returnObj.put("error", false);
                     returnObj.put("fullname", fuldenavn);
@@ -95,24 +98,26 @@ public class AndroidServlet extends HttpServlet {
                 }
                 break;
             case "hentNavn":
-                String fuldenavn = spil.hentNavn();
+                String fuldenavn = spil.get(Arrays.asList(request.getParameter("sid"),"hentNavn"));
                 returnObj.put("fuldenavn", fuldenavn);
                 break;
             case "getMuligeOrd":
-                List<String> muligeOrd = spil.getMuligeOrd();
+                List<String> muligeOrd = spil.getlist(Arrays.asList("getMuligeOrd"));
                 returnObj.put("muligeOrd", muligeOrd);
                 break;
             case "nulstil":
-                spil.nulstil();
+                spil.doit(Arrays.asList(request.getParameter("sid"),"nulstil"));
                 break;
             case "opdaterSynligtOrd":
-                spil.opdaterSynligtOrd();
+                spil.doit(Arrays.asList(request.getParameter("sid"),"opdaterSynligtOrd"));
                 break;
+/*
             case "setOrdet":
                 String iString = request.getParameter("i");
                 int i = Integer.parseInt(iString);
-                spil.setOrdet(i);
+                spil.doit(Arrays.asList(request.getParameter("sid"),i,"setOrdet"));
                 break;
+*/
         }
         out.println(returnObj.toString());
 
@@ -134,6 +139,12 @@ public class AndroidServlet extends HttpServlet {
             processRequest(request, response);
         } catch (JSONException ex) {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -151,6 +162,12 @@ public class AndroidServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (JSONException ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

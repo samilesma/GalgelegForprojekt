@@ -4,6 +4,7 @@
     Author     : Umais
 --%>
 
+<%@page import="java.util.Arrays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,9 +41,10 @@
                     </div>
                     <div class="inner cover">
                         <h1 class="cover-heading">Du logges ud...</h1>
-                        <% request.getSession().removeAttribute("currUser"); 
+                        <%
+                        spil.doit(Arrays.asList(request.getSession().getAttribute("currUser"),"nulstil"));
+                        request.getSession().removeAttribute("currUser"); 
                         request.getSession().invalidate();
-                        spil.nulstil();
                         %>
                         <jsp:forward page="index.jsp"/>
                     </div>                  
