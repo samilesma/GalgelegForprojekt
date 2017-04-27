@@ -4,18 +4,6 @@
 <xsd:import namespace="http://galgeleg/" schemaLocation="http://ubuntu4.javabog.dk:55556/galgeleg?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
-<message name="hentNavn">
-<part name="parameters" element="tns:hentNavn"></part>
-</message>
-<message name="hentNavnResponse">
-<part name="parameters" element="tns:hentNavnResponse"></part>
-</message>
-<message name="hentOrdFraDr">
-<part name="parameters" element="tns:hentOrdFraDr"></part>
-</message>
-<message name="hentOrdFraDrResponse">
-<part name="parameters" element="tns:hentOrdFraDrResponse"></part>
-</message>
 <message name="erSidsteBogstavKorrekt">
 <part name="parameters" element="tns:erSidsteBogstavKorrekt"></part>
 </message>
@@ -82,6 +70,18 @@
 <message name="hentBrugerResponse">
 <part name="parameters" element="tns:hentBrugerResponse"></part>
 </message>
+<message name="hentNavn">
+<part name="parameters" element="tns:hentNavn"></part>
+</message>
+<message name="hentNavnResponse">
+<part name="parameters" element="tns:hentNavnResponse"></part>
+</message>
+<message name="hentOrdFraDr">
+<part name="parameters" element="tns:hentOrdFraDr"></part>
+</message>
+<message name="hentOrdFraDrResponse">
+<part name="parameters" element="tns:hentOrdFraDrResponse"></part>
+</message>
 <message name="hentUrl">
 <part name="parameters" element="tns:hentUrl"></part>
 </message>
@@ -112,15 +112,64 @@
 <message name="setOrdetResponse">
 <part name="parameters" element="tns:setOrdetResponse"></part>
 </message>
+<message name="doit">
+<part name="parameters" element="tns:doit"></part>
+</message>
+<message name="doitResponse">
+<part name="parameters" element="tns:doitResponse"></part>
+</message>
+<message name="IllegalAccessException">
+<part name="fault" element="tns:IllegalAccessException"></part>
+</message>
+<message name="InvocationTargetException">
+<part name="fault" element="tns:InvocationTargetException"></part>
+</message>
+<message name="NoSuchMethodException">
+<part name="fault" element="tns:NoSuchMethodException"></part>
+</message>
+<message name="getint">
+<part name="parameters" element="tns:getint"></part>
+</message>
+<message name="getintResponse">
+<part name="parameters" element="tns:getintResponse"></part>
+</message>
+<message name="getlist">
+<part name="parameters" element="tns:getlist"></part>
+</message>
+<message name="getlistResponse">
+<part name="parameters" element="tns:getlistResponse"></part>
+</message>
+<message name="remove">
+<part name="parameters" element="tns:remove"></part>
+</message>
+<message name="removeResponse">
+<part name="parameters" element="tns:removeResponse"></part>
+</message>
+<message name="get">
+<part name="parameters" element="tns:get"></part>
+</message>
+<message name="getResponse">
+<part name="parameters" element="tns:getResponse"></part>
+</message>
+<message name="put">
+<part name="parameters" element="tns:put"></part>
+</message>
+<message name="putResponse">
+<part name="parameters" element="tns:putResponse"></part>
+</message>
+<message name="check">
+<part name="parameters" element="tns:check"></part>
+</message>
+<message name="checkResponse">
+<part name="parameters" element="tns:checkResponse"></part>
+</message>
+<message name="print">
+<part name="parameters" element="tns:print"></part>
+</message>
+<message name="printResponse">
+<part name="parameters" element="tns:printResponse"></part>
+</message>
 <portType name="GalgeI">
-<operation name="hentNavn">
-<input wsam:Action="http://galgeleg/GalgeI/hentNavnRequest" message="tns:hentNavn"></input>
-<output wsam:Action="http://galgeleg/GalgeI/hentNavnResponse" message="tns:hentNavnResponse"></output>
-</operation>
-<operation name="hentOrdFraDr">
-<input wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrRequest" message="tns:hentOrdFraDr"></input>
-<output wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrResponse" message="tns:hentOrdFraDrResponse"></output>
-</operation>
 <operation name="erSidsteBogstavKorrekt">
 <input wsam:Action="http://galgeleg/GalgeI/erSidsteBogstavKorrektRequest" message="tns:erSidsteBogstavKorrekt"></input>
 <output wsam:Action="http://galgeleg/GalgeI/erSidsteBogstavKorrektResponse" message="tns:erSidsteBogstavKorrektResponse"></output>
@@ -165,6 +214,14 @@
 <input wsam:Action="http://galgeleg/GalgeI/hentBrugerRequest" message="tns:hentBruger"></input>
 <output wsam:Action="http://galgeleg/GalgeI/hentBrugerResponse" message="tns:hentBrugerResponse"></output>
 </operation>
+<operation name="hentNavn">
+<input wsam:Action="http://galgeleg/GalgeI/hentNavnRequest" message="tns:hentNavn"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentNavnResponse" message="tns:hentNavnResponse"></output>
+</operation>
+<operation name="hentOrdFraDr">
+<input wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrRequest" message="tns:hentOrdFraDr"></input>
+<output wsam:Action="http://galgeleg/GalgeI/hentOrdFraDrResponse" message="tns:hentOrdFraDrResponse"></output>
+</operation>
 <operation name="hentUrl">
 <input wsam:Action="http://galgeleg/GalgeI/hentUrlRequest" message="tns:hentUrl"></input>
 <output wsam:Action="http://galgeleg/GalgeI/hentUrlResponse" message="tns:hentUrlResponse"></output>
@@ -185,27 +242,56 @@
 <input wsam:Action="http://galgeleg/GalgeI/setOrdetRequest" message="tns:setOrdet"></input>
 <output wsam:Action="http://galgeleg/GalgeI/setOrdetResponse" message="tns:setOrdetResponse"></output>
 </operation>
+<operation name="doit">
+<input wsam:Action="http://galgeleg/GalgeI/doitRequest" message="tns:doit"></input>
+<output wsam:Action="http://galgeleg/GalgeI/doitResponse" message="tns:doitResponse"></output>
+<fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/doit/Fault/IllegalAccessException"></fault>
+<fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/doit/Fault/InvocationTargetException"></fault>
+<fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/doit/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="getint">
+<input wsam:Action="http://galgeleg/GalgeI/getintRequest" message="tns:getint"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getintResponse" message="tns:getintResponse"></output>
+<fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/getint/Fault/IllegalAccessException"></fault>
+<fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/getint/Fault/InvocationTargetException"></fault>
+<fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/getint/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="getlist">
+<input wsam:Action="http://galgeleg/GalgeI/getlistRequest" message="tns:getlist"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getlistResponse" message="tns:getlistResponse"></output>
+<fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/IllegalAccessException"></fault>
+<fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/InvocationTargetException"></fault>
+<fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="remove">
+<input wsam:Action="http://galgeleg/GalgeI/removeRequest" message="tns:remove"></input>
+<output wsam:Action="http://galgeleg/GalgeI/removeResponse" message="tns:removeResponse"></output>
+</operation>
+<operation name="get">
+<input wsam:Action="http://galgeleg/GalgeI/getRequest" message="tns:get"></input>
+<output wsam:Action="http://galgeleg/GalgeI/getResponse" message="tns:getResponse"></output>
+<fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/get/Fault/IllegalAccessException"></fault>
+<fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/get/Fault/InvocationTargetException"></fault>
+<fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/get/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="put">
+<input wsam:Action="http://galgeleg/GalgeI/putRequest" message="tns:put"></input>
+<output wsam:Action="http://galgeleg/GalgeI/putResponse" message="tns:putResponse"></output>
+</operation>
+<operation name="check">
+<input wsam:Action="http://galgeleg/GalgeI/checkRequest" message="tns:check"></input>
+<output wsam:Action="http://galgeleg/GalgeI/checkResponse" message="tns:checkResponse"></output>
+<fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/check/Fault/IllegalAccessException"></fault>
+<fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/check/Fault/InvocationTargetException"></fault>
+<fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/check/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="print">
+<input wsam:Action="http://galgeleg/GalgeI/printRequest" message="tns:print"></input>
+<output wsam:Action="http://galgeleg/GalgeI/printResponse" message="tns:printResponse"></output>
+</operation>
 </portType>
 <binding name="GalgelogikPortBinding" type="tns:GalgeI">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
-<operation name="hentNavn">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="hentOrdFraDr">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
 <operation name="erSidsteBogstavKorrekt">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -305,6 +391,24 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
+<operation name="hentNavn">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="hentOrdFraDr">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
 <operation name="hentUrl">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -342,6 +446,123 @@
 </output>
 </operation>
 <operation name="setOrdet">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="doit">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="IllegalAccessException">
+<soap:fault name="IllegalAccessException" use="literal"></soap:fault>
+</fault>
+<fault name="InvocationTargetException">
+<soap:fault name="InvocationTargetException" use="literal"></soap:fault>
+</fault>
+<fault name="NoSuchMethodException">
+<soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getint">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="IllegalAccessException">
+<soap:fault name="IllegalAccessException" use="literal"></soap:fault>
+</fault>
+<fault name="InvocationTargetException">
+<soap:fault name="InvocationTargetException" use="literal"></soap:fault>
+</fault>
+<fault name="NoSuchMethodException">
+<soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getlist">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="IllegalAccessException">
+<soap:fault name="IllegalAccessException" use="literal"></soap:fault>
+</fault>
+<fault name="InvocationTargetException">
+<soap:fault name="InvocationTargetException" use="literal"></soap:fault>
+</fault>
+<fault name="NoSuchMethodException">
+<soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="remove">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="get">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="IllegalAccessException">
+<soap:fault name="IllegalAccessException" use="literal"></soap:fault>
+</fault>
+<fault name="InvocationTargetException">
+<soap:fault name="InvocationTargetException" use="literal"></soap:fault>
+</fault>
+<fault name="NoSuchMethodException">
+<soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="put">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="check">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="IllegalAccessException">
+<soap:fault name="IllegalAccessException" use="literal"></soap:fault>
+</fault>
+<fault name="InvocationTargetException">
+<soap:fault name="InvocationTargetException" use="literal"></soap:fault>
+</fault>
+<fault name="NoSuchMethodException">
+<soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="print">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
