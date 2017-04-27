@@ -31,14 +31,14 @@ public class ChallengeServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         functions f = new functions();
      //   galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
      //   galgeleg.GalgeI spil = service.getGalgelogikPort();
         String currUser = (String) request.getSession().getAttribute("currUser");
         String challenge = (String) request.getParameter("sid");
 
-        f.challengeFriend(currUser, challenge, "hej", 155550);
+        f.challengeFriend(currUser, challenge, 155550, "hej");
         
         System.out.println(challenge);
         response.sendRedirect("admin.jsp");
@@ -57,7 +57,11 @@ public class ChallengeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -71,7 +75,11 @@ public class ChallengeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
