@@ -5,9 +5,15 @@
 */
 package servlets;
 
+import galgeleg.IllegalAccessException_Exception;
+import galgeleg.InvocationTargetException_Exception;
+import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -34,16 +40,14 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvocationTargetException_Exception, NoSuchMethodException_Exception, IllegalAccessException_Exception {
         String name = request.getParameter("username");
         String pass = request.getParameter("password");
-        String redirect ="";
         
         System.out.println(name);
         System.out.println(pass);
         
         if (spil.hentBruger(name, pass)) {
-            
             connector con=new connector();
             ResultSet rs;
             try {
@@ -51,22 +55,16 @@ public class LoginServlet extends HttpServlet {
                 rs.next();
                 request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
                 request.getSession().setAttribute("currUser",name);
-                request.getSession().setAttribute("currName",spil.hentNavn());
+                request.getSession().setAttribute("currName",spil.get(Arrays.asList(name,"hentNavn")));
                 request.getSession().setAttribute("currTime",System.currentTimeMillis());
             } catch (SQLException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
                 
-                request.getSession().setAttribute("currAdmin",false);
-                request.getSession().setAttribute("currUser",name);
-                request.getSession().setAttribute("currName",spil.hentNavn());
-                request.getSession().setAttribute("currTime",System.currentTimeMillis());
             }
-            redirect ="game.jsp";
-            spil.nulstil();
-        } else {//if name&pass not match then it display error page//
-            redirect = "error.jsp";
+            spil.doit(Arrays.asList(name,"nulstil"));
+            response.sendRedirect("game.jsp");
+        } else {
+            response.sendRedirect("error.jsp");
         }
-        response.sendRedirect(redirect);
     }
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,7 +78,15 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request,response);
+        try {
+            processRequest(request,response);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -93,7 +99,15 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request,response);
+        } catch (InvocationTargetException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException_Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**

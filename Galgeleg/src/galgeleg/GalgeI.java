@@ -1,12 +1,13 @@
 package galgeleg;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService
 public interface GalgeI {
-
     @WebMethod
     public boolean erSidsteBogstavKorrekt();
     
@@ -60,4 +61,28 @@ public interface GalgeI {
 
     @WebMethod
     public void setOrdet(int i);
+    
+    @WebMethod
+    public String get(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    
+    @WebMethod
+    public boolean check(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    
+    @WebMethod
+    public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    
+    @WebMethod
+    public int getint(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    
+    @WebMethod
+    public ArrayList<String> getlist(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    
+    @WebMethod
+    public void put(String sid, Galgelogik g);
+    
+    @WebMethod
+    public void remove(String sid);
+    
+    @WebMethod
+    public void print();
 }

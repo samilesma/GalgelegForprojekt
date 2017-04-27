@@ -5,11 +5,15 @@ import brugerautorisation.transport.soap.Brugeradmin;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +25,7 @@ import org.json.JSONObject;
 @WebService(endpointInterface = "galgeleg.GalgeI")
 
 public class Galgelogik implements GalgeI {
-
+    
     private ArrayList<String> muligeOrd = new ArrayList<String>();
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
@@ -32,7 +36,8 @@ public class Galgelogik implements GalgeI {
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
-
+    private HashMap<String,Galgelogik> users=new HashMap<String,Galgelogik>();
+    
     public Galgelogik() throws MalformedURLException {
         hentOrdFraDr();
         URL url = new URL("http://javabog.dk:9901/brugeradmin?wsdl");
@@ -45,7 +50,7 @@ public class Galgelogik implements GalgeI {
     public boolean erSidsteBogstavKorrekt() {
         return sidsteBogstavVarKorrekt;
     }
-
+    
     public boolean erSpilletSlut() {
         return spilletErTabt || spilletErVundet;
     }
@@ -65,7 +70,7 @@ public class Galgelogik implements GalgeI {
     public ArrayList<String> getBrugteBogstaver() {
         return brugteBogstaver;
     }
-
+    
     public ArrayList<String> getMuligeOrd() {
         return muligeOrd;
     }
@@ -77,7 +82,7 @@ public class Galgelogik implements GalgeI {
     public String getSynligtOrd() {
         return synligtOrd;
     }
-
+    
     public void gætBogstav(String bogstav) {
         if (bogstav.length() != 1) {
             return;
@@ -114,9 +119,17 @@ public class Galgelogik implements GalgeI {
             e.printStackTrace();
             return false;
         }
+        
+        try {
+            put(brugernavn,new Galgelogik());
+            users.get(brugernavn).b=b;
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Galgelogik.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return true;
     }
-
+    
     public String hentNavn() {
         return b.fornavn + " " + b.efternavn;
     }
@@ -200,7 +213,7 @@ public class Galgelogik implements GalgeI {
         ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
         opdaterSynligtOrd();
     }
-
+    
     public void opdaterSynligtOrd() {
         synligtOrd = "";
         spilletErVundet = true;
@@ -214,8 +227,65 @@ public class Galgelogik implements GalgeI {
             }
         }
     }
-
+    
     public void setOrdet(int i) {
         this.ordet = muligeOrd.get(i);
+    }
+    
+    public String get(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Method method = Galgelogik.class.getDeclaredMethod(p[1]);
+        if(p.length>2) return (String) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
+        else return (String) method.invoke(users.get(p[0]));
+    }
+    
+    public int getint(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Integer ret;
+        Method method = Galgelogik.class.getDeclaredMethod(p[1]);
+        if(p.length>2) ret = (Integer) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
+        else ret = (Integer) method.invoke(users.get(p[0]));
+        return ret.intValue();
+    }
+    
+    public ArrayList<String> getlist(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Method method = Galgelogik.class.getDeclaredMethod(p[1]);
+        if(p.length>2) return (ArrayList<String>) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
+        else return (ArrayList<String>) method.invoke(users.get(p[0]));
+    }
+    
+    public boolean check(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Boolean ret;
+        Method method = Galgelogik.class.getDeclaredMethod(p[1]);
+        if(p.length>2) ret = (Boolean) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
+        else ret = (Boolean) method.invoke(users.get(p[0]));
+        return ret.booleanValue();
+    }
+    
+    public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Method method = Galgelogik.class.getDeclaredMethod(p[1]);
+        if(p.length>2) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
+        else method.invoke(users.get(p[0]));
+    }
+    
+    public void put(String sid, Galgelogik g) {
+        users.put(sid,g);
+    }
+    
+    public void remove(String sid) {
+        users.remove(sid);
+    }
+    
+    public void print() {
+        System.out.println("\n[");
+        for (Map.Entry<String,Galgelogik> entry : users.entrySet()) {
+            String key = entry.getKey();
+            Galgelogik value = entry.getValue();
+
+            System.out.println("\t{");
+            System.out.println("\t\tSID :\t"+key+",");
+            System.out.println("\t\tName:\t"+value.hentNavn()+",");
+            System.out.println("\t\tName:\t"+value.getOrdet()+",");
+            System.out.println("\t},");
+        }
+        System.out.println("]\n");
     }
 }
