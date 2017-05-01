@@ -148,7 +148,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 					}
 					
 					try {
-						boolean result = spil.check(currUser,"erSpilletVundet");
+						boolean result = spil.check(Arrays.asList(currUser,"erSpilletVundet"));
 						if (result) {
 							%>
 							<script>

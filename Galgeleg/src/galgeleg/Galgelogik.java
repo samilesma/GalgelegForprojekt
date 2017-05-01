@@ -283,7 +283,7 @@ public class Galgelogik implements GalgeI {
             System.out.println("\t{");
             System.out.println("\t\tSID :\t"+key+",");
             System.out.println("\t\tName:\t"+value.hentNavn()+",");
-            System.out.println("\t\tName:\t"+value.getOrdet()+",");
+            System.out.println("\t\tWord:\t"+value.getOrdet()+",");
             System.out.println("\t},");
         }
         System.out.println("]\n");
