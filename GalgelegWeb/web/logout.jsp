@@ -42,7 +42,6 @@
                     <div class="inner cover">
                         <h1 class="cover-heading">Du logges ud...</h1>
                         <%
-                        spil.doit(Arrays.asList(request.getSession().getAttribute("currUser"),"nulstil"));
                         request.getSession().removeAttribute("currUser"); 
                         request.getSession().invalidate();
                         %>
