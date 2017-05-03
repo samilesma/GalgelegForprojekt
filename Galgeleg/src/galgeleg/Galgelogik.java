@@ -29,7 +29,7 @@ public class Galgelogik implements GalgeI {
     private ArrayList<String> muligeOrd = new ArrayList<String>();
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
-    private Brugeradmin ba;
+    public Brugeradmin ba;
     private Bruger b;
     private String synligtOrd;
     private int antalForkerteBogstaver;
@@ -291,5 +291,9 @@ public class Galgelogik implements GalgeI {
             System.out.println("\t},");
         }
         System.out.println("]\n");
+    }
+    
+    public Bruger ba() {
+        return this.b;
     }
 }

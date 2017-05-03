@@ -1,5 +1,7 @@
 package galgeleg;
 
+import brugerautorisation.data.Bruger;
+import brugerautorisation.transport.soap.Brugeradmin;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,4 +87,7 @@ public interface GalgeI {
     
     @WebMethod
     public void print();
+    
+    @WebMethod
+    public Bruger ba();
 }

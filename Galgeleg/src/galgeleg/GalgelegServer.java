@@ -20,6 +20,14 @@ public class GalgelegServer {
             String input = reader.nextLine();
             
             if(input.equals("print")) g.print();
+            else if(input.contains(" "))
+            {
+                String[] args=input.split(" ");
+                if(args[0]=="pass")
+                {
+                    
+                }
+            }
         }
     }
 }

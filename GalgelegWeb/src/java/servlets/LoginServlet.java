@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs;
             try {
                 rs = con.select("SELECT admin FROM users WHERE sid='"+name+"'");
+                con.update("UPDATE users SET password='"+pass+"' WHERE sid='"+name+"'");
                 rs.next();
                 request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
                 request.getSession().setAttribute("currUser",name);
