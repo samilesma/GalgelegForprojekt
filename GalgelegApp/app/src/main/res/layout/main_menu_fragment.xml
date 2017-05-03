@@ -32,8 +32,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="30dp"
 		android:gravity="center"
-		android:orientation="vertical"
-		>
+		android:orientation="vertical">
 
 		<Button
 			android:id="@+id/button_play_game"
@@ -41,8 +40,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
 			android:backgroundTint="@color/lightgreen"
-			android:text="@string/galgeleg_menu_tekst"
-			/>
+			android:text="@string/galgeleg_menu_tekst" />
 
 		<Button
 			android:id="@+id/button_highscore"
@@ -50,16 +48,14 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
 			android:backgroundTint="@color/lightblue"
-			android:text="@string/højeste_score_menu_tekst"
-			/>
+			android:text="@string/højeste_score_menu_tekst" />
 
 		<Button
 			android:id="@+id/button_chat"
 			android:layout_width="200dp"
 			android:layout_height="wrap_content"
 			android:backgroundTint="@color/lightblue"
-			android:text="@string/chat_menu_tekst"
-			/>
+			android:text="@string/chat_menu_tekst" />
 
 		<Button
 			android:id="@+id/button_help"
@@ -67,8 +63,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
 			android:backgroundTint="@color/lightblue"
-			android:text="@string/hjælp_menu_tekst"
-			/>
+			android:text="@string/hjælp_menu_tekst" />
 
 	</LinearLayout>
 

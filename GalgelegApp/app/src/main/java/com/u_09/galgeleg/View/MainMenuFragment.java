@@ -20,6 +20,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     private HelpFragment mHelpFragment;
     private ChatFragment mChatFragment;
     private AdminFragment mAdminFragment;
+    private GallowGameFragment mGallowGameFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         mHelpFragment = new HelpFragment();
         mChatFragment = new ChatFragment();
         mAdminFragment = new AdminFragment();
+        mGallowGameFragment = new GallowGameFragment();
 
         mTvTitle = (TextView) mView.findViewById(R.id.tv_title);
         String fullname = getArguments().getString("fullname");
@@ -53,7 +55,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mBtnPlayGame) {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChooseWordPopupFragment).addToBackStack(null).commit();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mGallowGameFragment).addToBackStack(null).commit();
         } else if (v == mBtnHighScore) {
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHighScoreFragment).addToBackStack(null).commit();
         } else if (v == mBtnHelp) {

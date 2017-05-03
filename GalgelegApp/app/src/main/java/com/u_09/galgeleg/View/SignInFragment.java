@@ -60,6 +60,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
                 boolean error = user.getBoolean("error");
                 Log.d("XXXX", "" + error);
                 if (!error) {
+                    String name=user.getString("fullname");
+                    User.fullname=name;
                     Snackbar.make(mView, "Du er logget ind", Snackbar.LENGTH_SHORT).show();
                     mTvUsername.setVisibility(View.GONE);
                     mEtUsername.setVisibility(View.GONE);
