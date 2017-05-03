@@ -35,3 +35,9 @@ GalgelegApp/.idea/misc.xml
 GalgelegApp/app/app.iml
 
 Galgeleg/build/built-jar.properties
+
+GalgelegWeb/apache-tomcat-8.5.11/work/Catalina/localhost/GalgelegWeb/org/apache/jsp/chat_jsp.java
+
+GalgelegWeb/apache-tomcat-8.5.11/work/Catalina/localhost/GalgelegWeb/org/apache/jsp/game_jsp.java
+
+GalgelegWeb/apache-tomcat-8.5.11/work/Catalina/localhost/GalgelegWeb/org/apache/jsp/index_jsp.java

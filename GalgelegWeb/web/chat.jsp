@@ -90,12 +90,12 @@ String currName = (String) request.getSession().getAttribute("currName");
                     <br/>
                     <form action="ChatServlet" method="post" class="ajax">
                         <input name="usermsg" type="text" id="usermsg" style="width:400px" />
-                        <button type="submit" style="width:100px;">Send</button>
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:100px;">Send</button>
                     </form>
                 </div>
                 <div class="mastfoot">
                     <div class="inner">
-                        <p>Lavet af gruppe <a href="http://tourneo.dk/">TS</a></p>
+                        <p>Lavet af gruppe <a href="http://quickconnect.dk/">TS</a></p>
                     </div>
                 </div>
             </div>
