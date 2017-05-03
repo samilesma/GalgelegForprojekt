@@ -50,7 +50,7 @@ public class functions {
         msg.add(new ArrayList<String>());
         msg.add(new ArrayList<String>());
         msg.add(new ArrayList<String>());
-        ResultSet rs = con.select("SELECT sid,msg,timestamp FROM chat WHERE deleted=0 AND sid!='"+sid+"' AND timestamp>='"+timestamp+"'");
+        ResultSet rs = con.select("SELECT users.name, users.surname, chat.msg, chat.timestamp FROM users RIGHT JOIN chat ON chat.sid=users.sid WHERE chat.deleted=0 AND chat.sid!='"+sid+"' AND chat.timestamp>='"+timestamp+"'");
         while(rs.next()){
             msg.get(0).add(rs.getString("sid"));
             msg.get(1).add(rs.getString("msg"));
