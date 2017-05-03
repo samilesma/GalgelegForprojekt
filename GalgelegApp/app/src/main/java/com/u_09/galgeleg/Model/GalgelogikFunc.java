@@ -7,9 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by Umais on 07/04/2017.
- */
+
 
 public class GalgelogikFunc {
 
@@ -36,6 +34,9 @@ public class GalgelogikFunc {
     private static final String TYPE_OPDATERSYNLIGTORD = "opdaterSynligtOrd";
     private static final String TYPE_SETORDET = "setOrdet";
     private static final String PARAMETER_I = "&i=";
+    private static final String REST_CHAT_URL = "http://galgeleg.dk/GalgelegWeb/ChatServlet";
+    private static final String TYPE_GETMESSAGE = "getmessage";
+    private static final String PARAMETER_DATE = "&date";
 
     public boolean erSidsteBogstavKorrekt() throws ExecutionException, InterruptedException, JSONException {
         JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT).get());
@@ -123,5 +124,9 @@ public class GalgelogikFunc {
 
     public void setOrdet(int i) throws ExecutionException, InterruptedException, JSONException {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_SETORDET + PARAMETER_I + i);
+    }
+    public JSONObject hentBeskeder(long timestamp) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject jsonObject = new JSONObject(new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_GETMESSAGE + PARAMETER_DATE + timestamp).get());
+        return jsonObject;
     }
 }
