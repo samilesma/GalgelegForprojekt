@@ -37,6 +37,10 @@ public class AdminServlet extends HttpServlet {
             f.banUser(sid, unixTime+(24*60*60));
         }else if (banned.equals("1week")){
             f.banUser(sid,unixTime+(24*60*60*7));
+        }else if(banned.equals("remadmin")){
+            f.removeAdmin(sid);
+        } else if(banned.equals("makadmin")){
+            f.makeAdmin(sid);
         }else{
             f.banUser(sid,-1);
         }

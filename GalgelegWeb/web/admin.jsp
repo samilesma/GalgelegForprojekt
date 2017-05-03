@@ -90,35 +90,52 @@
                         <table style="width:100%" class="lead">
                             <tr class="a">
                                 <th>Studienummer</th>
-                                <th>Navn</th>
+                                <th >Navn</th>
                                 <th>Efternavn</th>
-                                <th>Ban</th>
-                                <th></th>
+                                <th>Admin status</th>
+                                <th>udfør </th>
+                                <th>handlinger</th>
                             </tr>
                             <%
                                 connector con=new connector();
 
 
-                                ResultSet rUser =  con.select("SELECT sid,name,surname FROM users");
+                                ResultSet rUser =  con.select("SELECT sid,name,surname,admin FROM users");
                                 while (rUser.next()) {
                                     out.println("<tr>");
                                     out.println("<form action='AdminServlet' method='post' style='margin:5px 0px;'>");
                                     out.print("<td>"+rUser.getString("sid")+"</td>");
-                                    out.print("<td>"+rUser.getString("name")+"</td>");
-                                    out.print("<td>"+rUser.getString("surname")+"</td>");
+                                    out.print("<td style='text-align:left;'> "+rUser.getString("name")+"</td>");
+                                    out.print("<td style='text-align:left;'>"+rUser.getString("surname")+"</td>");
+                                    out.print("<td>"+rUser.getInt("admin")+"</td>");
+
+                                    
                                     %>
+                                   
                                     <td style="margin-top:30px">
-                                        <select name="ban" class="form-control">
+                                        
                                             <%
+                                                
+                                                out.print("<select name='ban' class='form-control'>");
+                                                if(rUser.getInt("admin")==0){
                                                 out.print("<option value='1day" +rUser.getString("sid")+ "'>Ban 1 day</option>");
                                                 out.print("<option value='1week" +rUser.getString("sid")+ "'>Ban 1 week</option>"); 
-                                                out.print("<option value='per" +rUser.getString("sid")+ "'>Ban perminently</option>"); 
+                                                out.print("<option value='per" +rUser.getString("sid")+ "'>Ban perminently</option>");
+                                                out.print("<option value='makadmin" +rUser.getString("sid")+ "'>Gør til admin</option>");
+                                                } else {
+                                                 out.print("<option value='remadmin" +rUser.getString("sid")+ "'>Fjern Admin</option>");
+                                                }
+                                                out.print("</select>");
+                                                
+                                                   
 
                                             %>
-                                        </select>
+                                            
                                     </td>
                                     <input type="hidden" name="sid" value="<% rUser.getString("sid"); %>" />
                                     <td><input type='submit' /></td>
+                                   
+
                                     
                                     <%
                                     out.println("</form>");
