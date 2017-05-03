@@ -261,6 +261,10 @@ public class Galgelogik implements GalgeI {
     }
     
     public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        if(p.length==3 && p[2].equals("gætBogstav")) {
+            users.get(p[0]).gætBogstav(p[1]);
+            return;
+        }
         Method method = Galgelogik.class.getDeclaredMethod(p[1]);
         if(p.length>2) method.invoke(users.get(p[0]),Arrays.copyOfRange(p,2,p.length-1));
         else method.invoke(users.get(p[0]));
