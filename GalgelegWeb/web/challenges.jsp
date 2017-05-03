@@ -1,8 +1,12 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utils.connector"%>
 <%@page import="utils.functions"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="utils.functions"%>
+<%@page import="java.text.Format"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.Timestamp"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -121,9 +125,11 @@
                                                 out.println("<tr>");
                                                 out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
                                                 out.print("<td>" + cUser.getString("p2") + "</td>");
-                                                out.print("<td>" + cUser.getString("timestamp") + "</td>"); %>
+                                                Timestamp stamp = new Timestamp(cUser.getInt("timestamp")*1000L);
+                                                Date date = new Date(stamp.getTime());
+                                                Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
+                                                out.print("<td>"+format.format(date)+"</td>");
                                                                                                 
-                                                <%
                                                 out.println("</form>");
                                                 out.println("</tr>");
                                             }
