@@ -23,17 +23,20 @@ public class functions {
         con=new connector();
     }
     
+ 
     public ArrayList<String> getAllUsers(int choice) throws SQLException{
         //connector c = new connector();
         ArrayList<String> userID = new ArrayList<String>();
         ArrayList<String> userName = new ArrayList<String>();
         ArrayList<String> userSurname = new ArrayList<String>();
+        ArrayList<String> adminStatus = new ArrayList <String>();
         
-        ResultSet rUser =  con.select("SELECT sid,name,surname FROM users");
+        ResultSet rUser =  con.select("SELECT sid,name,surname,admin FROM users");
         while (rUser.next()) {
             userID.add(rUser.getString(1));
             userName.add(rUser.getString(2));
             userSurname.add(rUser.getString(3));
+            adminStatus.add(rUser.getString(4));
         }
         if(choice==1) return userID;
         else if(choice==2) return userName;
@@ -60,6 +63,8 @@ public class functions {
         return msg;
     }
     
+
+    
     
     public ArrayList<ArrayList<String>> getAllMessages() throws SQLException{
         ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
@@ -79,6 +84,14 @@ public class functions {
     public void deleteMessage(int id) throws SQLException{
         con.update("UPDATE chat SET deleted=1 WHERE id="+id);
     }
+    
+    public void makeAdmin (String id) throws SQLException{
+        con.update("UPDATE users SET admin='1' WHERE sid='"+id+"'");
+    }
+    public void removeAdmin (String id) throws SQLException{
+        con.update("UPDATE users SET admin='0' WHERE sid='"+id+"'");
+    }
+    
     
     public void banUser(String sid, long timestamp) throws SQLException{
         con.update("UPDATE users SET banned="+timestamp+" WHERE sid='"+sid+"'");

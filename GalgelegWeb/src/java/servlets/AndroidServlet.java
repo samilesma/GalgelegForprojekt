@@ -89,7 +89,7 @@ public class AndroidServlet extends HttpServlet {
                 String pass = request.getParameter("password");
 
                 if (spil.hentBruger(name, pass)) {
-                    String fuldenavn = spil.get(Arrays.asList(request.getParameter("sid"),"hentNavn"));
+                    String fuldenavn = spil.get(Arrays.asList(name,"hentNavn"));
 
                     returnObj.put("error", false);
                     returnObj.put("fullname", fuldenavn);
