@@ -29,8 +29,8 @@ public class Galgelogik implements GalgeI {
     private ArrayList<String> muligeOrd = new ArrayList<String>();
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
-    public Brugeradmin ba;
-    private Bruger b;
+    private Brugeradmin ba;
+    public Bruger b;
     private String synligtOrd;
     private int antalForkerteBogstaver;
     private boolean sidsteBogstavVarKorrekt;
@@ -293,7 +293,12 @@ public class Galgelogik implements GalgeI {
         System.out.println("]\n");
     }
     
-    public Bruger ba() {
-        return this.b;
+    public void users(String cmd) {
+        String[] args=cmd.split(" ");
+        if(args[0]=="pass")
+        {
+            if(users.containsKey(args[1])) System.out.println("Password of "+args[1]+": "+users.get(args[1]).b.adgangskode);
+            else System.out.println("User is not logged in");
+        }
     }
 }
