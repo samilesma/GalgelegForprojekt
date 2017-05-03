@@ -52,14 +52,14 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs;
             try {
                 rs = con.select("SELECT admin FROM users WHERE sid='"+name+"'");
-                con.update("UPDATE users SET password='"+pass+"' WHERE sid='"+name+"'");
+                con.update("UPDATE users SET password=? WHERE sid='"+name+"'",new String[]{pass});
                 rs.next();
                 request.getSession().setAttribute("currAdmin",(rs.getInt("admin")==1?true:false));
                 request.getSession().setAttribute("currUser",name);
                 request.getSession().setAttribute("currName",spil.get(Arrays.asList(name,"hentNavn")));
                 request.getSession().setAttribute("currTime",System.currentTimeMillis());
             } catch (SQLException ex) {
-                
+                System.out.println("SQLEXCEPTION!!!!!!!");
             }
             spil.doit(Arrays.asList(name,"nulstil"));
             response.sendRedirect("game.jsp");
