@@ -95,7 +95,7 @@
                                                 out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
                                                 out.print("<td>" + rUser.getString("name") + "</td>");
                                                 out.print("<td>" + rUser.getString("surname") + "</td>"); %>
-                                                <input type="hidden" name="sid" value="<% rUser.getString("sid");%>" />
+                                                <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
                                                 <td style='width:350px;margin-left:-150px;'>
                                                     <input type='submit'>
                                                 </td>
@@ -108,7 +108,28 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane" id="2b">
-                                    <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
+                                    <table style="width:850px" class="lead">
+                                        <tr class="a">
+                                            <th>Studienummer</th>
+                                            <th>Tidspunkt</th>
+                                            <th></th>
+                                        </tr>
+                                        <%
+                                            ResultSet cUser = con.select("SELECT p2,timestamp FROM challenges WHERE p1 ='"+currUser+"'");
+                                            
+                                            while (cUser.next()) {
+                                                out.println("<tr>");
+                                                out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
+                                                out.print("<td>" + cUser.getString("p2") + "</td>");
+                                                out.print("<td>" + cUser.getString("timestamp") + "</td>"); %>
+                                                                                                
+                                                <%
+                                                out.println("</form>");
+                                                out.println("</tr>");
+                                            }
+                                        %>
+
+                                    </table>
                                 </div>
                                 <div class="tab-pane" id="3b">
                                     <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>

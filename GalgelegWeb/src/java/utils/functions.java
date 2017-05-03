@@ -97,9 +97,9 @@ public class functions {
         con.update("UPDATE users SET banned="+timestamp+" WHERE sid='"+sid+"'");
     }
     
-    public void challengeFriend(String sidOne, String sidTwo, long timestamp, String word) throws SQLException{
-        timestamp = System.currentTimeMillis();
-        con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"','"+timestamp+"','"+word+"')",new String[]{"l",Long.toString(timestamp)});
+    public void challengeFriend(String sidOne, String sidTwo, String word) throws SQLException{
+        long unixTime = System.currentTimeMillis() / 1000L;
+        con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+unixTime+",'"+word+"')");
         /*
         MULTIPLAYER OG CHALLENGES skal måske samles til en tabel, da andet ikke giver mening.
         */

@@ -5,9 +5,13 @@
  */
 package servlets;
 
+import galgeleg.IllegalAccessException_Exception;
+import galgeleg.InvocationTargetException_Exception;
+import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,15 +37,30 @@ public class ChallengeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         functions f = new functions();
-     //   galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
-     //   galgeleg.GalgeI spil = service.getGalgelogikPort();
+        galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
+        galgeleg.GalgeI spil = service.getGalgelogikPort();
         String currUser = (String) request.getSession().getAttribute("currUser");
-        String challenge = (String) request.getParameter("sid");
+        String challenge = request.getParameter("sid");
+        String ordet = "";
+        if(!currUser.equals(challenge)){
+        try {
+            spil.doit(Arrays.asList(currUser,"nulstil"));
+            ordet = spil.get(Arrays.asList(currUser,"getOrdet"));
+        } catch (Exception ex) {
+            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        f.challengeFriend(currUser, challenge, 155550, "hej");
+        System.out.println("C: "+challenge);
         
-        System.out.println(challenge);
-        response.sendRedirect("admin.jsp");
+        f.challengeFriend(currUser, challenge, ordet);
+        
+        response.sendRedirect("game.jsp");
+        }
+        
+        else{
+        System.out.println("SAMME BRUGER!");
+        response.sendRedirect("challenges.jsp");
+    }
 
     }
 
