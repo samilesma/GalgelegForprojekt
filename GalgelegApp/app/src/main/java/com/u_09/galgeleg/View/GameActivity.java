@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void hentOrd() {
+    public void hentOrd() {
         new AsyncTask() {
 
             @Override
@@ -79,15 +79,15 @@ public class GameActivity extends AppCompatActivity {
                 if (resultat != null) {
                     if (resultat.toString().contains("Succes")) {
                         Log.d("MULIGE ORD SUCCESS: ", resultat.toString());
-                        try {
-                            Log.d("MULIGE ORD: ", "" + mGalgelogik.getMuligeOrd());
+                        /*try {
+                            Log.d("MULIGE ORD: ", "" + mGalgelogik.getMuligeOrd(User.sid));
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                     } else {
                         Log.d("MULIGE ORD FEJL: ", resultat.toString());
                     }
@@ -120,11 +120,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setOrdetFromActivity(int i) throws InterruptedException, ExecutionException, JSONException {
-        mGalgelogik.setOrdet(i);
+        mGalgelogik.setOrdet(i, User.sid);
     }
 
     public ArrayList<String> getMuligeOrdFromActivity() throws InterruptedException, ExecutionException, JSONException {
-        return mGalgelogik.getMuligeOrd();
+        return mGalgelogik.getMuligeOrd(User.sid);
     }
 
     public GalgelogikFunc getmGalgelogik() {
@@ -132,6 +132,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setSynligtOrdFromActivity() throws InterruptedException, ExecutionException, JSONException {
-        mGalgelogik.opdaterSynligtOrd();
+        mGalgelogik.opdaterSynligtOrd(User.sid);
     }
 }

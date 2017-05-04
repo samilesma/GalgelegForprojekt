@@ -13,6 +13,7 @@ public class GalgelogikFunc {
 
     private static final String REST_ROOT_URL = "http://galgeleg.dk/GalgelegWeb/AndroidServlet";
     private static final String PARAMETER_TYPE = "?type=";
+    private static final String PARAMETER_SID = "&sid=";
     private static final String TYPE_ERSIDSTEBOGSTAVKORREKT = "erSidsteBogstavKorrekt";
     private static final String TYPE_ERSPILLETSLUT = "erSpilletSlut";
     private static final String TYPE_ERSPILLETTABT = "erSpilletTabt";
@@ -38,33 +39,33 @@ public class GalgelogikFunc {
     private static final String TYPE_GETMESSAGE = "getmessage";
     private static final String PARAMETER_DATE = "&date";
 
-    public boolean erSidsteBogstavKorrekt() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT).get());
+    public boolean erSidsteBogstavKorrekt(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT + PARAMETER_SID + sid).get());
         return returnObj.getBoolean("sidsteBogstavVarKorrekt");
     }
 
-    public boolean erSpilletSlut() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETSLUT).get());
+    public boolean erSpilletSlut(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETSLUT + PARAMETER_SID + sid).get());
         return returnObj.getBoolean("spilletErSlut");
     }
 
-    public boolean erSpilletTabt() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETTABT).get());
+    public boolean erSpilletTabt(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETTABT + PARAMETER_SID + sid).get());
         return returnObj.getBoolean("spilletErTabt");
     }
 
-    public boolean erSpilletVundet() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETVUNDET).get());
+    public boolean erSpilletVundet(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSPILLETVUNDET + PARAMETER_SID + sid).get());
         return returnObj.getBoolean("spilletErVundet");
     }
 
-    public int getAntalForkerteBogstaver() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETANTALFORKERTEBOGSTAVER).get());
+    public int getAntalForkerteBogstaver(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETANTALFORKERTEBOGSTAVER + PARAMETER_SID + sid).get());
         return returnObj.getInt("antalForkerteBogstaver");
     }
 
-    public ArrayList<String> getBrugteBogstaver() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETBRUGTEBOGSTAVER).get());
+    public ArrayList<String> getBrugteBogstaver(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETBRUGTEBOGSTAVER + PARAMETER_SID + sid).get());
         JSONArray jsonArray = returnObj.getJSONArray("brugteBogstaver");
         ArrayList<String> brugteBogstaver = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -73,8 +74,8 @@ public class GalgelogikFunc {
         return brugteBogstaver;
     }
 
-    public ArrayList<String> getMuligeOrd() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETMULIGEORD).get());
+    public ArrayList<String> getMuligeOrd(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETMULIGEORD + PARAMETER_SID + sid).get());
         JSONArray jsonArray = returnObj.getJSONArray("muligeOrd");
         ArrayList<String> muligeOrd = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -83,26 +84,27 @@ public class GalgelogikFunc {
         return muligeOrd;
     }
 
-    public String getOrdet() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETORDET).get());
+    public String getOrdet(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETORDET + PARAMETER_SID + sid).get());
         return returnObj.getString("ordet");
     }
 
-    public String getSynligtOrd() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETSYNLIGTORD).get());
+    public String getSynligtOrd(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETSYNLIGTORD + PARAMETER_SID + sid).get());
         return returnObj.getString("synligtOrd");
     }
-
-    public void gætBogstav(String bogstav) throws ExecutionException, InterruptedException, JSONException {
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GÆTBOGSTAV + PARAMETER_BOGSTAV + bogstav);
+    
+    public void gætBogstav(String bogstav, String sid) throws ExecutionException, InterruptedException, JSONException {
+        // FIXME: 04/05/2017 22.53 Retunerer en Response Code 400 dvs. Bad Request. Jeg tror det er på grund af 'æ' i 'gætBogstav'
+        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GÆTBOGSTAV + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
     }
 
     public JSONObject hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
         return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTBRUGER + PARAMETER_USERNAME + username + PARAMETER_PASSWORD + password).get());
     }
 
-    public String hentNavn() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTNAVN).get());
+    public String hentNavn(String sid) throws ExecutionException, InterruptedException, JSONException {
+        JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTNAVN + PARAMETER_SID + sid).get());
         return returnObj.getString("fuldenavn");
     }
 
@@ -114,16 +116,16 @@ public class GalgelogikFunc {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTURL);
     }
 
-    public void nulstil() throws ExecutionException, InterruptedException, JSONException {
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_NULSTIL);
+    public void nulstil(String sid) throws ExecutionException, InterruptedException, JSONException {
+        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_NULSTIL + PARAMETER_SID + sid);
     }
 
-    public void opdaterSynligtOrd() throws ExecutionException, InterruptedException, JSONException {
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_OPDATERSYNLIGTORD);
+    public void opdaterSynligtOrd(String sid) throws ExecutionException, InterruptedException, JSONException {
+        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_OPDATERSYNLIGTORD + PARAMETER_SID + sid);
     }
 
-    public void setOrdet(int i) throws ExecutionException, InterruptedException, JSONException {
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_SETORDET + PARAMETER_I + i);
+    public void setOrdet(int i, String sid) throws ExecutionException, InterruptedException, JSONException {
+        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_SETORDET + PARAMETER_I + i + PARAMETER_SID + sid);
     }
     public JSONObject hentBeskeder(long timestamp) throws ExecutionException, InterruptedException, JSONException {
         JSONObject jsonObject = new JSONObject(new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_GETMESSAGE + PARAMETER_DATE + timestamp).get());

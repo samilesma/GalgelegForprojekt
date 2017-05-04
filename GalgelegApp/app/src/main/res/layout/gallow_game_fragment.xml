@@ -142,6 +142,15 @@
 			/>
 	</GridLayout>
 
+	<ProgressBar
+		android:layout_width="80dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/progressbar1"
+		style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+		android:indeterminate="true"
+		android:visibility="invisible"
+		/>
+
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="match_parent"

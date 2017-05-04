@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -43,6 +44,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     private EditText mEtLetter, mEtName;
     private AlertDialog.Builder mSaveHighscoreDialog;
     private Button mBtnGuess, mBtnNewWord;
+    private ProgressBar mProgressBar1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         mEtLetter = (EditText) mView.findViewById(R.id.editText_letter);
         mBtnGuess = (Button) mView.findViewById(R.id.button_guess);
         mBtnNewWord = (Button) mView.findViewById(R.id.button_new_word);
+        mProgressBar1 = (ProgressBar) mView.findViewById(R.id.progressbar1);
 
         Animation in = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
         Animation out = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
@@ -81,6 +84,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
             mPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
             refillImageArray();
             mGame = ((GameActivity) getActivity()).getmGalgelogik();
+            // Snackbar.make(mView, "Henter ord...", Snackbar.LENGTH_SHORT).show();
             try {
                 newGame();
             } catch (InterruptedException | ExecutionException | JSONException e) {
@@ -95,20 +99,22 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == mBtnGuess) {
-                mGuess = mEtLetter.getText().toString();
-                String guessInfo;
+            mProgressBar1.setVisibility(View.VISIBLE);
+            mGuess = mEtLetter.getText().toString();
+            String guessInfo;
             try {
-                if (mGame.getBrugteBogstaver().contains(mGuess)) guessInfo = "Allerede brugt!";
-                else if (mGame.getOrdet().contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
+                if (mGame.getBrugteBogstaver(User.sid).contains(mGuess)) guessInfo = "Allerede brugt!";
+                else if (mGame.getOrdet(User.sid).contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
                 else guessInfo = "Øv! Forkert gæt!";
-                mGame.gætBogstav(mGuess);
+                mGame.gætBogstav(mGuess, User.sid);
                 updateUIOnGuess();
+                mProgressBar1.setVisibility(View.INVISIBLE);
                 Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
             } catch (InterruptedException | ExecutionException | JSONException e) {
                 e.printStackTrace();
             }
         } else if (v == mBtnNewWord) {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopupFragment()).addToBackStack(null).commit();
+            // getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopupFragment()).addToBackStack(null).commit();
             try {
                 newGame();
             } catch (InterruptedException | ExecutionException | JSONException e) {
@@ -126,18 +132,19 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     }
 
     public void updateUIOnGuess() throws InterruptedException, ExecutionException, JSONException {
+        mProgressBar1.setVisibility(View.VISIBLE);
         mEtLetter.setText("");
         mEtLetter.requestFocus();
-        mTvTheWord.setText(mGame.getSynligtOrd());
-        mTvGuessedLetters.setText(mGame.getBrugteBogstaver().toString());
-        mTvWrongLetters.setText(mGame.getAntalForkerteBogstaver() + "/7");
+        mTvTheWord.setText(mGame.getSynligtOrd(User.sid));
+        mTvGuessedLetters.setText(mGame.getBrugteBogstaver(User.sid).toString());
+        mTvWrongLetters.setText(mGame.getAntalForkerteBogstaver(User.sid) + "/7");
 
-        if (mGame.getAntalForkerteBogstaver() != 0)
-            mImageSwitcher.setImageResource(mImages.get(mGame.getAntalForkerteBogstaver() - 1));
+        if (mGame.getAntalForkerteBogstaver(User.sid) != 0)
+            mImageSwitcher.setImageResource(mImages.get(mGame.getAntalForkerteBogstaver(User.sid) - 1));
 
-        if (mGame.erSpilletVundet() || mGame.erSpilletTabt()) {
+        if (mGame.erSpilletVundet(User.sid) || mGame.erSpilletTabt(User.sid)) {
             String title;
-            if (mGame.erSpilletVundet()) {
+            if (mGame.erSpilletVundet(User.sid)) {
                 title = "Tillykke! Du har vundet spillet!";
                 mTvTitle.setTextColor(getResources().getColor(R.color.green));
                 mImageSwitcher.setImageResource(R.drawable.vundet);
@@ -145,11 +152,12 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 title = "Øv! Du har tabt spillet!";
                 mTvTitle.setTextColor(getResources().getColor(R.color.red));
                 mTvTheWordIs.setText(R.string.ordet_var);
-                mTvTheWord.setText(mGame.getOrdet());
+                mTvTheWord.setText(mGame.getOrdet(User.sid));
             }
 
             mTvTitle.setText(title);
             mTvTitle.setVisibility(View.VISIBLE);
+            mProgressBar1.setVisibility(View.INVISIBLE);
 
             mEtName = new EditText(getContext());
             mSaveHighscoreDialog = new AlertDialog.Builder(getContext()).setTitle("Skriv dit navn for at gemme din score").setMessage("Navn:").setView(mEtName).setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -157,7 +165,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i) {
                     String playerName = mEtName.getText().toString();
                     try {
-                        mPrefs.edit().putInt(playerName, mGame.getAntalForkerteBogstaver()).apply();
+                        mPrefs.edit().putInt(playerName, mGame.getAntalForkerteBogstaver(User.sid)).apply();
                     } catch (InterruptedException | ExecutionException | JSONException e) {
                         e.printStackTrace();
                     }
@@ -173,20 +181,21 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     }
 
     public void newGame() throws InterruptedException, ExecutionException, JSONException {
-
+        mProgressBar1.setVisibility(View.VISIBLE);
         mImageSwitcher.setImageResource(R.drawable.galge);
         refillImageArray();
         mTvTitle.setVisibility(View.INVISIBLE);
         mTvTitle.setText("");
         mTvTheWordIs.setText(R.string.ordet_er);
-        mTvTheWord.setText(mGame.getSynligtOrd());
-        mGame.getBrugteBogstaver().clear();
+        mTvTheWord.setText(mGame.getSynligtOrd(User.sid));
+        mGame.getBrugteBogstaver(User.sid).clear();
         // mGame.setAntalForkerteBogstaver(0);
 
         mTvGuessedLetters.setText("[]");
         mTvWrongLetters.setText("0/7");
         mEtLetter.setText("");
-        Log.d("ORDET ER: ", "" + mGame.getOrdet());
+        Log.d("ORDET ER: ", "" + mGame.getOrdet(User.sid));
+        mProgressBar1.setVisibility(View.INVISIBLE);
     }
 
     public void refillImageArray() {

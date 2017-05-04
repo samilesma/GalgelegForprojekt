@@ -30,13 +30,13 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         mChooseWordPopupFragment = new ChooseWordPopupFragment();
         mHighScoreFragment = new HighScoreFragment();
         mHelpFragment = new HelpFragment();
-        mChatFragment = new ChatFragment();
+        // FIXME: 04/05/2017 22.27 Der kommer fejl når man prøver at instantiere ChatFragment klassen. Skal rettes.
+        // mChatFragment = new ChatFragment();
         mAdminFragment = new AdminFragment();
         mGallowGameFragment = new GallowGameFragment();
 
         mTvTitle = (TextView) mView.findViewById(R.id.tv_title);
-        String fullname = getArguments().getString("fullname");
-        mTvTitle.setText("Velkommen til Galgespillet \n" + fullname);
+        mTvTitle.setText("Velkommen til Galgespillet \n" + User.fullname);
 
         mBtnPlayGame = (Button) mView.findViewById(R.id.button_play_game);
         mBtnHighScore = (Button) mView.findViewById(R.id.button_highscore);

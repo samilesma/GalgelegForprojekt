@@ -54,14 +54,15 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v == mBtnLogin) {
             try {
-                String username = mEtUsername.getText().toString();
-                String password = mEtPassword.getText().toString();
+                String username = mEtUsername.getText().toString().trim();
+                String password = mEtPassword.getText().toString().trim();
+                Snackbar.make(mView, "Logger ind...", Snackbar.LENGTH_INDEFINITE).show();
                 JSONObject user = mGame.hentBruger(username, password);
                 boolean error = user.getBoolean("error");
                 Log.d("XXXX", "" + error);
                 if (!error) {
-                    String name=user.getString("fullname");
-                    User.fullname=name;
+                    String name = user.getString("fullname");
+                    User.setUser(username, name);
                     Snackbar.make(mView, "Du er logget ind", Snackbar.LENGTH_SHORT).show();
                     mTvUsername.setVisibility(View.GONE);
                     mEtUsername.setVisibility(View.GONE);
@@ -69,13 +70,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
                     mEtPassword.setVisibility(View.GONE);
                     mBtnLogin.setVisibility(View.GONE);
                     TextView tvSpiller = (TextView) getActivity().findViewById(R.id.tv_spiller);
-                    String fullname = user.getString("fullname");
-                    tvSpiller.setText("Spiller: " + fullname + " " + username);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("username", username);
-                    bundle.putString("fullname", fullname);
+                    tvSpiller.setText("Spiller: " + User.fullname + " " + User.sid);
                     MainMenuFragment mainMenuFragment = new MainMenuFragment();
-                    mainMenuFragment.setArguments(bundle);
                     getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mainMenuFragment).addToBackStack(null).commit();
                 } else {
                     Snackbar.make(mView, "Login mislykket", Snackbar.LENGTH_SHORT).show();

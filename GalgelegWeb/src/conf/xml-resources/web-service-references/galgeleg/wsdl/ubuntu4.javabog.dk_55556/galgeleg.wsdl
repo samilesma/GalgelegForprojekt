@@ -139,6 +139,12 @@
 <message name="getlistResponse">
 <part name="parameters" element="tns:getlistResponse"></part>
 </message>
+<message name="users">
+<part name="parameters" element="tns:users"></part>
+</message>
+<message name="usersResponse">
+<part name="parameters" element="tns:usersResponse"></part>
+</message>
 <message name="remove">
 <part name="parameters" element="tns:remove"></part>
 </message>
@@ -262,6 +268,10 @@
 <fault message="tns:IllegalAccessException" name="IllegalAccessException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/IllegalAccessException"></fault>
 <fault message="tns:InvocationTargetException" name="InvocationTargetException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/InvocationTargetException"></fault>
 <fault message="tns:NoSuchMethodException" name="NoSuchMethodException" wsam:Action="http://galgeleg/GalgeI/getlist/Fault/NoSuchMethodException"></fault>
+</operation>
+<operation name="users">
+<input wsam:Action="http://galgeleg/GalgeI/usersRequest" message="tns:users"></input>
+<output wsam:Action="http://galgeleg/GalgeI/usersResponse" message="tns:usersResponse"></output>
 </operation>
 <operation name="remove">
 <input wsam:Action="http://galgeleg/GalgeI/removeRequest" message="tns:remove"></input>
@@ -507,6 +517,15 @@
 <fault name="NoSuchMethodException">
 <soap:fault name="NoSuchMethodException" use="literal"></soap:fault>
 </fault>
+</operation>
+<operation name="users">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
 </operation>
 <operation name="remove">
 <soap:operation soapAction=""></soap:operation>

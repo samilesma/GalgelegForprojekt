@@ -19,7 +19,6 @@
 	<string name="nyt_ord">Nyt ord</string>
 	<string name="spiller">Logged ud</string>
 
-	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="galgelegbillede">galgebillede</string>
 	<string name="henter_ord_fra_DR">Henter ord fra DR...</string>
