@@ -104,7 +104,7 @@ public class AndroidServlet extends HttpServlet {
                 returnObj.put("fuldenavn", fuldenavn);
                 break;
             case "getMuligeOrd":
-                JSONArray muligeOrd = new JSONArray(spil.getMuligeOrd());
+                JSONArray muligeOrd = new JSONArray(spil.get(Arrays.asList(request.getParameter("sid"),"getMuligeOrd")));
                 returnObj.put("muligeOrd", muligeOrd);
                 break;
             case "nulstil":
