@@ -1,6 +1,5 @@
 package galgeleg;
 
-import java.util.Map;
 import java.util.Scanner;
 import javax.xml.ws.Endpoint;
 

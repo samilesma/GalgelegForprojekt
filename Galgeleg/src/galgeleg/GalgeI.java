@@ -26,7 +26,7 @@ public interface GalgeI {
     public ArrayList<String> getBrugteBogstaver();
 
     @WebMethod
-    public ArrayList<String> getMuligeOrd();
+    public String getMuligeOrd();
 
     @WebMethod
     public String getOrdet();

@@ -2,6 +2,7 @@ package galgeleg;
 
 import brugerautorisation.data.Bruger;
 import brugerautorisation.transport.soap.Brugeradmin;
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -71,8 +72,9 @@ public class Galgelogik implements GalgeI {
         return brugteBogstaver;
     }
     
-    public ArrayList<String> getMuligeOrd() {
-        return muligeOrd;
+    public String getMuligeOrd() {
+        Gson gson=new Gson();
+        return gson.toJson(muligeOrd);
     }
     
     public String getOrdet() {

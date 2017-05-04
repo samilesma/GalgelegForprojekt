@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import galgeleg.IllegalAccessException_Exception;
 import galgeleg.InvocationTargetException_Exception;
 import galgeleg.NoSuchMethodException_Exception;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -102,7 +104,7 @@ public class AndroidServlet extends HttpServlet {
                 returnObj.put("fuldenavn", fuldenavn);
                 break;
             case "getMuligeOrd":
-                List<String> muligeOrd = spil.getlist(Arrays.asList("getMuligeOrd"));
+                JSONArray muligeOrd = new JSONArray(spil.getMuligeOrd());
                 returnObj.put("muligeOrd", muligeOrd);
                 break;
             case "nulstil":
