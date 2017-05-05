@@ -30,6 +30,10 @@
 
 <xs:element name="erSpilletVundetResponse" type="tns:erSpilletVundetResponse"></xs:element>
 
+<xs:element name="gaetBogstav" type="tns:gaetBogstav"></xs:element>
+
+<xs:element name="gaetBogstavResponse" type="tns:gaetBogstavResponse"></xs:element>
+
 <xs:element name="get" type="tns:get"></xs:element>
 
 <xs:element name="getAntalForkerteBogstaver" type="tns:getAntalForkerteBogstaver"></xs:element>
@@ -61,10 +65,6 @@
 <xs:element name="getlist" type="tns:getlist"></xs:element>
 
 <xs:element name="getlistResponse" type="tns:getlistResponse"></xs:element>
-
-<xs:element name="gætBogstav" type="tns:gætBogstav"></xs:element>
-
-<xs:element name="gætBogstavResponse" type="tns:gætBogstavResponse"></xs:element>
 
 <xs:element name="hentBruger" type="tns:hentBruger"></xs:element>
 
@@ -259,6 +259,16 @@
 <xs:sequence></xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="gaetBogstav">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gaetBogstavResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="logStatus">
 <xs:sequence></xs:sequence>
 </xs:complexType>
@@ -364,16 +374,6 @@
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"></xs:element>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="gætBogstav">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="gætBogstavResponse">
-<xs:sequence></xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="erSpilletSlut">

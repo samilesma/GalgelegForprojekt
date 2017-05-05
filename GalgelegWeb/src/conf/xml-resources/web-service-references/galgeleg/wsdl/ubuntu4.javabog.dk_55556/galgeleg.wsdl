@@ -58,11 +58,11 @@
 <message name="getSynligtOrdResponse">
 <part name="parameters" element="tns:getSynligtOrdResponse"></part>
 </message>
-<message name="gætBogstav">
-<part name="parameters" element="tns:gætBogstav"></part>
+<message name="gaetBogstav">
+<part name="parameters" element="tns:gaetBogstav"></part>
 </message>
-<message name="gætBogstavResponse">
-<part name="parameters" element="tns:gætBogstavResponse"></part>
+<message name="gaetBogstavResponse">
+<part name="parameters" element="tns:gaetBogstavResponse"></part>
 </message>
 <message name="hentBruger">
 <part name="parameters" element="tns:hentBruger"></part>
@@ -212,9 +212,9 @@
 <input wsam:Action="http://galgeleg/GalgeI/getSynligtOrdRequest" message="tns:getSynligtOrd"></input>
 <output wsam:Action="http://galgeleg/GalgeI/getSynligtOrdResponse" message="tns:getSynligtOrdResponse"></output>
 </operation>
-<operation name="gætBogstav">
-<input wsam:Action="http://galgeleg/GalgeI/gætBogstavRequest" message="tns:gætBogstav"></input>
-<output wsam:Action="http://galgeleg/GalgeI/gætBogstavResponse" message="tns:gætBogstavResponse"></output>
+<operation name="gaetBogstav">
+<input wsam:Action="http://galgeleg/GalgeI/gaetBogstavRequest" message="tns:gaetBogstav"></input>
+<output wsam:Action="http://galgeleg/GalgeI/gaetBogstavResponse" message="tns:gaetBogstavResponse"></output>
 </operation>
 <operation name="hentBruger">
 <input wsam:Action="http://galgeleg/GalgeI/hentBrugerRequest" message="tns:hentBruger"></input>
@@ -383,7 +383,7 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="gætBogstav">
+<operation name="gaetBogstav">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

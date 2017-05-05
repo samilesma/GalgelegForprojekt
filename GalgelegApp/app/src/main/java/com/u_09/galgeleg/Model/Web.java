@@ -23,10 +23,11 @@ public class Web extends AsyncTask<String, String, String> {
 
         try {
             URL url = new URL(params[0]);
-            Log.d("XXXXX TEST XXXXX", url.toString());
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
-            Log.d("XXXXX TEST XXXXX", "RESPONSE CODE: " + connection.getResponseCode());
+            Log.d("HTTP Web class", "Request URL: " + url.toString());
+            Log.d("HTTP Web class", "Response code: " + connection.getResponseCode());
+
             InputStream stream = connection.getInputStream();
 
             reader = new BufferedReader(new InputStreamReader(stream));

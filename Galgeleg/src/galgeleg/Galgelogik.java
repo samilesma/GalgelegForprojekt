@@ -263,7 +263,7 @@ public class Galgelogik implements GalgeI {
     }
     
     public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        if(p.length==3 && p[2].equals("gætBogstav")) {
+        if(p.length==3 && p[2].equals("gaetBogstav")) {
             users.get(p[0]).gaetBogstav(p[1]);
             return;
         }
