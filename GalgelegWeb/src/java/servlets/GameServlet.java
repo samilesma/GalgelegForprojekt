@@ -44,7 +44,7 @@ public class GameServlet extends HttpServlet {
             request.getSession().setAttribute("currTime",System.currentTimeMillis());
         } else {
             String letter = request.getParameter("letter");
-            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),letter,"gætBogstav"));
+            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),letter,"gaetBogstav"));
         }
         
         if (spil.check(Arrays.asList((String)request.getSession().getAttribute("currUser"),"erSpilletVundet"))) {

@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import com.google.gson.Gson;
 import galgeleg.IllegalAccessException_Exception;
 import galgeleg.InvocationTargetException_Exception;
 import galgeleg.NoSuchMethodException_Exception;
@@ -82,9 +81,9 @@ public class AndroidServlet extends HttpServlet {
                 String synligtOrd = spil.get(Arrays.asList(request.getParameter("sid"),"getSynligtOrd"));
                 returnObj.put("synligtOrd", synligtOrd);
                 break;
-            case "gætBogstav":
+            case "gaetBogstav":
                 String bogstav = request.getParameter("bogstav");
-                spil.doit(Arrays.asList(request.getParameter("sid"),bogstav,"gætBogstav"));
+                spil.doit(Arrays.asList(request.getParameter("sid"),bogstav,"gaetBogstav"));
                 break;    
             case "hentBruger":
                 String name = request.getParameter("username");

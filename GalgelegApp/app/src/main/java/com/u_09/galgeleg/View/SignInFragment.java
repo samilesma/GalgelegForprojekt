@@ -58,23 +58,31 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
                 String password = mEtPassword.getText().toString().trim();
                 Snackbar.make(mView, "Logger ind...", Snackbar.LENGTH_INDEFINITE).show();
                 JSONObject user = mGame.hentBruger(username, password);
-                boolean error = user.getBoolean("error");
-                Log.d("XXXX", "" + error);
-                if (!error) {
-                    String name = user.getString("fullname");
-                    User.setUser(username, name);
-                    Snackbar.make(mView, "Du er logget ind", Snackbar.LENGTH_SHORT).show();
-                    mTvUsername.setVisibility(View.GONE);
-                    mEtUsername.setVisibility(View.GONE);
-                    mTvPassword.setVisibility(View.GONE);
-                    mEtPassword.setVisibility(View.GONE);
-                    mBtnLogin.setVisibility(View.GONE);
-                    TextView tvSpiller = (TextView) getActivity().findViewById(R.id.tv_spiller);
-                    tvSpiller.setText("Spiller: " + User.fullname + " " + User.sid);
-                    MainMenuFragment mainMenuFragment = new MainMenuFragment();
-                    getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mainMenuFragment).addToBackStack(null).commit();
-                } else {
-                    Snackbar.make(mView, "Login mislykket", Snackbar.LENGTH_SHORT).show();
+                if(user != null) {
+                    boolean error = user.getBoolean("error");
+                    Log.d("XXXX", "" + error);
+                    if (!error) {
+                        String name = user.getString("fullname");
+                        User.setUser(username, name);
+                        Snackbar.make(mView, "Du er logget ind", Snackbar.LENGTH_SHORT).show();
+                        mTvUsername.setVisibility(View.GONE);
+                        mEtUsername.setVisibility(View.GONE);
+                        mTvPassword.setVisibility(View.GONE);
+                        mEtPassword.setVisibility(View.GONE);
+                        mBtnLogin.setVisibility(View.GONE);
+                        TextView tvSpiller = (TextView) getActivity().findViewById(R.id.tv_spiller);
+                        tvSpiller.setText("Spiller: " + User.fullname + " " + User.sid);
+                        MainMenuFragment mainMenuFragment = new MainMenuFragment();
+                        getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mainMenuFragment).addToBackStack(null).commit();
+                    } else {
+                        Snackbar.make(mView, "Login mislykket, forkerte oplysninger", Snackbar.LENGTH_SHORT).show();
+                        mEtUsername.setText("");
+                        mEtPassword.setText("");
+                        mEtUsername.requestFocus();
+                    }
+                }
+                else {
+                    Snackbar.make(mView, "Login fejlet, kommunikationsfejl", Snackbar.LENGTH_SHORT).show();
                     mEtUsername.setText("");
                     mEtPassword.setText("");
                     mEtUsername.requestFocus();

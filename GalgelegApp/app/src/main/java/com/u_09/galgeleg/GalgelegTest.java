@@ -15,60 +15,60 @@ public class GalgelegTest {
 
         spil.logStatus();
 
-        spil.gætBogstav("e");
+        spil.gaetBogstav("e");
         spil.logStatus();
 
-        spil.gætBogstav("a");
+        spil.gaetBogstav("a");
         spil.logStatus();
         System.out.println("" + spil.getAntalForkerteBogstaver());
         System.out.println("" + spil.getSynligtOrd());
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("i");
+        spil.gaetBogstav("i");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("s");
+        spil.gaetBogstav("s");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("r");
+        spil.gaetBogstav("r");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("l");
+        spil.gaetBogstav("l");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("b");
+        spil.gaetBogstav("b");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("o");
+        spil.gaetBogstav("o");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("t");
+        spil.gaetBogstav("t");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("n");
+        spil.gaetBogstav("n");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("m");
+        spil.gaetBogstav("m");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("y");
+        spil.gaetBogstav("y");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("p");
+        spil.gaetBogstav("p");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
 
-        spil.gætBogstav("g");
+        spil.gaetBogstav("g");
         spil.logStatus();
         if (spil.erSpilletSlut()) return;
     }*/

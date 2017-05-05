@@ -41,7 +41,7 @@ public class GalgeClient {
         
         while(!spil.erSpilletSlut()){
             tast = s.nextLine();
-            spil.gætBogstav(tast);
+            spil.gaetBogstav(tast);
             spil.logStatus();
             System.out.println("Brugte bogstaver: "+spil.getBrugteBogstaver());
             System.out.println("Antal forkerte bogstaver: " + spil.getAntalForkerteBogstaver());

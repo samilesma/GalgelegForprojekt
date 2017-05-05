@@ -85,7 +85,7 @@ public class Galgelogik implements GalgeI {
         return synligtOrd;
     }
     
-    public void gætBogstav(String bogstav) {
+    public void gaetBogstav(String bogstav) {
         if (bogstav.length() != 1) {
             return;
         }
@@ -264,7 +264,7 @@ public class Galgelogik implements GalgeI {
     
     public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         if(p.length==3 && p[2].equals("gætBogstav")) {
-            users.get(p[0]).gætBogstav(p[1]);
+            users.get(p[0]).gaetBogstav(p[1]);
             return;
         }
         Method method = Galgelogik.class.getDeclaredMethod(p[1]);

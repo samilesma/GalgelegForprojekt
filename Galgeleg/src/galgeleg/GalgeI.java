@@ -35,7 +35,7 @@ public interface GalgeI {
     public String getSynligtOrd();
 
     @WebMethod
-    public void gætBogstav(String bogstav);
+    public void gaetBogstav(String bogstav);
 
     @WebMethod
     public boolean hentBruger(String brugernavn, String adgangskode);
