@@ -98,8 +98,8 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        mProgressBar1.setVisibility(View.VISIBLE);
         if (v == mBtnGuess) {
-            mProgressBar1.setVisibility(View.VISIBLE);
             mGuess = mEtLetter.getText().toString();
             String guessInfo;
             try {
@@ -108,7 +108,6 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 else guessInfo = "Øv! Forkert gæt!";
                 mGame.gaetBogstav(mGuess, User.sid);
                 updateUIOnGuess();
-                mProgressBar1.setVisibility(View.INVISIBLE);
                 Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
             } catch (InterruptedException | ExecutionException | JSONException e) {
                 e.printStackTrace();
@@ -121,6 +120,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 e.printStackTrace();
             }
         }
+        mProgressBar1.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -132,7 +132,6 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     }
 
     public void updateUIOnGuess() throws InterruptedException, ExecutionException, JSONException {
-        mProgressBar1.setVisibility(View.VISIBLE);
         mEtLetter.setText("");
         mEtLetter.requestFocus();
         mTvTheWord.setText(mGame.getSynligtOrd(User.sid));
@@ -157,7 +156,6 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
 
             mTvTitle.setText(title);
             mTvTitle.setVisibility(View.VISIBLE);
-            mProgressBar1.setVisibility(View.INVISIBLE);
 
             mEtName = new EditText(getContext());
             mSaveHighscoreDialog = new AlertDialog.Builder(getContext()).setTitle("Skriv dit navn for at gemme din score").setMessage("Navn:").setView(mEtName).setPositiveButton("OK", new DialogInterface.OnClickListener() {
