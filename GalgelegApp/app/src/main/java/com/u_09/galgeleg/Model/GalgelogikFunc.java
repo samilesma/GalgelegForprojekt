@@ -22,6 +22,7 @@ public class GalgelogikFunc {
     private static final String TYPE_GETBRUGTEBOGSTAVER = "getBrugteBogstaver";
     private static final String TYPE_GETORDET = "getOrdet";
     private static final String TYPE_GETSYNLIGTORD = "getSynligtOrd";
+    private static final String TYPE_GAET = "gaet";
     private static final String TYPE_GAETBOGSTAV = "gaetBogstav";
     private static final String PARAMETER_BOGSTAV = "&bogstav=";
     private static final String TYPE_HENTBRUGER = "hentBruger";
@@ -95,8 +96,12 @@ public class GalgelogikFunc {
     }
     
     public void gaetBogstav(String bogstav, String sid) throws ExecutionException, InterruptedException, JSONException {
-        // FIXME: 04/05/2017 22.53 Retunerer en Response Code 400 dvs. Bad Request. Jeg tror det er på grund af 'æ' i 'gaetBogstav'
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAETBOGSTAV + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
+    }
+
+    public void gaet(String bogstav, String sid) throws ExecutionException, InterruptedException, JSONException {
+        // FIXME: 11/05/2017 16.28 TILFØJ TIME
+        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAET + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
     }
 
     public JSONObject hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
