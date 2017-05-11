@@ -63,9 +63,6 @@ public class functions {
         return msg;
     }
     
-
-    
-    
     public ArrayList<ArrayList<String>> getAllMessages() throws SQLException{
         ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
         msg.add(new ArrayList<String>());

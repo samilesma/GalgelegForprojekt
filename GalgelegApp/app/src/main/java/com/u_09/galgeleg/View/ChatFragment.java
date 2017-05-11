@@ -35,8 +35,11 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mView = inflater.inflate(R.layout.chat_fragment, container, false);
+
+
         try {
             JSONObject jsonObject = new JSONObject(new Web().execute("http://localhost:8080/GalgelegWeb/ChatServlet?").get());
+            String nameMsg = jsonObject.getString("")
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

@@ -5,26 +5,23 @@
  */
 package servlets;
 
-import galgeleg.IllegalAccessException_Exception;
-import galgeleg.InvocationTargetException_Exception;
-import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.connector;
 import utils.functions;
 
 /**
  *
- * @author Tolga
+ * @author ibsenb
  */
-public class ChallengeServlet extends HttpServlet {
+public class AcceptChallengeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,34 +32,15 @@ public class ChallengeServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        functions f = new functions();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        connector con = new connector();
+        functions function = new functions();
         galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
         galgeleg.GalgeI spil = service.getGalgelogikPort();
         String currUser = (String) request.getSession().getAttribute("currUser");
-        String challenge = request.getParameter("sid");
-        String ordet = "";
-        if(!currUser.equals(challenge)){
-        try {
-            spil.doit(Arrays.asList(currUser,"nulstil"));
-            ordet = spil.get(Arrays.asList(currUser,"getOrdet"));
-        } catch (Exception ex) {
-            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-
-        System.out.println("C: "+challenge);
-        
-        f.challengeFriend(currUser, challenge, ordet);
-        
-        response.sendRedirect("game.jsp");
-        }
-        
-        else{
-        System.out.println("SAMME BRUGER!");
-        response.sendRedirect("challenges.jsp");
-    }
-
+        int challenge =  Integer.parseInt(request.getParameter("id"));
+        con.update("UPDATE challenges set acceptchl=1 WHERE id="+challenge+"");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,7 +58,7 @@ public class ChallengeServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcceptChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -98,7 +76,7 @@ public class ChallengeServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcceptChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

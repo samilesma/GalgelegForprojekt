@@ -92,20 +92,23 @@
                                         </tr>
                                         <%
                                             connector con = new connector();
-
+                                            
                                             ResultSet rUser = con.select("SELECT sid,name,surname FROM users");
                                             while (rUser.next()) {
-                                                out.println("<tr>");
-                                                out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
-                                                out.print("<td>" + rUser.getString("name") + "</td>");
-                                                out.print("<td>" + rUser.getString("surname") + "</td>"); %>
-                                                <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
-                                                <td style='width:350px;margin-left:-150px;'>
-                                                    <input type='submit'>
-                                                </td>
-                                                <%
-                                                out.println("</form>");
-                                                out.println("</tr>");
+                                                if(!con.check("SELECT p1,p2 FROM challenges WHERE p1='"+currUser+"' "
+                                                        + "AND p2='" + rUser.getString("sid")+ "' AND acceptchl=0")){
+                                                    out.println("<tr>");
+                                                    out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
+                                                    out.print("<td>" + rUser.getString("name") + "</td>");
+                                                    out.print("<td>" + rUser.getString("surname") + "</td>"); %>
+                                                    <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
+                                                    <td style='width:350px;margin-left:-150px;'>
+                                                        <input type='submit'>
+                                                    </td>
+                                                    <%
+                                                    out.println("</form>");
+                                                    out.println("</tr>");
+                                                }
                                             }
                                         %>
 
@@ -138,7 +141,37 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane" id="3b">
-                                    <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
+                                    
+                                     <table style="width:850px" class="lead">
+                                        <tr class="a">
+                                            <th>Navn</th>
+                                            <th>Dato</th>
+                                            <th></th>
+                                        </tr>
+                                        <%
+                                            ResultSet myChallenges = con.select("SELECT challenges.id,p1,users.name,timestamp FROM challenges INNER JOIN users ON p1=users.sid WHERE p2='"+currUser+"' AND acceptchl=0");
+                                            
+                                            while (myChallenges.next()) {
+                                                    out.println("<tr>");
+                                                    out.println("<form action='AcceptChallengeServlet' method='post' style='margin:5px 0px;'>");
+                                                    out.print("<td>" + myChallenges.getString("users.name") + "</td>");
+                                                    Timestamp stamp = new Timestamp(myChallenges.getInt("timestamp")*1000L);
+                                                    Date date = new Date(stamp.getTime());
+                                                    Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
+                                                    out.print("<td>"+format.format(date)+"</td>");
+                                                     %>
+                                                    <input type="hidden" name="id" value="<%  out.print(myChallenges.getString("challenges.id")); %>" />
+                                                    <td style='width:350px;margin-left:-150px;'>
+                                                        <input type='submit' value="Accepter" >
+                                                    </td>
+                                                    <%
+                                                    out.println("</form>");
+                                                    out.println("</tr>");
+                                                }
+                                            
+                                        %>
+
+                                    </table>
                                 </div>
                             </div>
                         </div>
