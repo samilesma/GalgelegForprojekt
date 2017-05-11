@@ -5,11 +5,13 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import galgeleg.IllegalAccessException_Exception;
 import galgeleg.InvocationTargetException_Exception;
 import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import utils.connector;
 
 /**
  *
@@ -29,7 +32,7 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "AndroidServlet", urlPatterns = {"/AndroidServlet"})
 public class AndroidServlet extends HttpServlet {
-    
+
     galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
     galgeleg.GalgeI spil = service.getGalgelogikPort();
 
@@ -43,54 +46,79 @@ public class AndroidServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JSONException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception {
+            throws ServletException, IOException, JSONException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception, SQLException {
         PrintWriter out = response.getWriter();
         String type = request.getParameter("type");
         JSONObject returnObj = new JSONObject();
-        
+
         switch (type) {
             case "erSidsteBogstavKorrekt":
-                boolean sidsteBogstavVarKorrekt = spil.check(Arrays.asList(request.getParameter("sid"),"erSidsteBogstavKorrekt"));
+                boolean sidsteBogstavVarKorrekt = spil.check(Arrays.asList(request.getParameter("sid"), "erSidsteBogstavKorrekt"));
                 returnObj.put("sidsteBogstavVarKorrekt", sidsteBogstavVarKorrekt);
                 break;
             case "erSpilletSlut":
-                boolean spilletErSlut = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletSlut"));
+                boolean spilletErSlut = spil.check(Arrays.asList(request.getParameter("sid"), "erSpilletSlut"));
                 returnObj.put("spilletErSlut", spilletErSlut);
                 break;
             case "erSpilletTabt":
-                boolean spilletErTabt = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletTabt"));
+                boolean spilletErTabt = spil.check(Arrays.asList(request.getParameter("sid"), "erSpilletTabt"));
                 returnObj.put("spilletErTabt", spilletErTabt);
                 break;
             case "erSpilletVundet":
-                boolean spilletErVundet = spil.check(Arrays.asList(request.getParameter("sid"),"erSpilletVundet"));
+                boolean spilletErVundet = spil.check(Arrays.asList(request.getParameter("sid"), "erSpilletVundet"));
                 returnObj.put("spilletErVundet", spilletErVundet);
                 break;
             case "getAntalForkerteBogstaver":
-                int antalForkerteBogstaver = spil.getint(Arrays.asList(request.getParameter("sid"),"getAntalForkerteBogstaver"));
+                int antalForkerteBogstaver = spil.getint(Arrays.asList(request.getParameter("sid"), "getAntalForkerteBogstaver"));
                 returnObj.put("antalForkerteBogstaver", antalForkerteBogstaver);
                 break;
             case "getBrugteBogstaver":
-                List<String> brugteBogstaver = spil.getlist(Arrays.asList(request.getParameter("sid"),"getBrugteBogstaver"));
+                List<String> brugteBogstaver = spil.getlist(Arrays.asList(request.getParameter("sid"), "getBrugteBogstaver"));
                 returnObj.put("brugteBogstaver", brugteBogstaver);
                 break;
             case "getOrdet":
-                String ordet = spil.get(Arrays.asList(request.getParameter("sid"),"getOrdet"));
+                String ordet = spil.get(Arrays.asList(request.getParameter("sid"), "getOrdet"));
                 returnObj.put("ordet", ordet);
                 break;
             case "getSynligtOrd":
-                String synligtOrd = spil.get(Arrays.asList(request.getParameter("sid"),"getSynligtOrd"));
+                String synligtOrd = spil.get(Arrays.asList(request.getParameter("sid"), "getSynligtOrd"));
                 returnObj.put("synligtOrd", synligtOrd);
+                returnObj.put("TEST", "NetBeans lugter");
                 break;
             case "gaetBogstav":
                 String bogstav = request.getParameter("bogstav");
-                spil.doit(Arrays.asList(request.getParameter("sid"),bogstav,"gaetBogstav"));
-                break;    
+                spil.doit(Arrays.asList(request.getParameter("sid"), bogstav, "gaetBogstav"));
+                break;
+            case "gaet":
+                out.println("TEST 0");
+                String letter = request.getParameter("bogstav");
+                String sid = request.getParameter("sid");
+                int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
+                spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
+                out.println("TEST 1");
+                if (spil.check(Arrays.asList(sid, "erSpilletVundet"))) {
+                    out.println("TEST 2");
+                    int tid = Integer.parseInt(request.getParameter("time"));
+                    connector con = new connector();
+                    con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
+                    returnObj.put("type", 1);
+                }
+                else if (spil.check(Arrays.asList(sid, "erSpilletTabt"))) {
+                    out.println("TEST 3");
+                    returnObj.put("type", 0);
+                }
+                Gson gson = new Gson();
+                returnObj.put("antalForkerteBogstaver", forkerte);
+                returnObj.put("brugteBogstaver", gson.toJson(spil.getlist(Arrays.asList(sid, "getBrugteBogstaver"))));
+                returnObj.put("synligtOrd", spil.get(Arrays.asList(sid, "getSynligtOrd")));
+                out.println("TEST 4");
+                break;
             case "hentBruger":
                 String name = request.getParameter("username");
                 String pass = request.getParameter("password");
 
                 if (spil.hentBruger(name, pass)) {
-                    String fuldenavn = spil.get(Arrays.asList(name,"hentNavn"));
+                    String fuldenavn = spil.get(Arrays.asList(name, "hentNavn"));
 
                     returnObj.put("error", false);
                     returnObj.put("fullname", fuldenavn);
@@ -99,26 +127,26 @@ public class AndroidServlet extends HttpServlet {
                 }
                 break;
             case "hentNavn":
-                String fuldenavn = spil.get(Arrays.asList(request.getParameter("sid"),"hentNavn"));
+                String fuldenavn = spil.get(Arrays.asList(request.getParameter("sid"), "hentNavn"));
                 returnObj.put("fuldenavn", fuldenavn);
                 break;
             case "getMuligeOrd":
-                JSONArray muligeOrd = new JSONArray(spil.get(Arrays.asList(request.getParameter("sid"),"getMuligeOrd")));
+                JSONArray muligeOrd = new JSONArray(spil.get(Arrays.asList(request.getParameter("sid"), "getMuligeOrd")));
                 returnObj.put("muligeOrd", muligeOrd);
                 break;
             case "nulstil":
-                spil.doit(Arrays.asList(request.getParameter("sid"),"nulstil"));
+                spil.doit(Arrays.asList(request.getParameter("sid"), "nulstil"));
                 break;
             case "opdaterSynligtOrd":
-                spil.doit(Arrays.asList(request.getParameter("sid"),"opdaterSynligtOrd"));
+                spil.doit(Arrays.asList(request.getParameter("sid"), "opdaterSynligtOrd"));
                 break;
-/*
+            /* 
             case "setOrdet":
                 String iString = request.getParameter("i");
                 int i = Integer.parseInt(iString);
                 spil.doit(Arrays.asList(request.getParameter("sid"),i,"setOrdet"));
                 break;
-*/
+             */
         }
         out.println(returnObj.toString());
 
@@ -146,6 +174,8 @@ public class AndroidServlet extends HttpServlet {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchMethodException_Exception ex) {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -169,6 +199,8 @@ public class AndroidServlet extends HttpServlet {
         } catch (InvocationTargetException_Exception ex) {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchMethodException_Exception ex) {
+            Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(AndroidServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

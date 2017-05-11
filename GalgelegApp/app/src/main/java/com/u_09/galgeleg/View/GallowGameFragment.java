@@ -98,8 +98,18 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        mProgressBar1.setVisibility(View.VISIBLE);
+        /* new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        // your code here
+                    }
+                },
+                5000
+        );
+        System.out.println("Forloop finished");*/
         if (v == mBtnGuess) {
+            mProgressBar1.setVisibility(View.VISIBLE);
             mGuess = mEtLetter.getText().toString();
             String guessInfo;
             try {
@@ -109,6 +119,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 mGame.gaetBogstav(mGuess, User.sid);
                 updateUIOnGuess();
                 Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
+                // mProgressBar1.setVisibility(View.INVISIBLE);
             } catch (InterruptedException | ExecutionException | JSONException e) {
                 e.printStackTrace();
             }
@@ -120,7 +131,6 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 e.printStackTrace();
             }
         }
-        mProgressBar1.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -179,7 +189,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
     }
 
     public void newGame() throws InterruptedException, ExecutionException, JSONException {
-        mProgressBar1.setVisibility(View.VISIBLE);
+        // mProgressBar1.setVisibility(View.VISIBLE);
         mImageSwitcher.setImageResource(R.drawable.galge);
         refillImageArray();
         mTvTitle.setVisibility(View.INVISIBLE);
@@ -193,7 +203,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         mTvWrongLetters.setText("0/7");
         mEtLetter.setText("");
         Log.d("ORDET ER: ", "" + mGame.getOrdet(User.sid));
-        mProgressBar1.setVisibility(View.INVISIBLE);
+        // mProgressBar1.setVisibility(View.INVISIBLE);
     }
 
     public void refillImageArray() {

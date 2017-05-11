@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Tolga on 19-04-2017.
  */
 
-public class SignInFragment extends Fragment implements View.OnClickListener {
+public class SignInFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
 
     private View mView;
     private TextView mTvUsername, mTvPassword;
@@ -46,8 +47,18 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         mBtnLogin = (Button) mView.findViewById(R.id.btn_login);
 
         mBtnLogin.setOnClickListener(this);
+        mEtUsername.setOnKeyListener(this);
+        mEtPassword.setOnKeyListener(this);
 
         return mView;
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        if (i == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+            mBtnLogin.callOnClick();
+        }
+        return false;
     }
 
     @Override
@@ -87,8 +98,11 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
                     mEtPassword.setText("");
                     mEtUsername.requestFocus();
                 }
-            } catch (InterruptedException | ExecutionException | JSONException e) {
-                e.printStackTrace();
+            } catch (NullPointerException | InterruptedException | ExecutionException | JSONException e) {
+                Snackbar.make(mView, "Kommunikationsfejl: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                mEtUsername.setText("");
+                mEtPassword.setText("");
+                mEtUsername.requestFocus();
             }
         }
     }
