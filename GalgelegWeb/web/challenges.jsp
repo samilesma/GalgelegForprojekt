@@ -197,8 +197,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="mastfoot">
-                    <div class="inner">
+                <div class="mastfoots">
+                    <div class="inners">
                         <p>Lavet af gruppe <a href="http://tourneo.dk/">TS</a></p>
                     </div
                 </div>
