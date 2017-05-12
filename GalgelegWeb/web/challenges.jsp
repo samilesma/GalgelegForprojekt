@@ -103,7 +103,8 @@
                                                     out.print("<td>" + rUser.getString("surname") + "</td>"); %>
                                                     <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
                                                     <td style='width:350px;margin-left:-150px;'>
-                                                        <input class="btn btn-success"type='submit'>
+                                                        <input type='hidden' name='type' value='send' />
+                                                        <input class="btn btn-success" type='submit' value='Send'>
                                                     </td>
                                                     <%
                                                     out.println("</form>");
@@ -124,7 +125,7 @@
                                             <th></th>
                                         </tr>
                                         <%
-                                            ResultSet cUser = con.select("SELECT p2,timestamp,acceptchl,users.name FROM challenges INNER JOIN users ON p2 = users.sid WHERE p1 ='"+currUser+"'");
+                                            ResultSet cUser = con.select("SELECT challenges.id,p2,timestamp,acceptchl,users.name FROM challenges INNER JOIN users ON p2 = users.sid WHERE p1 ='"+currUser+"'");
                                             
                                             while (cUser.next()) {
                                                 out.println("<tr>");
@@ -142,9 +143,10 @@
                                                 else if(cUser.getString("acceptchl").equals("1")){
                                                     out.print("<td>"+"Accepteret"+"<td>");
                                         %>
-                                        
+                                                <input type="hidden" name="cid" value="<%  out.print(cUser.getString("challenges.id")); %>" />
                                                 <td style='width:50px;margin-left:15px;'>
-                                                        <input type='submit' value="Spil" >
+                                                        <input class="btn btn-success" type='submit' value="Spil" >
+                                                        <input type='hidden' name='type' value='spil' />
                                                 </td>
                                         
                                         <%
@@ -182,8 +184,11 @@
                                                      %>
                                                     <input type="hidden" name="id" value="<%  out.print(myChallenges.getString("challenges.id")); %>" />
                                                     <td style='width:350px;margin-left:-150px;'>
-                                                        <input type='submit' value="Accepter" >
+                                                        <input type='hidden' name='type' value='accept' />
+                                                        <input class="btn btn-success" type='submit' value="Accepter" >
                                                     </td>
+                                                    
+                                                    
                                                     <%
                                                     out.println("</form>");
                                                     out.println("</tr>");

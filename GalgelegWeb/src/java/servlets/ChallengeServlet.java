@@ -38,36 +38,42 @@ public class ChallengeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         functions f = new functions();
-        galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
+        galgeleg.GalgelogikService service = new galgeleg.GalgelogikService();
         galgeleg.GalgeI spil = service.getGalgelogikPort();
         String currUser = (String) request.getSession().getAttribute("currUser");
         String challenged = request.getParameter("sid");
         String ordet = "";
         connector con = new connector();
         functions function = new functions();
-        int challengeID =  Integer.parseInt(request.getParameter("id"));
-        con.update("UPDATE challenges set acceptchl=1 WHERE id="+challengeID+"");
-        if(!currUser.equals(challenged)){
-        try {
-            spil.doit(Arrays.asList(currUser,"nulstil"));
-            ordet = spil.get(Arrays.asList(currUser,"getOrdet"));
-        } catch (Exception ex) {
-            Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        if (request.getParameter("type").equals("send")) {
+            if (!currUser.equals(challenged)) {
+                try {
+                    spil.doit(Arrays.asList(currUser, "nulstil"));
+                    ordet = spil.get(Arrays.asList(currUser, "getOrdet"));
+                } catch (Exception ex) {
+                    Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-        System.out.println("C: "+challenged);
-        
-        f.challengeFriend(currUser, challenged, ordet);
-        
-        response.sendRedirect("game.jsp");
-        }
-        
-        else{
-        System.out.println("SAMME BRUGER!");
-        response.sendRedirect("challenges.jsp");
-    }
+                System.out.println("C: " + challenged);
 
+                f.challengeFriend(currUser, challenged, ordet);
+
+                response.sendRedirect("game.jsp");
+            } else {
+                System.out.println("SAMME BRUGER!");
+                response.sendRedirect("challenges.jsp");
+            }
+        } 
+        
+        else if (request.getParameter("type").equals("accept")) {
+            int challengeID = Integer.parseInt(request.getParameter("id"));
+            con.update("UPDATE challenges set acceptchl=1 WHERE id=" + challengeID + "");
+        } 
+        
+        else if (request.getParameter("type").equals("spil")){
+            System.out.println("IIIIIIIIIIIDDDDDDDDD::::"+request.getParameter("cid"));
+            response.sendRedirect("game.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
