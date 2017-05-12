@@ -99,7 +99,7 @@ public class AndroidServlet extends HttpServlet {
                 spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
                 int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
                 if (spil.check(Arrays.asList(sid, "erSpilletVundet"))) {
-                    int tid = Integer.parseInt(request.getParameter("time"));
+                    int tid = (request.getSession().getAttribute("currTime")!=null?(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000):Integer.parseInt(request.getParameter("time")));
                     connector con = new connector();
                     con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
                     returnObj.put("type", 1);
@@ -136,6 +136,10 @@ public class AndroidServlet extends HttpServlet {
             case "nulstil":
                 spil.doit(Arrays.asList(request.getParameter("sid"), "nulstil"));
                 returnObj.put("synligtOrd", spil.get(Arrays.asList(request.getParameter("sid"), "getSynligtOrd")));
+                if(request.getSession().getAttribute("currUser")!=null) {
+                    request.getSession().setAttribute("currTime",System.currentTimeMillis());
+                    returnObj.put("nulstill", true);
+                }
                 break;
             case "opdaterSynligtOrd":
                 spil.doit(Arrays.asList(request.getParameter("sid"), "opdaterSynligtOrd"));

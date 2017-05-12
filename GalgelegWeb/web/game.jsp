@@ -39,7 +39,7 @@ String currName = (String) request.getSession().getAttribute("currName");
         }
         
         jQuery("document").ready(function(){
-            jQuery("form").submit(function(){
+            jQuery("form#msgform").submit(function(){
                 setMsg($(this).find("#usermsg").val(),"<%=currName%>",new Date() / 1000 | 0);
                 jQuery("#usermsg").val("");
             });
@@ -117,7 +117,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 						<%
 						try {
 							String synligtOrd = spil.get(Arrays.asList(currUser,"getSynligtOrd"));%>
-							<p id="ordetLabel" class="lead"><%=spil.get(Arrays.asList(currUser,"getOrdet"))%> Ordet er: <%=synligtOrd%></p>
+                                                        <p id="ordetLabel" class="lead"><%=spil.get(Arrays.asList(currUser,"getOrdet"))%> Ordet er: <span id="synligtOrd"><%=synligtOrd%></span></p>
 							<%
 						} catch (Exception ex) {
 							
@@ -126,7 +126,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 						try {
 							List<String> brugteBogstaver = spil.getlist(Arrays.asList(currUser,"getBrugteBogstaver"));
                                                         %>
-							<p class="lead">Brugte bogstaver: <%=brugteBogstaver%></p>
+                                                        <p class="lead">Brugte bogstaver: <span id="brugteBogstaver"><%=brugteBogstaver%></span></p>
 							<%
 						} catch (Exception ex) {
 							
@@ -135,41 +135,29 @@ String currName = (String) request.getSession().getAttribute("currName");
 						try {
 							int numbErrors = spil.getint(Arrays.asList(currUser,"getAntalForkerteBogstaver"));
                                                         %>
-							<p class="lead">Antal fejl: <%=numbErrors%>/7</p>
+                                                        <p class="lead">Antal fejl: <span id="numbErrors"><%=numbErrors%></span>/7</p>
 							<%
 						} catch (Exception ex) {
 							
 						}
 						%>
-						<form action="GameServlet" method="post" id="guessForm">
+						<form action="AndroidServlet" method="post" id="guessForm" class="sendmsg">
 							<div class="form-group">
 								<label for="letter">Bogstav</label>
-								<input type="text" class="form-control" name="letter" id="letter" placeholder="Indtast bogstav" required="required" />
+								<input type="text" class="form-control" name="bogstav" id="letter" placeholder="Indtast bogstav" required="required" />
 							</div>
-							<button type="submit" id="btnGuess" class="btn btn-lg btn-primary" >Gæt!</button>
+                                                        <button type="submit" id="btnGuess" class="btn btn-lg btn-primary" >Gæt!</button>
+                                                        <input type="hidden" name="sid" value="<%=currUser%>" />
+                                                        <input type="hidden" name="type" value="gaet" />
 						</form>
-						<form action="GameServlet" method="post" id="newGameForm" hidden="true">
+						<form action="AndroidServlet" method="post" id="newGameForm" hidden="true" class="ajax">
 							<button type="submit" class="btn btn-lg btn-primary">Nyt spil</button>
+                                                        <input type="hidden" name="type" value="nulstil" />
+                                                        <input type="hidden" name="sid" value="<%=currUser%>" />
 						</form>
 						<hr/>
-					
+                                                <div id="alert"></div>
 					<%
-					try {
-						boolean result = spil.check(Arrays.asList(currUser,"erSidsteBogstavKorrekt"));
-						if (!result && !(spil.getlist(Arrays.asList(currUser,"getBrugteBogstaver")).isEmpty())) {
-							%> 
-							<div class="alert alert-danger" role="alert">Forkert gæt!</div>
-							<%
-						}
-						else if (result && !(spil.getlist(Arrays.asList(currUser,"getBrugteBogstaver")).isEmpty())) {
-							%> 
-							<div class="alert alert-success" role="alert">Korrekt gæt!</div>
-							<%
-						}
-					} catch (Exception ex) {
-						
-					}
-					
 					try {
 						boolean result = spil.check(Arrays.asList(currUser,"erSpilletTabt"));
 						if (result) {
@@ -205,12 +193,11 @@ String currName = (String) request.getSession().getAttribute("currName");
 						
 					}
 					%>
-					
 				</div>
                                         <div class="col-sm-6">
                    <div id="chatbox" style="width:100%; height:375px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
                     <br/>
-                    <form action="ChatServlet" method="post" class="ajax">
+                    <form action="ChatServlet" method="post" class="ajax" id="msgform">
                         <input name="usermsg"  type="text" class="form-control" id="usermsg" style="margin-bottom:15px;"/>
                         <button type="submit" class="btn btn-lg btn-primary" style="width:100px;">Send</button>
                     </form>

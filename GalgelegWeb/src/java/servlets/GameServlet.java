@@ -39,22 +39,6 @@ public class GameServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, JSONException, SQLException, IllegalAccessException_Exception, InvocationTargetException_Exception, NoSuchMethodException_Exception {
-        if (spil.check(Arrays.asList((String)request.getSession().getAttribute("currUser"),"erSpilletSlut"))) {
-            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),"nulstil"));
-            request.getSession().setAttribute("currTime",System.currentTimeMillis());
-        } else {
-            String letter = request.getParameter("letter");
-            spil.doit(Arrays.asList((String)request.getSession().getAttribute("currUser"),letter,"gaetBogstav"));
-        }
-        
-        if (spil.check(Arrays.asList((String)request.getSession().getAttribute("currUser"),"erSpilletVundet"))) {
-            System.out.println("MUHAHHHAHAH");
-            String navn = (String) request.getSession().getAttribute("currUser");
-            int forkerte = spil.getint(Arrays.asList((String)request.getSession().getAttribute("currUser"),"getAntalForkerteBogstaver"));
-            int tid=(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000);
-            connector con=new connector();
-            con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('"+navn+"','"+forkerte+"','"+tid+"','"+System.currentTimeMillis() / 1000L+"')");
-        }
         response.sendRedirect("game.jsp");
     }
 

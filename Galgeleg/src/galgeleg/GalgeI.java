@@ -59,7 +59,7 @@ public interface GalgeI {
     public void opdaterSynligtOrd();
 
     @WebMethod
-    public void setOrdet(int i);
+    public void setOrdet(String str);
     
     @WebMethod
     public String get(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;

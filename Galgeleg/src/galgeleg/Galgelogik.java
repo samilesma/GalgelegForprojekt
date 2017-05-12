@@ -230,8 +230,8 @@ public class Galgelogik implements GalgeI {
         }
     }
     
-    public void setOrdet(int i) {
-        this.ordet = muligeOrd.get(i);
+    public void setOrdet(String str) {
+        this.ordet = str;
     }
     
     public String get(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
@@ -265,6 +265,10 @@ public class Galgelogik implements GalgeI {
     public void doit(String... p) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         if(p.length==3 && p[2].equals("gaetBogstav")) {
             users.get(p[0]).gaetBogstav(p[1]);
+            return;
+        }
+        else if(p.length==3 && p[2].equals("setOrdet")) {
+            users.get(p[0]).setOrdet(p[1]);
             return;
         }
         Method method = Galgelogik.class.getDeclaredMethod(p[1]);
