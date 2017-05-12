@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.connector;
 import utils.functions;
 
 /**
@@ -40,9 +41,13 @@ public class ChallengeServlet extends HttpServlet {
         galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); 
         galgeleg.GalgeI spil = service.getGalgelogikPort();
         String currUser = (String) request.getSession().getAttribute("currUser");
-        String challenge = request.getParameter("sid");
+        String challenged = request.getParameter("sid");
         String ordet = "";
-        if(!currUser.equals(challenge)){
+        connector con = new connector();
+        functions function = new functions();
+        int challengeID =  Integer.parseInt(request.getParameter("id"));
+        con.update("UPDATE challenges set acceptchl=1 WHERE id="+challengeID+"");
+        if(!currUser.equals(challenged)){
         try {
             spil.doit(Arrays.asList(currUser,"nulstil"));
             ordet = spil.get(Arrays.asList(currUser,"getOrdet"));
@@ -51,9 +56,9 @@ public class ChallengeServlet extends HttpServlet {
         }
         
 
-        System.out.println("C: "+challenge);
+        System.out.println("C: "+challenged);
         
-        f.challengeFriend(currUser, challenge, ordet);
+        f.challengeFriend(currUser, challenged, ordet);
         
         response.sendRedirect("game.jsp");
         }

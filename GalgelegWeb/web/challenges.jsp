@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     </br>
-                    <div class="inner cover">
+                    <div class="inner cover ts-content">
                         <h1 class="cover-heading">Challenges</h1>
                         <hr/>
                         <div id="tab" class="container">	
@@ -103,7 +103,7 @@
                                                     out.print("<td>" + rUser.getString("surname") + "</td>"); %>
                                                     <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
                                                     <td style='width:350px;margin-left:-150px;'>
-                                                        <input type='submit'>
+                                                        <input class="btn btn-success"type='submit'>
                                                     </td>
                                                     <%
                                                     out.println("</form>");
@@ -115,23 +115,43 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane" id="2b">
-                                    <table style="width:850px" class="lead">
+                                    <table style="width:780px" class="lead">
                                         <tr class="a">
                                             <th>Studienummer</th>
+                                            <th>Navn</th>
                                             <th>Tidspunkt</th>
+                                            <th>Status</th>
                                             <th></th>
                                         </tr>
                                         <%
-                                            ResultSet cUser = con.select("SELECT p2,timestamp FROM challenges WHERE p1 ='"+currUser+"'");
+                                            ResultSet cUser = con.select("SELECT p2,timestamp,acceptchl,users.name FROM challenges INNER JOIN users ON p2 = users.sid WHERE p1 ='"+currUser+"'");
                                             
                                             while (cUser.next()) {
                                                 out.println("<tr>");
                                                 out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
                                                 out.print("<td>" + cUser.getString("p2") + "</td>");
+                                                out.print("<td>" + cUser.getString("users.name") + "</td>");
                                                 Timestamp stamp = new Timestamp(cUser.getInt("timestamp")*1000L);
                                                 Date date = new Date(stamp.getTime());
                                                 Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
                                                 out.print("<td>"+format.format(date)+"</td>");
+                                                
+                                                if(cUser.getString("acceptchl").equals("0")){
+                                                    out.print("<td>"+"Afventer"+"<td>");
+                                                }
+                                                else if(cUser.getString("acceptchl").equals("1")){
+                                                    out.print("<td>"+"Accepteret"+"<td>");
+                                        %>
+                                        
+                                                <td style='width:50px;margin-left:15px;'>
+                                                        <input type='submit' value="Spil" >
+                                                </td>
+                                        
+                                        <%
+                                                }
+                                                else{
+                                                    out.print("<td>"+"Afvist"+"<td>");
+                                                }
                                                                                                 
                                                 out.println("</form>");
                                                 out.println("</tr>");
@@ -153,7 +173,7 @@
                                             
                                             while (myChallenges.next()) {
                                                     out.println("<tr>");
-                                                    out.println("<form action='AcceptChallengeServlet' method='post' style='margin:5px 0px;'>");
+                                                    out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
                                                     out.print("<td>" + myChallenges.getString("users.name") + "</td>");
                                                     Timestamp stamp = new Timestamp(myChallenges.getInt("timestamp")*1000L);
                                                     Date date = new Date(stamp.getTime());
