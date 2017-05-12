@@ -130,6 +130,9 @@ ol.lead {
 
 .ts-content{
     padding: 70px 0px;
+    display: block;
+    position: relative;
+    
 }
 
 /*
@@ -150,6 +153,7 @@ ol.lead {
     .masthead {
         position: fixed;
         top: 0;
+        z-index:999999999999999999999999;
         background: #333333;
     }
     .mastfoot {
