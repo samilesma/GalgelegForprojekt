@@ -39,6 +39,7 @@ public class GalgelogikFunc {
     private static final String REST_CHAT_URL = "http://galgeleg.dk/GalgelegWeb/ChatServlet";
     private static final String TYPE_GETMESSAGE = "getmessage";
     private static final String PARAMETER_DATE = "&date";
+    private static final String PARAMETER_TIME = "&time=";
 
     public boolean erSidsteBogstavKorrekt(String sid) throws ExecutionException, InterruptedException, JSONException {
         JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT + PARAMETER_SID + sid).get());
@@ -99,9 +100,9 @@ public class GalgelogikFunc {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAETBOGSTAV + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
     }
 
-    public void gaet(String bogstav, String sid) throws ExecutionException, InterruptedException, JSONException {
+    public JSONObject gaet(String bogstav, String sid, int time) throws ExecutionException, InterruptedException, JSONException {
         // FIXME: 11/05/2017 16.28 TILFØJ TIME
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAET + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
+        return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAET + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid + PARAMETER_TIME + time).get());
     }
 
     public JSONObject hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
@@ -121,8 +122,8 @@ public class GalgelogikFunc {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_HENTURL);
     }
 
-    public void nulstil(String sid) throws ExecutionException, InterruptedException, JSONException {
-        new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_NULSTIL + PARAMETER_SID + sid);
+    public JSONObject nulstil(String sid) throws ExecutionException, InterruptedException, JSONException {
+        return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_NULSTIL + PARAMETER_SID + sid).get());
     }
 
     public void opdaterSynligtOrd(String sid) throws ExecutionException, InterruptedException, JSONException {

@@ -91,8 +91,8 @@ public class AndroidServlet extends HttpServlet {
             case "gaet":
                 String letter = request.getParameter("bogstav");
                 String sid = request.getParameter("sid");
-                int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
                 spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
+                int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
                 if (spil.check(Arrays.asList(sid, "erSpilletVundet"))) {
                     int tid = Integer.parseInt(request.getParameter("time"));
                     connector con = new connector();
@@ -106,6 +106,7 @@ public class AndroidServlet extends HttpServlet {
                 returnObj.put("antalForkerteBogstaver", forkerte);
                 returnObj.put("brugteBogstaver", new JSONArray(gson.toJson(spil.getlist(Arrays.asList(sid, "getBrugteBogstaver")))));
                 returnObj.put("synligtOrd", spil.get(Arrays.asList(sid, "getSynligtOrd")));
+                returnObj.put("ordet", spil.get(Arrays.asList(sid, "getOrdet")));
                 break;
             case "hentBruger":
                 String name = request.getParameter("username");
@@ -130,6 +131,7 @@ public class AndroidServlet extends HttpServlet {
                 break;
             case "nulstil":
                 spil.doit(Arrays.asList(request.getParameter("sid"), "nulstil"));
+                returnObj.put("synligtOrd", spil.get(Arrays.asList(request.getParameter("sid"), "getSynligtOrd")));
                 break;
             case "opdaterSynligtOrd":
                 spil.doit(Arrays.asList(request.getParameter("sid"), "opdaterSynligtOrd"));

@@ -39,7 +39,7 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
 
         try {
             JSONObject jsonObject = new JSONObject(new Web().execute("http://localhost:8080/GalgelegWeb/ChatServlet?").get());
-            String nameMsg = jsonObject.getString("")
+            String nameMsg = jsonObject.getString("");
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

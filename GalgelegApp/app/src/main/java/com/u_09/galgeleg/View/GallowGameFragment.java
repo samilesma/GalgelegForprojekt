@@ -26,7 +26,9 @@ import android.widget.ViewSwitcher;
 import com.u_09.galgeleg.Model.GalgelogikFunc;
 import com.u_09.galgeleg.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -113,16 +115,19 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
             mGuess = mEtLetter.getText().toString();
             String guessInfo;
             try {
-                if (mGame.getBrugteBogstaver(User.sid).contains(mGuess)) guessInfo = "Allerede brugt!";
-                else if (mGame.getOrdet(User.sid).contains(mGuess)) guessInfo = "Super! Gættet var korrekt!";
+                JSONObject returnObj = mGame.gaet(mGuess, User.sid, 0);
+                Log.d("FORRIGEFORKERTE", "" + Integer.parseInt(mTvWrongLetters.getText().toString().split("/")[0]));
+                Log.d("ANTALFORKERTE", "" + returnObj.getInt("antalForkerteBogstaver"));
+                int forrigeForkerte = Integer.parseInt(mTvWrongLetters.getText().toString().split("/")[0]);
+                if (mTvGuessedLetters.getText().toString().contains(mGuess)) guessInfo = "Allerede brugt!";
+                else if (forrigeForkerte == returnObj.getInt("antalForkerteBogstaver")) guessInfo = "Super! Gættet var korrekt!";
                 else guessInfo = "Øv! Forkert gæt!";
-                mGame.gaetBogstav(mGuess, User.sid);
-                updateUIOnGuess();
+                updateUIOnGuess(returnObj);
                 Snackbar.make(mView, guessInfo, Snackbar.LENGTH_SHORT).show();
-                // mProgressBar1.setVisibility(View.INVISIBLE);
             } catch (InterruptedException | ExecutionException | JSONException e) {
                 e.printStackTrace();
             }
+            mProgressBar1.setVisibility(View.INVISIBLE);
         } else if (v == mBtnNewWord) {
             // getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, new ChooseWordPopupFragment()).addToBackStack(null).commit();
             try {
@@ -141,19 +146,23 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         return false;
     }
 
-    public void updateUIOnGuess() throws InterruptedException, ExecutionException, JSONException {
+    public void updateUIOnGuess(JSONObject returnObj) throws InterruptedException, ExecutionException, JSONException {
+        String ordet = returnObj.getString("ordet");
+        String synligtOrd = returnObj.getString("synligtOrd");
+        final int antalForkerteBogstaver = returnObj.getInt("antalForkerteBogstaver");
+        JSONArray brugteBogstaver = returnObj.getJSONArray("brugteBogstaver");
         mEtLetter.setText("");
         mEtLetter.requestFocus();
-        mTvTheWord.setText(mGame.getSynligtOrd(User.sid));
-        mTvGuessedLetters.setText(mGame.getBrugteBogstaver(User.sid).toString());
-        mTvWrongLetters.setText(mGame.getAntalForkerteBogstaver(User.sid) + "/7");
+        mTvTheWord.setText(synligtOrd);
+        mTvGuessedLetters.setText(brugteBogstaver.toString());
+        mTvWrongLetters.setText(antalForkerteBogstaver + "/7");
 
-        if (mGame.getAntalForkerteBogstaver(User.sid) != 0)
-            mImageSwitcher.setImageResource(mImages.get(mGame.getAntalForkerteBogstaver(User.sid) - 1));
+        if (antalForkerteBogstaver != 0)
+            mImageSwitcher.setImageResource(mImages.get(antalForkerteBogstaver - 1));
 
-        if (mGame.erSpilletVundet(User.sid) || mGame.erSpilletTabt(User.sid)) {
+        if (antalForkerteBogstaver == 7 || !synligtOrd.contains("*")) {
             String title;
-            if (mGame.erSpilletVundet(User.sid)) {
+            if (!synligtOrd.contains("*")) {
                 title = "Tillykke! Du har vundet spillet!";
                 mTvTitle.setTextColor(getResources().getColor(R.color.green));
                 mImageSwitcher.setImageResource(R.drawable.vundet);
@@ -161,7 +170,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 title = "Øv! Du har tabt spillet!";
                 mTvTitle.setTextColor(getResources().getColor(R.color.red));
                 mTvTheWordIs.setText(R.string.ordet_var);
-                mTvTheWord.setText(mGame.getOrdet(User.sid));
+                mTvTheWord.setText(ordet);
             }
 
             mTvTitle.setText(title);
@@ -172,11 +181,7 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     String playerName = mEtName.getText().toString();
-                    try {
-                        mPrefs.edit().putInt(playerName, mGame.getAntalForkerteBogstaver(User.sid)).apply();
-                    } catch (InterruptedException | ExecutionException | JSONException e) {
-                        e.printStackTrace();
-                    }
+                    mPrefs.edit().putInt(playerName, antalForkerteBogstaver).apply();
                 }
             }).setNegativeButton("Annullér", new DialogInterface.OnClickListener() {
                 @Override
@@ -195,14 +200,14 @@ public class GallowGameFragment extends Fragment implements View.OnClickListener
         mTvTitle.setVisibility(View.INVISIBLE);
         mTvTitle.setText("");
         mTvTheWordIs.setText(R.string.ordet_er);
-        mTvTheWord.setText(mGame.getSynligtOrd(User.sid));
+        mTvTheWord.setText(mGame.nulstil(User.sid).getString("synligtOrd"));
+
         mGame.getBrugteBogstaver(User.sid).clear();
         // mGame.setAntalForkerteBogstaver(0);
 
         mTvGuessedLetters.setText("[]");
         mTvWrongLetters.setText("0/7");
         mEtLetter.setText("");
-        Log.d("ORDET ER: ", "" + mGame.getOrdet(User.sid));
         // mProgressBar1.setVisibility(View.INVISIBLE);
     }
 
