@@ -62,7 +62,7 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void updatechat() throws ExecutionException, InterruptedException, JSONException {
         JSONObject jsonObject = new JSONObject(new Web().execute("http://localhost:8080/GalgelegWeb/ChatServlet?").get());
-
+/*
         ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
         msg.add(new ArrayList<String>());
         msg.add(new ArrayList<String>());
@@ -73,6 +73,7 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
             msg.get(1).add(rs.getString("msg"));
             msg.get(2).add(rs.getString("timestamp"));
         }
+        */
     }
 
     @Override

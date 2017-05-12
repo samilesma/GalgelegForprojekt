@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.u_09.galgeleg.Model.GalgelogikFunc;
 import com.u_09.galgeleg.R;
+
+import org.json.JSONException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class HighScoreFragment extends Fragment implements View.OnClickListener {
 
@@ -48,7 +53,15 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
         myPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
 
         fillHighscoreList();
-
+        try {
+            Log.d("HIGHSCORES", "" + new GalgelogikFunc().getHighscores().toString());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return rod;
     }
 

@@ -40,6 +40,7 @@ public class GalgelogikFunc {
     private static final String TYPE_GETMESSAGE = "getmessage";
     private static final String PARAMETER_DATE = "&date";
     private static final String PARAMETER_TIME = "&time=";
+    private static final String TYPE_GETHIGHSCORES = "getHighscores";
 
     public boolean erSidsteBogstavKorrekt(String sid) throws ExecutionException, InterruptedException, JSONException {
         JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT + PARAMETER_SID + sid).get());
@@ -136,5 +137,10 @@ public class GalgelogikFunc {
     public JSONObject hentBeskeder(long timestamp) throws ExecutionException, InterruptedException, JSONException {
         JSONObject jsonObject = new JSONObject(new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_GETMESSAGE + PARAMETER_DATE + timestamp).get());
         return jsonObject;
+    }
+
+    public JSONArray getHighscores() throws ExecutionException, InterruptedException, JSONException {
+        JSONObject jsonObject = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETHIGHSCORES).get());
+        return jsonObject.getJSONArray("highscores");
     }
 }
