@@ -9,6 +9,7 @@
 if(session.getAttribute("currUser") == null || session.getAttribute("currUser").equals("")) response.sendRedirect("index.jsp");
 String currUser = (String) request.getSession().getAttribute("currUser");
 String currName = (String) request.getSession().getAttribute("currName");
+int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,7 +26,8 @@ String currName = (String) request.getSession().getAttribute("currName");
 		<!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
 	</head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-         <script src="ajax.js"></script>
+        <script src="js.js"></script>
+        <script src="ajax.js"></script>
         <script>
         function escapeHtml(text) {
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
@@ -141,6 +143,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 							
 						}
 						%>
+                                                <p class="lead">Tid: <span class="timer"><%=currTime%></span></p>
 						<form action="AndroidServlet" method="post" id="guessForm" class="sendmsg">
 							<div class="form-group">
 								<label for="letter">Bogstav</label>

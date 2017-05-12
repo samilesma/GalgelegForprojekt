@@ -92,7 +92,6 @@
                                         </tr>
                                         <%
                                             connector con = new connector();
-                                            
                                             ResultSet rUser = con.select("SELECT sid,name,surname FROM users");
                                             while (rUser.next()) {
                                                 if(!con.check("SELECT p1,p2 FROM challenges WHERE p1='"+currUser+"' "
