@@ -98,7 +98,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 						%>
 						<h2 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h2>  
 						<hr/>
-                                            <div class="col-xs-6">
+                                            <div class="col-sm-6">
 						
 						<div class="row">
 							<div class="col-xs-12">
@@ -207,7 +207,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 					%>
 					
 				</div>
-                                        <div class="col-xs-6">
+                                        <div class="col-sm-6">
                    <div id="chatbox" style="width:100%; height:375px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
                     <br/>
                     <form action="ChatServlet" method="post" class="ajax">

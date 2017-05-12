@@ -11,9 +11,7 @@ import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -47,7 +45,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println(name);
         System.out.println(pass);
         
-        if (spil.hentBruger(name, pass)) {
+        if (spil.hentBruger(name.toLowerCase(), pass)) {
             connector con=new connector();
             ResultSet rs;
             try {
