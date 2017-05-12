@@ -83,35 +83,29 @@ public class AndroidServlet extends HttpServlet {
             case "getSynligtOrd":
                 String synligtOrd = spil.get(Arrays.asList(request.getParameter("sid"), "getSynligtOrd"));
                 returnObj.put("synligtOrd", synligtOrd);
-                returnObj.put("TEST", "NetBeans lugter");
                 break;
             case "gaetBogstav":
                 String bogstav = request.getParameter("bogstav");
                 spil.doit(Arrays.asList(request.getParameter("sid"), bogstav, "gaetBogstav"));
                 break;
             case "gaet":
-                out.println("TEST 0");
                 String letter = request.getParameter("bogstav");
                 String sid = request.getParameter("sid");
                 int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
                 spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
-                out.println("TEST 1");
                 if (spil.check(Arrays.asList(sid, "erSpilletVundet"))) {
-                    out.println("TEST 2");
                     int tid = Integer.parseInt(request.getParameter("time"));
                     connector con = new connector();
                     con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
                     returnObj.put("type", 1);
                 }
                 else if (spil.check(Arrays.asList(sid, "erSpilletTabt"))) {
-                    out.println("TEST 3");
                     returnObj.put("type", 0);
                 }
                 Gson gson = new Gson();
                 returnObj.put("antalForkerteBogstaver", forkerte);
-                returnObj.put("brugteBogstaver", gson.toJson(spil.getlist(Arrays.asList(sid, "getBrugteBogstaver"))));
+                returnObj.put("brugteBogstaver", new JSONArray(gson.toJson(spil.getlist(Arrays.asList(sid, "getBrugteBogstaver")))));
                 returnObj.put("synligtOrd", spil.get(Arrays.asList(sid, "getSynligtOrd")));
-                out.println("TEST 4");
                 break;
             case "hentBruger":
                 String name = request.getParameter("username");
