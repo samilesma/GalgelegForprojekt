@@ -64,6 +64,7 @@
                                     if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
                                     <li><a href="game.jsp">Spil</a></li>
                                     <li><a href="chat.jsp">Chat</a></li>
+                                    <li><a href="challenges.jsp">Udfordringer</a></li>
                                     <li class="active"><a href="#">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
                                     
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                     </br>
-                    <div class="inner cover">
+                    <div class="inner cover ts-content">
                         <%
                             String currUser = (String) request.getSession().getAttribute("currUser");
                             if (currUser != null) {
@@ -114,8 +115,8 @@
                         <hr/>
                     </div>  
 
-                    <div class="mastfoot">
-                        <div class="inner">
+                    <div class="mastfoot-s">
+                        <div class="inner-s">
                             <p>Lavet af gruppe <a href="http://tourneo.dk/">TS</a></p>
                         </div
                     </div>

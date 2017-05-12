@@ -24,6 +24,44 @@ String currName = (String) request.getSession().getAttribute("currName");
 		<title>Galgeleg</title>
 		<!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
 	</head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+         <script src="ajax.js"></script>
+        <script>
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+        
+        function setMsg(msg,sid,time)
+        {
+            jQuery("div#chatbox").append("<div class='mesg'><div class='name'>"+sid+":<span style='margin-left:1em'> </span></div><div class='msg'>"+escapeHtml(msg)+"</div></div><br/>");
+            jQuery("#chatbox").scrollTop($("#chatbox").prop("scrollHeight"));
+        
+        }
+        
+        jQuery("document").ready(function(){
+            jQuery("form").submit(function(){
+                setMsg($(this).find("#usermsg").val(),"<%=currName%>",new Date() / 1000 | 0);
+                jQuery("#usermsg").val("");
+            });
+        });
+        
+        setInterval(function(){
+            var date = (new Date() / 1000 | 0)-3;
+            jQuery.ajax({
+                cache:false,
+                type:"POST",
+                dataType: "json",
+                url:"ChatServlet",
+                data:{type:"getmessage",date:date},
+                success:function(data)
+                {
+                    for(var i=1; i<=data[0].length; i++) {
+                        setMsg(data[1][i-1],data[0][i-1],data[2][i-1]);
+                    }
+                }
+            });
+        },3000);
+        </script>
 		<% galgeleg.GalgelogikService service = new galgeleg.GalgelogikService(); %>
 		<% galgeleg.GalgeI spil = service.getGalgelogikPort(); %>
 		<% String ordet = spil.get(Arrays.asList(currUser,"getOrdet")); %>
@@ -46,6 +84,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 									if(currAdmin) { %> <li><a href="admin.jsp">Admin</a></li> <% } %>
 									<li class="active"><a href="#">Spil</a></li>
 									<li><a href="chat.jsp">Chat</a></li>
+                                                                        <li><a href="challenges.jsp">Udfordringer</a></li>
 									<li><a href="highscore.jsp">Highscore</a></li>
 									<li><a href="logout.jsp">Log ud</a></li>
 								</ul>
@@ -53,12 +92,14 @@ String currName = (String) request.getSession().getAttribute("currName");
 						</div>
 					</div>
 					<br/>
-					<div class="inner cover">
-						<%
+					<div class="inner cover ts-content">
+                                            <%
 						if (currUser != null) {
 						%>
 						<h2 class="cover-heading">Velkommen til Galgespillet <%=currName%> </h2>  
 						<hr/>
+                                            <div class="col-xs-6">
+						
 						<div class="row">
 							<div class="col-xs-12">
 								<img id="hangmanpic" src=
@@ -111,7 +152,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 							<button type="submit" class="btn btn-lg btn-primary">Nyt spil</button>
 						</form>
 						<hr/>
-					</div>
+					
 					<%
 					try {
 						boolean result = spil.check(Arrays.asList(currUser,"erSidsteBogstavKorrekt"));
@@ -164,13 +205,26 @@ String currName = (String) request.getSession().getAttribute("currName");
 						
 					}
 					%>
-					<div class="mastfoot">
-						<div class="inner">
+					
+				</div>
+                                        <div class="col-xs-6">
+                   <div id="chatbox" style="width:100%; height:375px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
+                    <br/>
+                    <form action="ChatServlet" method="post" class="ajax">
+                        <input name="usermsg"  type="text" class="form-control" id="usermsg" style="margin-bottom:15px;"/>
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:100px;">Send</button>
+                    </form>
+                                        </div>
+                                        
+                            
+                                        <div class="clearfix"></div>
+                                        <div class="mastfoots">
+						<div class="inners">
 							<p>Lavet af gruppe <a href="http://tourneo.dk/">TS</a></p>
 						</div>
 					</div>
-				</div>
 			</div>
+                </div>
 		</div>
 		<%
 	}
@@ -184,7 +238,7 @@ String currName = (String) request.getSession().getAttribute("currName");
 	<!-- Bootstrap core JavaScript
 		================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
 	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

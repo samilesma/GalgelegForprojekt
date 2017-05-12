@@ -73,7 +73,7 @@
                                     <li class="active"><a href="#">Admin</a></li>
                                     <li><a href="game.jsp">Spil</a></li>
                                     <li><a href="chat.jsp">Chat</a></li>
-                                    <li><a href="challenges.jsp">Chall</a></li>
+                                    <li><a href="challenges.jsp">Udfordringer</a></li>
                                     <li><a href="highscore.jsp">Highscore</a></li>
                                     <li><a href="logout.jsp">Log ud</a></li>
                                 </ul>
@@ -81,10 +81,7 @@
                         </div>
                     </div>
                     </br>
-                    <div class="inner cover">
-                        
-                        </br>
-                        </br>
+                    <div class="inner cover ts-content">
                         <h1 class="cover-heading">Highscore</h1>
                         <hr/>
                         <table style="width:100%" class="lead">
@@ -133,7 +130,7 @@
                                             
                                     </td>
                                     <input type="hidden" name="sid" value="<% rUser.getString("sid"); %>" />
-                                    <td><input type='submit' /></td>
+                                    <td><input class="btn btn-success" type='submit' value="Udfør" /></td>
                                    
 
                                     

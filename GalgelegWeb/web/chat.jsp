@@ -72,7 +72,7 @@ String currName = (String) request.getSession().getAttribute("currName");
                                 <li><a href="admin.jsp">Admin</a></li>
                                 <li><a href="game.jsp">Spil</a></li>
                                 <li class="active"><a href="#">Chat</a></li>
-                                <li><a href="challenges.jsp">Chall</a></li>
+                                <li><a href="challenges.jsp">Udfordringer</a></li>                                
                                 <li><a href="highscore.jsp">Highscore</a></li>
                                 <li><a href="logout.jsp">Log ud</a></li>
                             </ul>
@@ -80,7 +80,7 @@ String currName = (String) request.getSession().getAttribute("currName");
                     </div>
                 </div>
                 <br/>
-                <div class="inner cover">
+                <div class="inner cover ts-content">
                     <h1>Chat</h1>
                     <div id="menu">
                         <p class="welcome">Galgelegs Chat <b></b></p>
