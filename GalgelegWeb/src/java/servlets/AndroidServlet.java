@@ -11,7 +11,12 @@ import galgeleg.InvocationTargetException_Exception;
 import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -98,8 +103,7 @@ public class AndroidServlet extends HttpServlet {
                     connector con = new connector();
                     con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
                     returnObj.put("type", 1);
-                }
-                else if (spil.check(Arrays.asList(sid, "erSpilletTabt"))) {
+                } else if (spil.check(Arrays.asList(sid, "erSpilletTabt"))) {
                     returnObj.put("type", 0);
                 }
                 Gson gson = new Gson();
@@ -135,6 +139,24 @@ public class AndroidServlet extends HttpServlet {
                 break;
             case "opdaterSynligtOrd":
                 spil.doit(Arrays.asList(request.getParameter("sid"), "opdaterSynligtOrd"));
+                break;
+            case "getHighscores":
+                connector con = new connector();
+                ResultSet rs = con.select("SELECT singleplayer.sid, wrong, time, name, surname, timestamp FROM singleplayer LEFT JOIN users ON (singleplayer.sid = users.sid) ORDER BY wrong,time,timestamp LIMIT 10");
+                JSONArray jsonArray = new JSONArray();
+                int i = 0;
+                while (rs.next()) {
+                    i++;
+                    String fullname = rs.getString("name") + rs.getString("surname");
+                    int wrong = rs.getInt("wrong");
+                    int time = rs.getInt("time");
+                    Timestamp stamp = new Timestamp(rs.getInt("timestamp") * 1000L);
+                    Date currdate = new Date(stamp.getTime());
+                    Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
+                    String date = format.format(currdate);
+                    jsonArray.put(new JSONObject().put("fullname", fullname).put("wrong", wrong).put("time", time).put("date", date));
+                }
+                returnObj.put("highscores", jsonArray);
                 break;
             /* 
             case "setOrdet":
