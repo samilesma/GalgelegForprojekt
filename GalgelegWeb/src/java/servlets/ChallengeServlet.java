@@ -10,6 +10,7 @@ import galgeleg.InvocationTargetException_Exception;
 import galgeleg.NoSuchMethodException_Exception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -50,29 +51,47 @@ public class ChallengeServlet extends HttpServlet {
                 try {
                     spil.doit(Arrays.asList(currUser, "nulstil"));
                     ordet = spil.get(Arrays.asList(currUser, "getOrdet"));
+                    spil.doit(Arrays.asList(currUser, "nulstil"));
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(ChallengeServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+                //ResultSet rs = con.select("SELECT challenges.id,word FROM challenges WHERE challenges.id = "+ challengeIDD + "");
+                //ordet = rs.getString("word");
+                f.challengeFriend(currUser, challenged, ordet);
                 System.out.println("C: " + challenged);
 
-                f.challengeFriend(currUser, challenged, ordet);
-
-                response.sendRedirect("game.jsp");
+                request.setAttribute("name",Integer.parseInt(request.getParameter("cid")) );
+                request.getRequestDispatcher("page.jsp").forward(request, response);
             } else {
                 System.out.println("SAMME BRUGER!");
                 response.sendRedirect("challenges.jsp");
             }
-        } 
-        
-        else if (request.getParameter("type").equals("accept")) {
-            int challengeID = Integer.parseInt(request.getParameter("id"));
-            con.update("UPDATE challenges set acceptchl=1 WHERE id=" + challengeID + "");
-        } 
-        
-        else if (request.getParameter("type").equals("spil")){
-            System.out.println("IIIIIIIIIIIDDDDDDDDD::::"+request.getParameter("cid"));
+        } else if (request.getParameter("type").equals("spil")) {
+            int challengeIDD = Integer.parseInt(request.getParameter("cid"));
+            System.out.println("11111111111111111");
+            ResultSet rs = con.select("SELECT word FROM challenges WHERE challenges.id = " + challengeIDD + "");
+            System.out.println("22222222222222222");
+            String ord = rs.getString("word");
+            System.out.println("33333333333333333");
+            //spil.doit(arg0);
+            System.out.println("4444444444444444444");
             response.sendRedirect("game.jsp");
+            System.out.println("5555555555555555555");
+
+        } else if (request.getParameter("type").equals("acceptdecline")) {
+
+            if (request.getParameter("sub").equals("Accepter")) {
+                int challengeID = Integer.parseInt(request.getParameter("id"));
+                con.update("UPDATE challenges set acceptchl=1 WHERE id=" + challengeID + "");
+                response.sendRedirect("challenges.jsp");
+            } else if (request.getParameter("sub").equals("Afvis")) {
+                int challengeID = Integer.parseInt(request.getParameter("id"));
+                con.update("UPDATE challenges set acceptchl=-1 WHERE id=" + challengeID + "");
+                response.sendRedirect("challenges.jsp");
+            }
+
         }
     }
 

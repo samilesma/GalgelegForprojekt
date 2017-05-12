@@ -239,6 +239,7 @@
 <xs:complexType name="galgelogik">
 <xs:sequence>
 <xs:element name="b" type="tns:bruger" minOccurs="0"></xs:element>
+<xs:element name="ordet" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -309,7 +310,7 @@
 
 <xs:complexType name="setOrdet">
 <xs:sequence>
-<xs:element name="arg0" type="xs:int"></xs:element>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 

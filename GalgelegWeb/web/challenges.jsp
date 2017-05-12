@@ -183,11 +183,11 @@
                                                     out.print("<td>"+format.format(date)+"</td>");
                                                      %>
                                                     <input type="hidden" name="id" value="<%  out.print(myChallenges.getString("challenges.id")); %>" />
-                                                    <td style='width:350px;margin-left:-150px;'>
-                                                        <input type='hidden' name='type' value='accept' />
-                                                        <input class="btn btn-success" type='submit' value="Accepter" >
+                                                    <td style='width:50px;margin-left:15px;'>
+                                                        <input type='hidden' name='type' value='acceptdecline' />
+                                                        <input class="btn btn-success" type='submit' name="sub" value="Accepter" >
+                                                        <input class="btn btn-success" type='submit' name="sub" value="Afvis" >
                                                     </td>
-                                                    
                                                     
                                                     <%
                                                     out.println("</form>");
