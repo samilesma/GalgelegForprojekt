@@ -76,7 +76,7 @@ public class ChallengeServlet extends HttpServlet {
                 con.update("UPDATE challenges set acceptchl=1 WHERE id=" + challengeID + "");
                 request.getSession().setAttribute("chall", challengeID);
                 request.getSession().setAttribute("currTime",System.currentTimeMillis());
-                ResultSet rs = con.select("SELECT word FROM challenges WHERE challenges = " + challengeID + "");
+                ResultSet rs = con.select("SELECT word FROM challenges WHERE id = " + challengeID + "");
                 String ord = rs.getString("word");
                 spil.doit(Arrays.asList(currUser,ord,"setOrdet"));
                 response.sendRedirect("game.jsp");
