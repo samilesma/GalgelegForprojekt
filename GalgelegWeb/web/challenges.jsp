@@ -86,8 +86,7 @@
                                 <div class="tab-pane active" id="1b">
                                     <table style="width:850px" class="lead">
                                         <tr class="a">
-                                            <th>Navn</th>
-                                            <th>Efternavn</th>
+                                            <th style='float:left;'>Navn</th>
                                             <th></th>
                                         </tr>
                                         <%
@@ -98,8 +97,8 @@
                                                         + "AND p2='" + rUser.getString("sid")+ "' AND acceptchl=0")){
                                                     out.println("<tr>");
                                                     out.println("<form action='ChallengeServlet' method='post' style='margin:5px 0px;'>");
-                                                    out.print("<td>" + rUser.getString("name") + "</td>");
-                                                    out.print("<td>" + rUser.getString("surname") + "</td>"); %>
+                                                    out.print("<td style='float:left;'>"+rUser.getString("name")+" "+rUser.getString("surname")+"</td>");
+                                                    %>
                                                     <input type="hidden" name="sid" value="<%  out.print(rUser.getString("sid")); %>" />
                                                     <td style='width:350px;margin-left:-150px;'>
                                                         <input type='hidden' name='type' value='send' />
@@ -142,7 +141,7 @@
                                                 else if(cUser.getString("acceptchl").equals("1")){
                                                     out.print("<td>"+"Accepteret"+"<td>");
                                         %>
-                                                <input type="hidden" name="cid" value="<%  out.print(cUser.getString("challenges.id")); %>" />
+                                                <input type="hidden" name="id" value="<%  out.print(cUser.getString("challenges.id")); %>" />
                                                 <td style='width:50px;margin-left:15px;'>
                                                         <input class="btn btn-success" type='submit' value="Spil" >
                                                         <input type='hidden' name='type' value='spil' />

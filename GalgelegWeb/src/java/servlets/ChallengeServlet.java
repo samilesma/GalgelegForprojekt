@@ -62,9 +62,14 @@ public class ChallengeServlet extends HttpServlet {
                 String zirt = request.getParameter("stid");
             }
         } else if (request.getParameter("type").equals("spil")) {
-            int challengeIDD = Integer.parseInt(request.getParameter("cid"));
-            ResultSet rs = con.select("SELECT word FROM challenges WHERE challenges.id = " + challengeIDD + "");
+            int challengeID = Integer.parseInt(request.getParameter("id"));
+            request.getSession().setAttribute("chall", challengeID);
+            request.getSession().setAttribute("currTime",System.currentTimeMillis());
+            ResultSet rs = con.select("SELECT word FROM challenges WHERE id = " + challengeID + "");
+            rs.next();
             String ord = rs.getString("word");
+            spil.doit(Arrays.asList(currUser,ord,"setOrdet"));
+            spil.doit(Arrays.asList(currUser, "opdaterSynligtOrd"));
             response.sendRedirect("game.jsp");
         } else if (request.getParameter("type").equals("acceptdecline")) {
             if (request.getParameter("sub").equals("Accepter")) {
