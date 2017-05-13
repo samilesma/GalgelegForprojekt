@@ -61,6 +61,8 @@ public class ChallengeServlet extends HttpServlet {
             } else {
                 System.out.println("SAMME BRUGER!");
                 response.sendRedirect("challenges.jsp");
+                String zirt = request.getParameter("stid");
+                System.out.println("ZIIIIIIIIIIIIIIIRRRRRRTTTTTT"+zirt);
             }
         } else if (request.getParameter("type").equals("spil")) {
             int challengeIDD = Integer.parseInt(request.getParameter("cid"));
@@ -72,7 +74,12 @@ public class ChallengeServlet extends HttpServlet {
             if (request.getParameter("sub").equals("Accepter")) {
                 int challengeID = Integer.parseInt(request.getParameter("id"));
                 con.update("UPDATE challenges set acceptchl=1 WHERE id=" + challengeID + "");
-                response.sendRedirect("challenges.jsp");
+                request.getSession().setAttribute("chall", challengeID);
+                request.getSession().setAttribute("currTime",System.currentTimeMillis());
+                ResultSet rs = con.select("SELECT word FROM challenges WHERE challenges = " + challengeID + "");
+                String ord = rs.getString("word");
+                spil.doit(Arrays.asList(currUser,ord,"setOrdet"));
+                response.sendRedirect("game.jsp");
             } else if (request.getParameter("sub").equals("Afvis")) {
                 int challengeID = Integer.parseInt(request.getParameter("id"));
                 con.update("UPDATE challenges set acceptchl=-1 WHERE id=" + challengeID + "");

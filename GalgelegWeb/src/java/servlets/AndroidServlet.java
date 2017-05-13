@@ -164,9 +164,8 @@ public class AndroidServlet extends HttpServlet {
                 break;
             /* 
             case "setOrdet":
-                String iString = request.getParameter("i");
-                int i = Integer.parseInt(iString);
-                spil.doit(Arrays.asList(request.getParameter("sid"),i,"setOrdet"));
+                String str = request.getParameter("str");
+                spil.doit(Arrays.asList(request.getParameter("sid"),str,"setOrdet"));
                 break;
              */
         }

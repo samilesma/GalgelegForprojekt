@@ -170,7 +170,7 @@
                                             <th></th>
                                         </tr>
                                         <%
-                                            ResultSet myChallenges = con.select("SELECT challenges.id,p1,users.name,timestamp FROM challenges INNER JOIN users ON p1=users.sid WHERE p2='"+currUser+"' AND acceptchl=0");
+                                            ResultSet myChallenges = con.select("SELECT challenges.id,p1,users.name,users.sid,timestamp FROM challenges INNER JOIN users ON p1=users.sid WHERE p2='"+currUser+"' AND acceptchl=0");
                                             
                                             while (myChallenges.next()) {
                                                     out.println("<tr>");
