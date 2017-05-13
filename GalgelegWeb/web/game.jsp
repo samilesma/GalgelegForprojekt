@@ -111,7 +111,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
                                                                 <%
                                                                 if(chall!=-1) {
                                                                     connector con=new connector();
-                                                                    ResultSet rs=con.select("SELECT p1,p2 FROM challenges WHERE chall="+chall);
+                                                                    ResultSet rs=con.select("SELECT p1,p2 FROM challenges WHERE id="+chall);
                                                                     rs.next();
                                                                     String p=(currUser.equals(rs.getString("p1"))?rs.getString("p2"):rs.getString("p1"));
                                                                     rs=con.select("SELECT name,surname FROM users WHERE sid='"+p+"'");
