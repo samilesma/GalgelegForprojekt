@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.u_09.galgeleg.Model.Function;
+//import com.u_09.galgeleg.Model.Function;
+import com.u_09.galgeleg.Model.GalgelogikFunc;
+
 import com.u_09.galgeleg.Model.Web;
 import com.u_09.galgeleg.R;
 
@@ -25,13 +27,14 @@ import java.util.concurrent.ExecutionException;
  * Created by ibsenb on 18/04/2017.
  */
 
-public class ChatFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private View mView;
     private ListView mLvChat;
     private EditText mEtMsg;
     private Button mBtnSend;
-    private Function function = new Function();
+    private GalgelogikFunc function = new GalgelogikFunc();
+    private long timestamp=System.currentTimeMillis()/1000L;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +64,9 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void updatechat() throws ExecutionException, InterruptedException, JSONException {
-        JSONObject jsonObject = new JSONObject(new Web().execute("http://localhost:8080/GalgelegWeb/ChatServlet?").get());
+        System.out.println(new Web().execute("http://galgeleg.dk/GalgelegWeb/AndroidServlet?type=chat&timestamp="+timestamp).get());
+        //JSONObject jsonObject = new JSONObject(new Web().execute("http://localhost:8080/GalgelegWeb/ChatServlet?type=chat&timestamp="+timestamp).get());
+        timestamp+=5;
 /*
         ArrayList<ArrayList<String>> msg = new ArrayList<ArrayList<String>>();
         msg.add(new ArrayList<String>());
@@ -77,15 +82,9 @@ public class ChatFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
     public void onClick(View v) {
         if(v==mBtnSend){
             String message = mEtMsg.getText().toString();
         }
-
     }
 }

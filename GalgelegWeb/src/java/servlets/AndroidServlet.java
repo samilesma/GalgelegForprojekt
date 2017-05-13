@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import utils.connector;
+import utils.functions;
 
 /**
  *
@@ -162,17 +163,17 @@ public class AndroidServlet extends HttpServlet {
                 }
                 returnObj.put("highscores", jsonArray);
                 break;
-            /* 
+            case "chat":
+                functions f=new functions();
+                returnObj=f.getMessagesJson(request.getParameter("sid"),Long.parseLong(request.getParameter("timestamp")));
+                break;
             case "setOrdet":
                 String str = request.getParameter("str");
                 spil.doit(Arrays.asList(request.getParameter("sid"),str,"setOrdet"));
                 break;
-             */
         }
         out.println(returnObj.toString());
-
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -235,5 +236,4 @@ public class AndroidServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

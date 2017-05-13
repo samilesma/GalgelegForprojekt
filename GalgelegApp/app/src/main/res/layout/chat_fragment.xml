@@ -6,7 +6,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/lightblack"
                     android:gravity="center"
-                    tools:context=".View.ChatFragment">
+                    >
 
     <ListView
         android:id="@+id/lv_chat"

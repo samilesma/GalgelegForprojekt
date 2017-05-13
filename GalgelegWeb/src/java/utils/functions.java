@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -61,6 +64,13 @@ public class functions {
         }
 
         return msg;
+    }
+    
+    public JSONObject getMessagesJson(String sid, long timestamp) throws SQLException, JSONException{
+        ResultSet rs = con.select("SELECT users.name, users.surname, chat.msg, chat.timestamp FROM users RIGHT JOIN chat ON chat.sid=users.sid WHERE chat.deleted=0 AND chat.sid!='"+sid+"' AND chat.timestamp>='"+timestamp+"'");
+        JSONArray ja=new JSONArray();
+        while(rs.next()) ja.put(new JSONObject().put("name", rs.getString("name")+" "+rs.getString("surname")).put("msg", rs.getString("msg")).put("timestamp", rs.getString("timestamp")));
+        return new JSONObject().put("messages",ja);
     }
     
     public ArrayList<ArrayList<String>> getAllMessages() throws SQLException{

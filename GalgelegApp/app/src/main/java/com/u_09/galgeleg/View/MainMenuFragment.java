@@ -34,6 +34,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         // mChatFragment = new ChatFragment();
         mAdminFragment = new AdminFragment();
         mGallowGameFragment = new GallowGameFragment();
+        mChatFragment = new ChatFragment();
 
         mTvTitle = (TextView) mView.findViewById(R.id.tv_title);
         mTvTitle.setText("Velkommen til Galgespillet \n" + User.fullname);
@@ -60,7 +61,8 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHighScoreFragment).addToBackStack(null).commit();
         } else if (v == mBtnHelp) {
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mHelpFragment).addToBackStack(null).commit();
-        } else if(v == mBtnChat){
+        }
+        else if(v == mBtnChat){
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in_pop, R.anim.slide_out_pop).replace(R.id.fragment_content, mChatFragment).addToBackStack(null).commit();
         }
     }
