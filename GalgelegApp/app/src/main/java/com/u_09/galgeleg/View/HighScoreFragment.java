@@ -1,6 +1,5 @@
 package com.u_09.galgeleg.View;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,69 +18,79 @@ import android.widget.TextView;
 import com.u_09.galgeleg.Model.GalgelogikFunc;
 import com.u_09.galgeleg.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class HighScoreFragment extends Fragment implements View.OnClickListener {
 
     SharedPreferences myPrefs;
-    ArrayAdapter adapter;
-    String[] names = {};
-    Integer[] scores = {};
+    ArrayAdapter mAdapter;
+    String[] mNames = {};
+    Integer[] mWrongs = {};
+    Integer[] mTime = {};
 
-    ListView listView;
-    Button buttonClearAll;
+    ListView mListView;
+    Button mBtnClearAll;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rod = inflater.inflate(R.layout.highscore_fragment, container, false);
 
-        listView = (ListView) rod.findViewById(R.id.highscore_list);
-        buttonClearAll = (Button) rod.findViewById(R.id.button_clear_all);
+        mListView = (ListView) rod.findViewById(R.id.highscore_list);
+        mBtnClearAll = (Button) rod.findViewById(R.id.button_clear_all);
 
-        buttonClearAll.setOnClickListener(this);
+        mBtnClearAll.setOnClickListener(this);
 
-        myPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
+        // myPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
 
-        fillHighscoreList();
         try {
-            Log.d("HIGHSCORES", "" + new GalgelogikFunc().getHighscores().toString());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            fillHighscoreList();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return rod;
     }
 
-    private void fillHighscoreList() {
-        Map map = myPrefs.getAll();
-        Map sortedMap = sortByValue(map);
+    private void fillHighscoreList() throws JSONException {
 
-        Object[] namesArray = sortedMap.keySet().toArray();
-        Object[] scoresArray = sortedMap.values().toArray();
-        names = Arrays.copyOf(namesArray, namesArray.length, String[].class);
-        scores = Arrays.copyOf(scoresArray, scoresArray.length, Integer[].class);
-
-        adapter = new ArrayAdapter(getContext(), R.layout.highscore_element, R.id.highscore_element_score, scores) {
+        JSONArray array = null;
+        try {
+            array = new GalgelogikFunc().getHighscores();
+        } catch (JSONException | InterruptedException| ExecutionException e) {
+            e.printStackTrace();
+        }
+        if(array.length() > 0) {
+            mNames = new String[array.length()];
+            mWrongs = new Integer[array.length()];
+            mTime = new Integer[array.length()];
+            for(int i = 0; i < array.length(); i++) {
+                JSONObject object = array.getJSONObject(i);
+                mNames[i] = object.getString("fullname");
+                mWrongs[i] = object.getInt("wrong");
+                mTime[i] = object.getInt("time");
+                Log.d("Array", "Index: " + i + array.getJSONObject(i));
+                Log.d("Array", "Value fullname: " + object.getString("fullname"));
+                Log.d("Array", "Value wrong: " + object.getInt("wrong"));
+                Log.d("Array", "Value time: " + object.getInt("time"));
+                Log.d("Array", "Value date: " + object.getString("date"));
+            }
+        }
+        mAdapter = new ArrayAdapter(getContext(), R.layout.highscore_element, R.id.highscore_element_wrong, mWrongs) {
             @NonNull
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
                 TextView highscoreElementName = (TextView) view.findViewById(R.id.highscore_element_name);
-                highscoreElementName.setText(names[position].toString());
+                TextView highscoreElementTime = (TextView) view.findViewById(R.id.highscore_element_time);
+
+                highscoreElementName.setText(mNames[position].toString());
+                highscoreElementTime.setText(mTime[position].toString());
 
                 ImageView highscoreIcon = (ImageView) view.findViewById(R.id.highscore_icon);
                 if (position == 0) {
@@ -96,35 +105,20 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
             }
         };
 
-        listView.setAdapter(adapter);
-    }
-
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
-        List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
-            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-
-        Map<K, V> result = new LinkedHashMap<>();
-        for (Map.Entry<K, V> entry : list) {
-            result.put(entry.getKey(), entry.getValue());
-        }
-        return result;
+        mListView.setAdapter(mAdapter);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == buttonClearAll) {
+        if (v == mBtnClearAll) {
 
             Snackbar snackbar = Snackbar.make(getView().findViewById(R.id.button_clear_all), "Er du sikker?", Snackbar.LENGTH_LONG).setAction("Ja", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Snackbar snackbar1 = Snackbar.make(getView().findViewById(R.id.button_clear_all), "Ryddet!", Snackbar.LENGTH_SHORT);
                     snackbar1.show();
-                    myPrefs.edit().clear().apply();
-                    fillHighscoreList();
+                    // myPrefs.edit().clear().apply();
+                    // fillHighscoreList();
                 }
             });
             snackbar.show();
