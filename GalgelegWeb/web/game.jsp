@@ -143,7 +143,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 							
 						}
 						%>
-                                                <p class="lead">Tid: <span class="timer"><%=currTime%></span></p>
+                                                <p class="lead">Tid: <span class="timer" id="time"><%=currTime%></span></p>
 						<form action="AndroidServlet" method="post" id="guessForm" class="sendmsg">
 							<div class="form-group">
 								<label for="letter">Bogstav</label>

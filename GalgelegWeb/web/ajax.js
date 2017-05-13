@@ -20,6 +20,7 @@ $('document').ready(function(){
                     document.getElementById("newGameForm").hidden = true;
                     document.getElementById("brugteBogstaver").innerHTML = "[]";
                     document.getElementById("synligtOrd").innerHTML = data.synligtOrd;
+                    document.getElementById("time").innerHTML = 0;
                 }
             }
         });
@@ -54,7 +55,7 @@ $('document').ready(function(){
                     document.getElementById("hangmanpic").src = 'grafik/tabt.png';
                     document.getElementById("finalMessage").innerHTML = "Øv du har tabt!";
                     document.getElementById("finalMessage").style.color = 'red';
-                    document.getElementById("ordetLabel").innerHTML = "Ordet var <%=ordet%>";
+                    document.getElementById("ordetLabel").innerHTML = "Ordet var "+data.ordet;
                     document.getElementById("guessForm").hidden = true;
                     document.getElementById("newGameForm").hidden = false;
                 }
