@@ -134,7 +134,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 						<%
 						try {
 							String synligtOrd = spil.get(Arrays.asList(currUser,"getSynligtOrd"));%>
-                                                        <p id="ordetLabel" class="lead"><%=spil.get(Arrays.asList(currUser,"getOrdet"))%> Ordet er: <span id="synligtOrd"><%=synligtOrd%></span></p>
+                                                        <p id="ordetLabel" class="lead"> Ordet er: <%=synligtOrd%></p>
 							<%
 						} catch (Exception ex) {
 							
@@ -162,7 +162,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 						<form action="AndroidServlet" method="post" id="guessForm" class="sendmsg">
 							<div class="form-group">
 								<label for="letter">Bogstav</label>
-								<input type="text" class="form-control" name="bogstav" id="letter" placeholder="Indtast bogstav" required="required" />
+								<input type="text" class="form-control" name="bogstav" id="letter" placeholder="Indtast bogstav" required="required" maxlength=1 />
 							</div>
                                                         <button type="submit" id="btnGuess" class="btn btn-lg btn-primary" >Gæt!</button>
                                                         <input type="hidden" name="sid" value="<%=currUser%>" />
@@ -187,6 +187,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 							document.getElementById("ordetLabel").innerHTML = "Ordet var <%=ordet%>"
 							document.getElementById("guessForm").hidden = true;
 							document.getElementById("newGameForm").hidden = false;
+                                                        timer = false;
 							</script>
 							<%
 						}
@@ -204,6 +205,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 							document.getElementById("finalMessage").style.color = 'green'
 							document.getElementById("guessForm").hidden = true;
 							document.getElementById("newGameForm").hidden = false;
+                                                        timer = false;
 							</script>
 							<%
 						}
@@ -216,7 +218,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
                    <div id="chatbox" style="width:100%; height:375px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
                     <br/>
                     <form action="ChatServlet" method="post" class="ajax" id="msgform">
-                        <input name="usermsg"  type="text" class="form-control" id="usermsg" style="margin-bottom:15px;"/>
+                        <input name="usermsg"  type="text" class="form-control" id="usermsg" style="margin-bottom:15px;" pattern=".{1,}"/>
                         <button type="submit" class="btn btn-lg btn-primary" style="width:100px;">Send</button>
                     </form>
                                         </div>

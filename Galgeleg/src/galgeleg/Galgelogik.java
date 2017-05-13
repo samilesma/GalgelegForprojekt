@@ -156,7 +156,17 @@ public class Galgelogik implements GalgeI {
 
         System.out.println("data = " + data);
 
-        data = data.replaceAll("[^a-zæøå]", " ");
+        data = data.replaceAll("[^a-zA-ZæøåÆØÅ]", " ")
+                .replaceAll("\\w*æ\\w*", "")
+                .replaceAll("\\w*ø\\w*", "")
+                .replaceAll("\\w*å\\w*", "")
+                .replaceAll("\\w*Æ\\w*", "")
+                .replaceAll("\\w*Ø\\w*", "")
+                .replaceAll("\\w*Å\\w*", "")
+                .replaceAll("\\b[\\w']{1,2}\\b", "")
+                .replaceAll("\\s{2,}", " ")
+                .trim().toLowerCase();
+        
         System.out.println("data = " + data);
         muligeOrd.clear();
         muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));

@@ -19,8 +19,10 @@ $('document').ready(function(){
                     document.getElementById("guessForm").hidden = false;
                     document.getElementById("newGameForm").hidden = true;
                     document.getElementById("brugteBogstaver").innerHTML = "[]";
-                    document.getElementById("synligtOrd").innerHTML = data.synligtOrd;
+                    document.getElementById("ordetLabel").innerHTML = "Ordet er: "+data.synligtOrd;
                     document.getElementById("time").innerHTML = 0;
+                    document.getElementById("numbErrors").innerHTML = "0";
+                    timer = true;
                 }
             }
         });
@@ -46,9 +48,9 @@ $('document').ready(function(){
                 else if($("span#numbErrors").html()==data.antalForkerteBogstaver) $("div#alert").html('<div class="alert alert-success" role="alert">Korrekt gæt!</div>');
                 else $("div#alert").html('<div class="alert alert-danger" role="alert">Forkert gæt!</div>');
                 
-                $("span#synligtOrd").html(data.synligtOrd);
-                $("span#brugteBogstaver").html("["+data.brugteBogstaver.join(", ")+"]");
-                $("span#numbErrors").html(data.antalForkerteBogstaver);
+                document.getElementById("ordetLabel").innerHTML = "Ordet er: "+data.synligtOrd;
+                document.getElementById("brugteBogstaver").innerHTML = "["+data.brugteBogstaver.join(", ")+"]";
+                document.getElementById("numbErrors").innerHTML = data.antalForkerteBogstaver;
                 
                 if(data.antalForkerteBogstaver==7)
                 {
@@ -58,6 +60,7 @@ $('document').ready(function(){
                     document.getElementById("ordetLabel").innerHTML = "Ordet var "+data.ordet;
                     document.getElementById("guessForm").hidden = true;
                     document.getElementById("newGameForm").hidden = false;
+                    timer = false;
                 }
                 else if(data.synligtOrd.indexOf("*")==-1)
                 {
@@ -66,6 +69,7 @@ $('document').ready(function(){
                     document.getElementById("finalMessage").style.color = 'green';
                     document.getElementById("guessForm").hidden = true;
                     document.getElementById("newGameForm").hidden = false;
+                    timer = false;
                 }
                 else document.getElementById("hangmanpic").src = 'grafik/forkert'+data.antalForkerteBogstaver+'.png';
             }

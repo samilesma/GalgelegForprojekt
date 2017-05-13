@@ -89,7 +89,7 @@ String currName = (String) request.getSession().getAttribute("currName");
                     <div id="chatbox" style="width:50%; height:500px; margin:auto; border:2px solid #929391; border-radius:20px;"></div>
                     <br/>
                     <form action="ChatServlet" method="post" class="ajax">
-                        <input name="usermsg" type="text" id="usermsg" style="width:400px" />
+                        <input name="usermsg" type="text" id="usermsg" style="width:400px" pattern=".{1,}"/>
                         <button type="submit" class="btn btn-lg btn-primary" style="width:100px;">Send</button>
                     </form>
                 </div>

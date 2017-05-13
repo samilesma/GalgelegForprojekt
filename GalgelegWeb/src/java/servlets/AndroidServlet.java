@@ -98,12 +98,12 @@ public class AndroidServlet extends HttpServlet {
             case "gaet":
                 String letter = request.getParameter("bogstav");
                 String sid = request.getParameter("sid");
-                String p;
+                String p = "";
                 spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
                 int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
                 int tid = (request.getSession().getAttribute("currTime")!=null?(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000):Integer.parseInt(request.getParameter("time")));
                 if(spil.check(Arrays.asList(sid,"erSpilletSlut"))) {
-                    if(request.getSession().getAttribute("chall") == null) {
+                    if(request.getSession().getAttribute("chall") != null) {
                         ResultSet rs=con.select("SELECT p1 FROM challenges WHERE id="+request.getSession().getAttribute("chall"));
                         rs.next();
                         p=(rs.getString("p1").equals(request.getParameter("sid"))?"1":"2");
@@ -124,7 +124,6 @@ public class AndroidServlet extends HttpServlet {
                     if(forkerte!=7) {
                         con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
                         returnObj.put("type", 1);
-                        con.update("");
                     }
                     else {
                         returnObj.put("type", 0);
