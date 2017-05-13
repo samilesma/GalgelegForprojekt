@@ -65,7 +65,6 @@ public class ChallengeServlet extends HttpServlet {
             int challengeIDD = Integer.parseInt(request.getParameter("cid"));
             ResultSet rs = con.select("SELECT word FROM challenges WHERE challenges.id = " + challengeIDD + "");
             String ord = rs.getString("word");
-            //spil.doit(arg0);
             response.sendRedirect("game.jsp");
         } else if (request.getParameter("type").equals("acceptdecline")) {
             if (request.getParameter("sub").equals("Accepter")) {
@@ -77,6 +76,7 @@ public class ChallengeServlet extends HttpServlet {
                 rs.next();
                 String ord = rs.getString("word");
                 spil.doit(Arrays.asList(currUser,ord,"setOrdet"));
+                spil.doit(Arrays.asList(currUser, "opdaterSynligtOrd"));
                 response.sendRedirect("game.jsp");
             } else if (request.getParameter("sub").equals("Afvis")) {
                 int challengeID = Integer.parseInt(request.getParameter("id"));

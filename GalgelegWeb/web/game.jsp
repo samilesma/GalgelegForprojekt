@@ -116,7 +116,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
                                                                     String p=(currUser.equals(rs.getString("p1"))?rs.getString("p2"):rs.getString("p1"));
                                                                     rs=con.select("SELECT name,surname FROM users WHERE sid='"+p+"'");
                                                                     rs.next();
-                                                                    out.println("<h3>Du spiller mod <b>"+rs.getString("name")+" "+rs.getString("surname")+"</b></h3>");
+                                                                    out.println("<h3 id='modstander'>Du spiller mod <b>"+rs.getString("name")+" "+rs.getString("surname")+"</b></h3>");
                                                                 }
                                                                 %>
 								<img id="hangmanpic" src=
@@ -162,7 +162,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 						<form action="AndroidServlet" method="post" id="guessForm" class="sendmsg">
 							<div class="form-group">
 								<label for="letter">Bogstav</label>
-								<input type="text" class="form-control" name="bogstav" id="letter" placeholder="Indtast bogstav" required="required" maxlength=1 />
+								<input type="text" class="form-control" onkeypress="if(event.keyCode!=13){this.value=String.fromCharCode(event.keyCode)}else{this.submit()}" name="bogstav" id="letter" placeholder="Indtast bogstav" required="required" maxlength=1 />
 							</div>
                                                         <button type="submit" id="btnGuess" class="btn btn-lg btn-primary" >Gæt!</button>
                                                         <input type="hidden" name="sid" value="<%=currUser%>" />

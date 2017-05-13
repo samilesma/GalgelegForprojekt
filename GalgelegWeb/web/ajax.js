@@ -22,6 +22,7 @@ $('document').ready(function(){
                     document.getElementById("ordetLabel").innerHTML = "Ordet er: "+data.synligtOrd;
                     document.getElementById("time").innerHTML = 0;
                     document.getElementById("numbErrors").innerHTML = "0";
+                    document.getElementById("modstander").hidden = true;
                     timer = true;
                 }
             }

@@ -173,7 +173,7 @@ public class AndroidServlet extends HttpServlet {
                 int i = 0;
                 while (rs.next()) {
                     i++;
-                    String fullname = rs.getString("name") + rs.getString("surname");
+                    String fullname = rs.getString("name")+" "+rs.getString("surname");
                     int wrong = rs.getInt("wrong");
                     int time = rs.getInt("time");
                     Timestamp stamp = new Timestamp(rs.getInt("timestamp") * 1000L);
