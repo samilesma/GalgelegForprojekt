@@ -93,13 +93,19 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
                 highscoreElementTime.setText(mTime[position].toString());
 
                 ImageView highscoreIcon = (ImageView) view.findViewById(R.id.highscore_icon);
+                TextView highscoreNumber = (TextView) view.findViewById(R.id.highscore_number);
                 if (position == 0) {
                     highscoreIcon.setImageResource(R.drawable.gold);
                 } else if (position == 1) {
                     highscoreIcon.setImageResource(R.drawable.silver);
                 } else if (position == 2) {
                     highscoreIcon.setImageResource(R.drawable.bronze);
-                } else highscoreIcon.setImageResource(R.drawable.empty);
+                } else {
+                    highscoreIcon.setVisibility(View.GONE);
+                    highscoreNumber.setVisibility(View.VISIBLE);
+                    int i = position + 1;
+                    highscoreNumber.setText(""+i);
+                }
 
                 return view;
             }

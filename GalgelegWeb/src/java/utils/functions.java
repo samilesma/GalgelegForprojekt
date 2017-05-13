@@ -5,9 +5,6 @@
 */
 package utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -106,7 +103,7 @@ public class functions {
     
     public void challengeFriend(String sidOne, String sidTwo, String word) throws SQLException{
         long unixTime = System.currentTimeMillis() / 1000L;
-        int id=con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+unixTime+",'"+word+"')","heh");
+        int id = con.updateLastInsertedId("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+unixTime+",'"+word+"')");
         con.update("INSERT INTO multiplayer (cid) VALUES ("+id+")");
     }
     

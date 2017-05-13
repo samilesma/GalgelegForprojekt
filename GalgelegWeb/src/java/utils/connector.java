@@ -85,7 +85,7 @@ public class connector {
 		stmt.executeUpdate();
 	}
         
-        public int update(String query, String heh) throws SQLException {
+        public int updateLastInsertedId(String query) throws SQLException {
 		stmt = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 		stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
