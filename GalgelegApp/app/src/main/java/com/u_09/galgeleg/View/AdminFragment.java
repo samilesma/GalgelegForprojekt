@@ -8,12 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.u_09.galgeleg.Model.Function;
 import com.u_09.galgeleg.R;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ibsenb on 18/04/2017.
@@ -38,8 +35,7 @@ public class AdminFragment extends Fragment {
             e.printStackTrace();
         }
 //*/
-        adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, userList);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, userList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
 

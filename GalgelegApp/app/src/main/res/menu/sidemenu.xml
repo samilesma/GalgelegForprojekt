@@ -22,10 +22,22 @@
 	      app:showAsAction="never"
 		/>
 
+	<item android:id="@+id/action_chat"
+		  android:title="@string/chat_menu_tekst"
+		  android:orderInCategory="4"
+		  app:showAsAction="never"
+		/>
+
 	<item android:id="@+id/action_help"
 	      android:title="@string/hjælp_menu_tekst"
-	      android:orderInCategory="4"
+	      android:orderInCategory="5"
 	      app:showAsAction="never"
+		/>
+
+	<item android:id="@+id/action_sign_out"
+		  android:title="@string/sign_out_menu_tekst"
+		  android:orderInCategory="5"
+		  app:showAsAction="never"
 		/>
 
 </menu>

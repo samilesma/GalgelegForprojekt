@@ -7,8 +7,6 @@ package servlets;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,16 +36,17 @@ public class ChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        if(request.getParameterMap().containsKey("type") && request.getParameter("type").equals("getmessage"))
-        {
+        if(request.getParameterMap().containsKey("type") && request.getParameter("type").equals("getmessage")) {
             Gson gson=new Gson();
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(gson.toJson(function.getMessages((String)request.getSession().getAttribute("currUser"),Long.parseLong(request.getParameter("date")))));
             System.out.println(Long.parseLong(request.getParameter("date")));
         }
-        else
-        {
+        else if (request.getParameterMap().containsKey("type") && request.getParameter("type").equals("sendMsg")) {
+            function.sendMsg(request.getParameter("sid"), request.getParameter("msg"));
+        }
+        else {
             String sid = (String) request.getSession().getAttribute("currUser");
             String msg = request.getParameter("usermsg");
             function.sendMsg(sid, msg);

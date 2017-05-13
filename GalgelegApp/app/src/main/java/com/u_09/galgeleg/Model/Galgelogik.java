@@ -59,7 +59,7 @@ public class Galgelogik {
         return antalForkerteBogstaver;
     }
 
-    public void setAntalForkerteBogstaver(int antalForkerteBogstaver){
+    public void setAntalForkerteBogstaver(int antalForkerteBogstaver) {
         this.antalForkerteBogstaver = antalForkerteBogstaver;
     }
 

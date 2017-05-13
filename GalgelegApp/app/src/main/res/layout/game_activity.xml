@@ -19,7 +19,7 @@
 		android:layout_margin="5dp"
 		android:gravity="bottom|end"
 		android:id="@+id/tv_spiller"
-		android:text="@string/spiller"
+		android:text="@string/tv_spiller"
 	    android:textColor="@color/white"
 	    android:textSize="10sp"
 		/>

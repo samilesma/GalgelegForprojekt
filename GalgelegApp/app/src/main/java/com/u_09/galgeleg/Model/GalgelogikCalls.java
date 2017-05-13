@@ -1,15 +1,19 @@
 package com.u_09.galgeleg.Model;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-
-public class GalgelogikFunc {
+public class GalgelogikCalls {
 
     private static final String REST_ROOT_URL = "http://galgeleg.dk/GalgelegWeb/AndroidServlet";
     private static final String PARAMETER_TYPE = "?type=";
@@ -41,6 +45,8 @@ public class GalgelogikFunc {
     private static final String PARAMETER_DATE = "&date";
     private static final String PARAMETER_TIME = "&time=";
     private static final String TYPE_GETHIGHSCORES = "getHighscores";
+    private static final String TYPE_SEND_MSG = "sendMsg";
+    private static final String PARAMETER_MSG = "&msg=";
 
     public boolean erSidsteBogstavKorrekt(String sid) throws ExecutionException, InterruptedException, JSONException {
         JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_ERSIDSTEBOGSTAVKORREKT + PARAMETER_SID + sid).get());
@@ -96,14 +102,13 @@ public class GalgelogikFunc {
         JSONObject returnObj = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETSYNLIGTORD + PARAMETER_SID + sid).get());
         return returnObj.getString("synligtOrd");
     }
-    
+
     public void gaetBogstav(String bogstav, String sid) throws ExecutionException, InterruptedException, JSONException {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAETBOGSTAV + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid);
     }
 
     public JSONObject gaet(String bogstav, String sid, int time) throws ExecutionException, InterruptedException, JSONException {
-        // FIXME: 11/05/2017 16.28 TILFØJ TIME
-        return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAET + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid + PARAMETER_TIME + time).get());
+        return new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GAET + PARAMETER_BOGSTAV + bogstav + PARAMETER_SID + sid + PARAMETER_TIME + time, "test").get());
     }
 
     public JSONObject hentBruger(String username, String password) throws ExecutionException, InterruptedException, JSONException {
@@ -134,6 +139,7 @@ public class GalgelogikFunc {
     public void setOrdet(int i, String sid) throws ExecutionException, InterruptedException, JSONException {
         new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_SETORDET + PARAMETER_I + i + PARAMETER_SID + sid);
     }
+
     public JSONObject hentBeskeder(long timestamp) throws ExecutionException, InterruptedException, JSONException {
         JSONObject jsonObject = new JSONObject(new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_GETMESSAGE + PARAMETER_DATE + timestamp).get());
         return jsonObject;
@@ -142,5 +148,11 @@ public class GalgelogikFunc {
     public JSONArray getHighscores() throws ExecutionException, InterruptedException, JSONException {
         JSONObject jsonObject = new JSONObject(new Web().execute(REST_ROOT_URL + PARAMETER_TYPE + TYPE_GETHIGHSCORES).get());
         return jsonObject.getJSONArray("highscores");
+    }
+
+    public void sendMsg(String sid, String msg) throws SQLException, UnsupportedEncodingException {
+        String urlMsg = URLEncoder.encode(msg, "UTF-8");
+        Log.d("URLMSG", "" + urlMsg);
+        new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_SEND_MSG + PARAMETER_SID + sid + PARAMETER_MSG + urlMsg);
     }
 }

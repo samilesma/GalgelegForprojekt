@@ -33,11 +33,11 @@ public class Web extends AsyncTask<String, String, String> {
             reader = new BufferedReader(new InputStreamReader(stream));
 
             StringBuffer buffer = new StringBuffer();
-            String line="",text="";
+            String line = "", text = "";
 
             while ((line = reader.readLine()) != null) {
-                buffer.append(line+"\n");
-                text=text+line+"\n";
+                buffer.append(line + "\n");
+                text = text + line + "\n";
             }
             return text;
 

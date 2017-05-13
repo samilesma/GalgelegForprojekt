@@ -185,7 +185,7 @@ public class AndroidServlet extends HttpServlet {
                 returnObj.put("highscores", jsonArray);
                 break;
             case "chat":
-                functions f=new functions();
+                functions f = new functions();
                 returnObj=f.getMessagesJson(request.getParameter("sid"),Long.parseLong(request.getParameter("timestamp")));
                 break;
             case "setOrdet":

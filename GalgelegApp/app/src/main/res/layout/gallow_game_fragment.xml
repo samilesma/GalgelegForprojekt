@@ -145,8 +145,8 @@
 	<ProgressBar
 		android:layout_width="80dp"
 		android:layout_height="wrap_content"
-		android:id="@+id/progressbar1"
-		style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+		android:id="@+id/pb_game"
+		style="?android:attr/progressBarStyleHorizontal"
 		android:indeterminate="true"
 		android:visibility="invisible"
 		/>

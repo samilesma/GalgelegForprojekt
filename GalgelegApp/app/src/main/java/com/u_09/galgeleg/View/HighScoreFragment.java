@@ -1,11 +1,9 @@
 package com.u_09.galgeleg.View;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.u_09.galgeleg.Model.GalgelogikFunc;
+import com.u_09.galgeleg.Model.GalgelogikCalls;
 import com.u_09.galgeleg.R;
 
 import org.json.JSONArray;
@@ -26,26 +24,23 @@ import java.util.concurrent.ExecutionException;
 
 public class HighScoreFragment extends Fragment implements View.OnClickListener {
 
-    SharedPreferences myPrefs;
+    View mView;
+    ListView mListView;
+    Button mBtnClearAll;
     ArrayAdapter mAdapter;
     String[] mNames = {};
     Integer[] mWrongs = {};
     Integer[] mTime = {};
 
-    ListView mListView;
-    Button mBtnClearAll;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rod = inflater.inflate(R.layout.highscore_fragment, container, false);
+        mView = inflater.inflate(R.layout.highscore_fragment, container, false);
 
-        mListView = (ListView) rod.findViewById(R.id.highscore_list);
-        mBtnClearAll = (Button) rod.findViewById(R.id.button_clear_all);
-
+        mListView = (ListView) mView.findViewById(R.id.highscore_list);
+        mBtnClearAll = (Button) mView.findViewById(R.id.button_clear_all);
+        mBtnClearAll.setVisibility(View.GONE);
         mBtnClearAll.setOnClickListener(this);
-
-        // myPrefs = this.getActivity().getSharedPreferences("highscorePrefs", Context.MODE_PRIVATE);
 
         try {
             fillHighscoreList();
@@ -53,31 +48,26 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
 
-        return rod;
+        return mView;
     }
 
     private void fillHighscoreList() throws JSONException {
 
         JSONArray array = null;
         try {
-            array = new GalgelogikFunc().getHighscores();
-        } catch (JSONException | InterruptedException| ExecutionException e) {
+            array = new GalgelogikCalls().getHighscores();
+        } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        if(array.length() > 0) {
+        if (array.length() > 0) {
             mNames = new String[array.length()];
             mWrongs = new Integer[array.length()];
             mTime = new Integer[array.length()];
-            for(int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
                 mNames[i] = object.getString("fullname");
                 mWrongs[i] = object.getInt("wrong");
                 mTime[i] = object.getInt("time");
-                Log.d("Array", "Index: " + i + array.getJSONObject(i));
-                Log.d("Array", "Value fullname: " + object.getString("fullname"));
-                Log.d("Array", "Value wrong: " + object.getInt("wrong"));
-                Log.d("Array", "Value time: " + object.getInt("time"));
-                Log.d("Array", "Value date: " + object.getString("date"));
             }
         }
         mAdapter = new ArrayAdapter(getContext(), R.layout.highscore_element, R.id.highscore_element_wrong, mWrongs) {
@@ -104,7 +94,7 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
                     highscoreIcon.setVisibility(View.GONE);
                     highscoreNumber.setVisibility(View.VISIBLE);
                     int i = position + 1;
-                    highscoreNumber.setText(""+i);
+                    highscoreNumber.setText("" + i);
                 }
 
                 return view;
