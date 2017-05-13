@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class connector {
 	private Connection connection;
@@ -82,6 +83,13 @@ public class connector {
 	public void update(String query) throws SQLException {
 		stmt = connection.prepareStatement(query);
 		stmt.executeUpdate();
+	}
+        
+        public int update(String query, String heh) throws SQLException {
+		stmt = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+		stmt.executeUpdate();
+                ResultSet rs = stmt.getGeneratedKeys();
+                return rs.getInt(1);
 	}
 
 	public boolean check(String query, String[]... val) throws SQLException {

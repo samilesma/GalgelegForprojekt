@@ -56,6 +56,7 @@ public class AndroidServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String type = request.getParameter("type");
         JSONObject returnObj = new JSONObject();
+        connector con = new connector();
 
         switch (type) {
             case "erSidsteBogstavKorrekt":
@@ -97,15 +98,37 @@ public class AndroidServlet extends HttpServlet {
             case "gaet":
                 String letter = request.getParameter("bogstav");
                 String sid = request.getParameter("sid");
+                String p;
                 spil.doit(Arrays.asList(sid, letter, "gaetBogstav"));
                 int forkerte = spil.getint(Arrays.asList(sid, "getAntalForkerteBogstaver"));
-                if (spil.check(Arrays.asList(sid, "erSpilletVundet"))) {
-                    int tid = (request.getSession().getAttribute("currTime")!=null?(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000):Integer.parseInt(request.getParameter("time")));
-                    connector con = new connector();
-                    con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
-                    returnObj.put("type", 1);
-                } else if (spil.check(Arrays.asList(sid, "erSpilletTabt"))) {
-                    returnObj.put("type", 0);
+                int tid = (request.getSession().getAttribute("currTime")!=null?(int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000):Integer.parseInt(request.getParameter("time")));
+                if(spil.check(Arrays.asList(sid,"erSpilletSlut"))) {
+                    if(request.getSession().getAttribute("chall") == null) {
+                        ResultSet rs=con.select("SELECT p1 FROM challenges WHERE id="+request.getSession().getAttribute("chall"));
+                        rs.next();
+                        p=(rs.getString("p1").equals(request.getParameter("sid"))?"1":"2");
+                        con.update("UPDATE multiplayer SET wrong"+p+"="+forkerte+", time"+p+"="+tid+" WHERE cid="+request.getSession().getAttribute("chall"));
+                        
+                        p=(p.equals("1")?"2":"1");
+                        rs=con.select("SELECT wrong1,time1,wrong2,time2 FROM multiplayer WHERE cid="+request.getSession().getAttribute("chall"));
+                        rs.next();
+                        if(rs.getInt("wrong1")!=-1 && rs.getInt("wrong2")!=-1) {
+                            int w;
+                            if(rs.getInt("wrong1")<rs.getInt("wrong2") || (rs.getInt("wrong1")==rs.getInt("wrong2") && rs.getInt("time1")<rs.getInt("time2"))) w=1;
+                            else if(rs.getInt("wrong2")<rs.getInt("wrong1") || (rs.getInt("wrong2")==rs.getInt("wrong1") && rs.getInt("time2")<rs.getInt("time1"))) w=2;
+                            else w=3;
+                            
+                            con.update("UPDATE challenges SET win="+w+" WHERE cid="+request.getSession().getAttribute("chall"));
+                        }
+                    }
+                    if(forkerte!=7) {
+                        con.update("INSERT INTO singleplayer (sid,wrong,time,timestamp) VALUES ('" + sid + "','" + forkerte + "','" + tid + "','" + System.currentTimeMillis() / 1000L + "')");
+                        returnObj.put("type", 1);
+                        con.update("");
+                    }
+                    else {
+                        returnObj.put("type", 0);
+                    }
                 }
                 Gson gson = new Gson();
                 returnObj.put("antalForkerteBogstaver", forkerte);
@@ -146,7 +169,6 @@ public class AndroidServlet extends HttpServlet {
                 spil.doit(Arrays.asList(request.getParameter("sid"), "opdaterSynligtOrd"));
                 break;
             case "getHighscores":
-                connector con = new connector();
                 ResultSet rs = con.select("SELECT singleplayer.sid, wrong, time, name, surname, timestamp FROM singleplayer LEFT JOIN users ON (singleplayer.sid = users.sid) ORDER BY wrong,time,timestamp LIMIT 10");
                 JSONArray jsonArray = new JSONArray();
                 int i = 0;

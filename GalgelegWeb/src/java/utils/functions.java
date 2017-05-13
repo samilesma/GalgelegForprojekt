@@ -106,10 +106,8 @@ public class functions {
     
     public void challengeFriend(String sidOne, String sidTwo, String word) throws SQLException{
         long unixTime = System.currentTimeMillis() / 1000L;
-        con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+unixTime+",'"+word+"')");
-        /*
-        MULTIPLAYER OG CHALLENGES skal måske samles til en tabel, da andet ikke giver mening.
-        */
+        int id=con.update("INSERT INTO challenges (p1,p2,timestamp,word) VALUES ('"+sidOne+"','"+sidTwo+"',"+unixTime+",'"+word+"')","heh");
+        con.update("INSERT INTO multiplayer (cid) VALUES ("+id+")");
     }
     
     public void rejectChallenge(int challengeID) throws SQLException {
