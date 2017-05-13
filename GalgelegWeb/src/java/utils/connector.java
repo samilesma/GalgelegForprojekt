@@ -89,6 +89,7 @@ public class connector {
 		stmt = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 		stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
+                rs.next();
                 return rs.getInt(1);
 	}
 

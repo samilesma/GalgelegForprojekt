@@ -53,16 +53,13 @@ public class ChallengeServlet extends HttpServlet {
             if (!currUser.equals(challenged)) {
                 JSONArray ja=new JSONArray(spil.get(Arrays.asList(request.getParameter("sid"), "getMuligeOrd")));
                 String ordet=(String)ja.get(ThreadLocalRandom.current().nextInt(0,ja.length()));
-                
                 System.out.println(ordet);
-                
                 f.challengeFriend(currUser, challenged, ordet);
                 response.sendRedirect("challenges.jsp");
             } else {
                 System.out.println("SAMME BRUGER!");
                 response.sendRedirect("challenges.jsp");
                 String zirt = request.getParameter("stid");
-                System.out.println("ZIIIIIIIIIIIIIIIRRRRRRTTTTTT"+zirt);
             }
         } else if (request.getParameter("type").equals("spil")) {
             int challengeIDD = Integer.parseInt(request.getParameter("cid"));
