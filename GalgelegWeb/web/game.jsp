@@ -116,8 +116,7 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
                                                                     String p=(currUser.equals(rs.getString("p1"))?rs.getString("p2"):rs.getString("p1"));
                                                                     rs=con.select("SELECT name,surname FROM users WHERE sid='"+p+"'");
                                                                     rs.next();
-                                                                    out.println("<b>Du spiller mod <h3>"+rs.getString("name")+" "+rs.getString("surname")+"</h3></b>");
-                                                                    out.println("<br/>");
+                                                                    out.println("<h3>Du spiller mod <b>"+rs.getString("name")+" "+rs.getString("surname")+"</b></h3>");
                                                                 }
                                                                 %>
 								<img id="hangmanpic" src=
