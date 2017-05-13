@@ -3,12 +3,16 @@
     Created on : 13-03-2017, 20:03:13
     Author     : Umais
 --%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.connector"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%
 if(session.getAttribute("currUser") == null || session.getAttribute("currUser").equals("")) response.sendRedirect("index.jsp");
 String currUser = (String) request.getSession().getAttribute("currUser");
 String currName = (String) request.getSession().getAttribute("currName");
+int chall=-1;
+if(session.getAttribute("chall") != null && !session.getAttribute("chall").equals("")) chall=(int) request.getSession().getAttribute("chall");
 int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().getAttribute("currTime")))/1000);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -104,6 +108,18 @@ int currTime = (int)((System.currentTimeMillis()-((long)request.getSession().get
 						
 						<div class="row">
 							<div class="col-xs-12">
+                                                                <%
+                                                                if(chall!=-1) {
+                                                                    connector con=new connector();
+                                                                    ResultSet rs=con.select("SELECT p1,p2 FROM challenges WHERE chall="+chall);
+                                                                    rs.next();
+                                                                    String p=(currUser.equals(rs.getString("p1"))?rs.getString("p2"):rs.getString("p1"));
+                                                                    rs=con.select("SELECT name,surname FROM users WHERE sid='"+p+"'");
+                                                                    rs.next();
+                                                                    out.println("<b>Du spiller mod <h3>"+rs.getString("name")+" "+rs.getString("surname")+"</h3></b>");
+                                                                    out.println("<br/>");
+                                                                }
+                                                                %>
 								<img id="hangmanpic" src=
 								<%
 								int errors = spil.getint(Arrays.asList(currUser,"getAntalForkerteBogstaver"));
