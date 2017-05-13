@@ -77,6 +77,7 @@ public class ChallengeServlet extends HttpServlet {
                 request.getSession().setAttribute("chall", challengeID);
                 request.getSession().setAttribute("currTime",System.currentTimeMillis());
                 ResultSet rs = con.select("SELECT word FROM challenges WHERE id = " + challengeID + "");
+                rs.next();
                 String ord = rs.getString("word");
                 spil.doit(Arrays.asList(currUser,ord,"setOrdet"));
                 response.sendRedirect("game.jsp");
