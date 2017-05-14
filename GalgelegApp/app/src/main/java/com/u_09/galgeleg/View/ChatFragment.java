@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -73,7 +75,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, View
 
     private void updatechat() {
 
-        JSONObject jsonObject = null;
+        JSONObject jsonObject;
         JSONArray jsonArray = null;
 
         try {
@@ -87,14 +89,15 @@ public class ChatFragment extends Fragment implements View.OnClickListener, View
         names = new String[jsonArray.length()];
         times = new String[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject object = null;
+            JSONObject object;
             try {
                 object = jsonArray.getJSONObject(i);
                 names[i] = object.getString("name");
                 messages[i] = object.getString("msg");
-                Timestamp stamp = new Timestamp(object.getInt("timestamp"));
+                Timestamp stamp = new Timestamp(object.getInt("timestamp")*1000L);
                 Date date = new Date(stamp.getTime());
-                times[i] = date.toString();
+                Format format = new SimpleDateFormat("dd/MM-yyyy HH:mm");
+                times[i] = format.format(date);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -104,16 +107,16 @@ public class ChatFragment extends Fragment implements View.OnClickListener, View
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mAdapter = new ArrayAdapter(getContext(), R.layout.chat_element, R.id.chat_element_name, names) {
+                mAdapter = new ArrayAdapter(getContext(), R.layout.chat_element, R.id.chat_element_msg, messages) {
                     @NonNull
                     @Override
                     public View getView(int position, View convertView, ViewGroup parent) {
 
                         View view = super.getView(position, convertView, parent);
-                        TextView chatElementMsg = (TextView) view.findViewById(R.id.chat_element_msg);
+                        TextView chatElementName = (TextView) view.findViewById(R.id.chat_element_name);
                         TextView chatElementTime = (TextView) view.findViewById(R.id.chat_element_time);
 
-                        chatElementMsg.setText(messages[position]);
+                        chatElementName.setText(names[position] + ":");
                         chatElementTime.setText(times[position]);
 
                         return view;

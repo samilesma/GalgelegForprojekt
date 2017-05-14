@@ -151,7 +151,7 @@ public class GalgelogikCalls {
     }
 
     public void sendMsg(String sid, String msg) throws SQLException, UnsupportedEncodingException {
-        String urlMsg = URLEncoder.encode(msg, "UTF-8");
+        String urlMsg = URLEncoder.encode(msg.trim(), "UTF-8");
         Log.d("URLMSG", "" + urlMsg);
         new Web().execute(REST_CHAT_URL + PARAMETER_TYPE + TYPE_SEND_MSG + PARAMETER_SID + sid + PARAMETER_MSG + urlMsg);
     }
